@@ -1,8 +1,8 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  output-dir: docs
   title: 'DSA'
   navbar:
     left:
