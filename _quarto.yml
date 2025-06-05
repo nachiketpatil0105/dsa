@@ -2,7 +2,8 @@ project:
   type: website
 
 website:
-  title: "DSA"
+  output-dir: docs
+  title: 'DSA'
   navbar:
     left:
       - href: index.qmd
@@ -16,6 +17,3 @@ format:
       - brand
     css: styles.css
     toc: true
-
-
-
