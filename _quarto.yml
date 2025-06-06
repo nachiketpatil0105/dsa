@@ -19,8 +19,24 @@ website:
     collapse-level: 1
     search: true
     contents:
-      - text: C++ STL
-        href: DSA Notes/C++STL/stl.qmd
+      - section: 'C++ STL'
+        contents:
+          - text: Vector
+            href: DSA Notes/C++STL/vector.qmd
+          - text: Deque
+            href: DSA Notes/C++STL/deque.qmd
+          - text: List
+            href: DSA Notes/C++STL/list.qmd
+          - text: Stack
+            href: DSA Notes/C++STL/stack.qmd
+          - text: Priority Queue
+            href: DSA Notes/C++STL/priority_queue.qmd
+          - text: Set
+            href: DSA Notes/C++STL/set.qmd
+          - text: Map
+            href: DSA Notes/C++STL/map.qmd
+          - text: Algorithm
+            href: DSA Notes/C++STL/algorithm.qmd
       - section: 'Basic Sorting'
         contents:
           - text: Bubble Sort
