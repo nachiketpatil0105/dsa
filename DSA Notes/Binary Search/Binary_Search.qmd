@@ -32,9 +32,9 @@ It repeatedly divides the search interval in half, comparing the target with the
 
 **Space Complexity:** O(1)
 
-**Extra Things to Know**
+**Extra Things to Know:**
 
-Some times we face issue of **index out of range**. In such cases try taking s = 1 and e = n - 2. And ensure conditions on 0 and n - 1 before applying the while loop.
+1. Some times we face issue of **index out of range**. In such cases try taking s = 1 and e = n - 2. And ensure conditions on 0 and n - 1 before applying the while loop.
 
 ---
 
