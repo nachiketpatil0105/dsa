@@ -33,6 +33,8 @@ website:
             href: DSA Notes/Advanced Sorting/Quick_Sort.qmd
           - text: Merge Sort
             href: DSA Notes/Advanced Sorting/Merge_Sort.qmd
+      - text: Binary Search
+        href: DSA Notes/Binary_Search.qmd
 
 format:
   html:

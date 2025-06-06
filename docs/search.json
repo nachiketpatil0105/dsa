@@ -93,7 +93,6 @@
     "text": "Compare adjacent elements, and move the large element to right in each loop.\n\nSteps:\n\nStart from the first element.\nCompare each pair of adjacent elements.\nIf the left element is greater than the right, swap them.\nRepeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).\nStop if no swaps are made in a pass (array is sorted).\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid bubbleSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    bool swapped;\n    for (int i = 0; i &lt; n - 1; i++) {\n        swapped = false;\n        for (int j = 0; j &lt; n - i - 1; j++) {\n            if (arr[j] &gt; arr[j + 1]) {\n                swap(arr[j], arr[j + 1]);\n                swapped = true;\n            }\n        }\n        if (!swapped) break;  // Optimization\n    }\n}",
     "crumbs": [
       "Home",
-      "Sorting",
       "Basic Sorting",
       "Bubble Sort"
     ]
@@ -106,7 +105,6 @@
     "text": "Compare adjacent elements, and move the large element to right in each loop.\n\nSteps:\n\nStart from the first element.\nCompare each pair of adjacent elements.\nIf the left element is greater than the right, swap them.\nRepeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).\nStop if no swaps are made in a pass (array is sorted).\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid bubbleSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    bool swapped;\n    for (int i = 0; i &lt; n - 1; i++) {\n        swapped = false;\n        for (int j = 0; j &lt; n - i - 1; j++) {\n            if (arr[j] &gt; arr[j + 1]) {\n                swap(arr[j], arr[j + 1]);\n                swapped = true;\n            }\n        }\n        if (!swapped) break;  // Optimization\n    }\n}",
     "crumbs": [
       "Home",
-      "Sorting",
       "Basic Sorting",
       "Bubble Sort"
     ]
@@ -133,6 +131,28 @@
       "Home",
       "Basic Sorting",
       "Insertion Sort"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Binary_Search.html",
+    "href": "DSA Notes/Binary_Search.html",
+    "title": "DSA",
+    "section": "",
+    "text": "Binary Search is an efficient algorithm to find the position of a target value within a sorted array.\nIt repeatedly divides the search interval in half, comparing the target with the middle element.\n\nSteps:\n\nSet s = 0, e = n - 1.\nWhile s &lt;= e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] == target, return mid.\nIf arr[mid] &lt; target, set s = mid + 1.\nIf arr[mid] &gt; target, set e = mid - 1.\n\nIf not found, return -1.\n\nTime Complexity:\n\nBest: O(1) (if the middle is the target)\nAverage: O(log n)\nWorst: O(log n)\n\nSpace Complexity: O(1)\n\n\n\n\nint binarySearch(const vector&lt;int&gt;& arr, int target) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt;= e) {\n        if (arr[mid] == target) {\n            return mid;\n        }\n        else if (arr[mid] &lt; target) {\n            s = mid + 1;\n        }\n        else {\n            e = mid - 1;\n        }\n    }\n    return -1; // Not found\n}",
+    "crumbs": [
+      "Home",
+      "Binary Search"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Binary_Search.html#binary-search",
+    "href": "DSA Notes/Binary_Search.html#binary-search",
+    "title": "DSA",
+    "section": "",
+    "text": "Binary Search is an efficient algorithm to find the position of a target value within a sorted array.\nIt repeatedly divides the search interval in half, comparing the target with the middle element.\n\nSteps:\n\nSet s = 0, e = n - 1.\nWhile s &lt;= e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] == target, return mid.\nIf arr[mid] &lt; target, set s = mid + 1.\nIf arr[mid] &gt; target, set e = mid - 1.\n\nIf not found, return -1.\n\nTime Complexity:\n\nBest: O(1) (if the middle is the target)\nAverage: O(log n)\nWorst: O(log n)\n\nSpace Complexity: O(1)\n\n\n\n\nint binarySearch(const vector&lt;int&gt;& arr, int target) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt;= e) {\n        if (arr[mid] == target) {\n            return mid;\n        }\n        else if (arr[mid] &lt; target) {\n            s = mid + 1;\n        }\n        else {\n            e = mid - 1;\n        }\n    }\n    return -1; // Not found\n}",
+    "crumbs": [
+      "Home",
+      "Binary Search"
     ]
   }
 ]
