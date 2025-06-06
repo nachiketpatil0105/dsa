@@ -19,6 +19,8 @@ website:
     collapse-level: 1
     search: true
     contents:
+      - text: C++ STL
+        href: DSA Notes/C++STL/stl.qmd
       - section: 'Basic Sorting'
         contents:
           - text: Bubble Sort
