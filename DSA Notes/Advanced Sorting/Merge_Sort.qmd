@@ -1,0 +1,83 @@
+## 📌 Merge Sort
+
+### 📖 Theory
+
+Merge Sort is a **divide and conquer** algorithm. It divides the array into two halves, sorts each half recursively, and then merges the two sorted halves.
+
+**Steps:**
+
+1. Divide the array in two halves (like binary).
+2. Recursively sort both halves.
+3. Merge both sorted halves into a single sorted array.
+
+**Time Complexity:**
+
+- Best: O(n log n)
+- Average: O(n log n)
+- Worst: O(n log n)
+
+**Space Complexity:** O(n) (extra space for merging)
+
+**Stable:** ✅ Yes  
+**In-place:** ❌ No
+
+---
+
+### ✅ Code (C++)
+
+```cpp
+void mergeSort(vector <int> &arr, int s, int e) {
+  if (s >= e) {
+    return;
+  }
+
+  int mid = s + (e - s) / 2;
+
+  mergeSort(arr, s, mid);
+  mergeSort(arr, mid + 1, e);
+
+  merge(arr, s, e);
+}
+
+void merge(<vector> &arr, int s, int e) {
+  int mid = s + (e - s) / 2;
+  int len1 = mid - s + 1;
+  int len2 = e - mid;
+
+  int *first = new int[len1];
+  int *second = new int[len2];
+
+  int main_arr_ind = s;
+  for (int i = 0; i < len1; i++) {
+    first[i] = arr[main_arr_ind++];
+  }
+
+  main_arr_ind = mid + 1;
+  for (int i = 0; i < len2; i++) {
+    second[i] = arr[main_arr_ind++];
+  }
+
+  int ind1 = 0, ind2 = 0;
+  main_arr_ind = s;
+
+  while (ind1 < len1 && ind2 < len2) {
+    if (arr[ind1] < arr[ind2]) {
+      arr[main_arr_ind++] = arr[ind1++];
+    }
+    else {
+      arr[main_arr_ind++] = arr[ind2++];
+    }
+  }
+
+  while (ind1 < len1) {
+    arr[main_arr_ind++] = arr[ind1++];
+  }
+
+  while (ind2 < len2) {
+    arr[main_arr_ind++] = arr[ind2++];
+  }
+
+  delete []first;
+  delete []second;
+}
+```

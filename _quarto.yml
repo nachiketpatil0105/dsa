@@ -11,17 +11,20 @@ website:
       - text: About
         href: about.qmd
   sidebar:
-    - text: Basic Sorting
-      href: sorting/index.qmd
-      contents:
-        - text: Bubble Sort
-          href: sorting/bubble.qmd
-        - text: Merge Sort
-          href: sorting/merge.qmd
-    - text: Advanced Sorting
-      href: sorting/index.qmd
-      contents:
-        - text: Bubble Sort
-          href: sorting/bubble.qmd
-        - text: Merge Sort
-          href: sorting/merge.qmd
+    style: 'docked'
+    search: true
+    contents:
+      - section: 'Basic Sorting'
+        contents:
+          - text: Bubble Sorts
+            href: DSA Notes/Basic Sorting/Bubble_Sort.qmd
+          - text: Selection Sort
+            href: DSA Notes/Basic Sorting/Selection_Sort.qmd
+          - text: Insertion Sort
+            href: DSA Notes/Basic Sorting/Insertion_Sort.qmd
+      - section: 'Advanced Sorting'
+        contents:
+          - text: Quick Sort
+            href: DSA Notes/Advanced Sorting/Quick_Sort.qmd
+          - text: Merge Sort
+            href: DSA Notes/Advanced Sorting/Merge_Sort.qmd

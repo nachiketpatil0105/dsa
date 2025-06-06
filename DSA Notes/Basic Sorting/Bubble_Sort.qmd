@@ -1,0 +1,47 @@
+## 📌 Bubble Sort
+
+### 📖 Theory
+
+Compare adjacent elements, and move the large element to right in each loop.
+
+---
+
+**Steps:**
+
+1. Start from the first element.
+2. Compare each pair of adjacent elements.
+3. If the left element is greater than the right, swap them.
+4. Repeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).
+5. Stop if no swaps are made in a pass (array is sorted).
+
+**Time Complexity:**
+
+- Best: O(n) _(when already sorted)_
+- Average: O(n²)
+- Worst: O(n²)
+
+**Space Complexity:** O(1)
+
+- **Stable:** ✅ Yes
+- **In-place:** ✅ Yes
+
+---
+
+### ✅ Code (C++)
+
+```cpp
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    bool swapped;
+    for (int i = 0; i < n - 1; i++) {
+        swapped = false;
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
+        }
+        if (!swapped) break;  // Optimization
+    }
+}
+```

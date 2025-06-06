@@ -1,0 +1,42 @@
+## 📌 Selection Sort
+
+### 📖 Theory
+
+Find the **minimum element** from the unsorted part of array and put it at the end of sorted part of array at the begining.
+
+**Steps:**
+
+1. Start from the first element (index 0).
+2. Find the minimum element in the unsorted part (from current index to end).
+3. Swap this minimum element with the element at the current index.
+4. Move to the next index and repeat until the array is sorted.
+
+**Time Complexity:**
+
+- Best: O(n²)
+- Average: O(n²)
+- Worst: O(n²)
+
+**Space Complexity:** O(1)
+
+**Stable:** ❌ No  
+**In-place:** ✅ Yes
+
+---
+
+### ✅ Code (C++)
+
+```cpp
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n - 1; i++) {
+        int minIdx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIdx]) {
+                minIdx = j;
+            }
+        }
+        swap(arr[i], arr[minIdx]);
+    }
+}
+```
