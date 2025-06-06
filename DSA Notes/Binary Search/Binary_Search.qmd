@@ -32,11 +32,15 @@ It repeatedly divides the search interval in half, comparing the target with the
 
 **Space Complexity:** O(1)
 
+---
+
 **Applications:**
 
 - Used in searching in sorted arrays.
 - Lower/upper bound problems.
 - Finding insert position in sorted data.
+
+---
 
 **Extra Things to Know:**
 

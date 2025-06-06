@@ -25,6 +25,18 @@ Merge Sort is a **divide and conquer** algorithm. It divides the array into two 
 
 ---
 
+**Applications:**
+
+- Used in algorithm that count the number of inversions in array.
+
+---
+
+**Extra Things to Know:**
+
+- Merge Sort is often preferred for sorting linked lists because it does not require random access and can be implemented with O(1) extra space for linked lists.
+
+---
+
 ### ✅ Code (C++)
 
 ```cpp
@@ -41,7 +53,7 @@ void mergeSort(vector <int> &arr, int s, int e) {
   merge(arr, s, e);
 }
 
-void merge(<vector> &arr, int s, int e) {
+void merge(vector <int> &arr, int s, int e) {
   int mid = s + (e - s) / 2;
   int len1 = mid - s + 1;
   int len2 = e - mid;
@@ -63,20 +75,20 @@ void merge(<vector> &arr, int s, int e) {
   main_arr_ind = s;
 
   while (ind1 < len1 && ind2 < len2) {
-    if (arr[ind1] < arr[ind2]) {
-      arr[main_arr_ind++] = arr[ind1++];
+    if (first[ind1] < second[ind2]) {
+      arr[main_arr_ind++] = first[ind1++];
     }
     else {
-      arr[main_arr_ind++] = arr[ind2++];
+      arr[main_arr_ind++] = second[ind2++];
     }
   }
 
   while (ind1 < len1) {
-    arr[main_arr_ind++] = arr[ind1++];
+    arr[main_arr_ind++] = first[ind1++];
   }
 
   while (ind2 < len2) {
-    arr[main_arr_ind++] = arr[ind2++];
+    arr[main_arr_ind++] = second[ind2++];
   }
 
   delete []first;

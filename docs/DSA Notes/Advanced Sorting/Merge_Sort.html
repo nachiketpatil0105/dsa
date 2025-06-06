@@ -296,6 +296,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Stable:</strong> ✅ Yes<br>
 <strong>In-place:</strong> ❌ No</p>
 <hr>
+<p><strong>Applications:</strong></p>
+<ul>
+<li>Used in algorithm that count the number of inversions in array.</li>
+</ul>
+<hr>
+<p><strong>Extra Things to Know:</strong></p>
+<ul>
+<li>Merge Sort is often preferred for sorting linked lists because it does not require random access and can be implemented with O(1) extra space for linked lists.</li>
+</ul>
+<hr>
 </section>
 <section id="code-c" class="level3">
 <h3 class="anchored" data-anchor-id="code-c">✅ Code (C++)</h3>
@@ -312,7 +322,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  merge<span class="op">(</span>arr<span class="op">,</span> s<span class="op">,</span> e<span class="op">);</span></span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> merge<span class="op">(&lt;</span>vector<span class="op">&gt;</span> <span class="op">&amp;</span>arr<span class="op">,</span> <span class="dt">int</span> s<span class="op">,</span> <span class="dt">int</span> e<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> merge<span class="op">(</span>vector <span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> <span class="op">&amp;</span>arr<span class="op">,</span> <span class="dt">int</span> s<span class="op">,</span> <span class="dt">int</span> e<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> mid <span class="op">=</span> s <span class="op">+</span> <span class="op">(</span>e <span class="op">-</span> s<span class="op">)</span> <span class="op">/</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> len1 <span class="op">=</span> mid <span class="op">-</span> s <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="dt">int</span> len2 <span class="op">=</span> e <span class="op">-</span> mid<span class="op">;</span></span>
@@ -334,20 +344,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  main_arr_ind <span class="op">=</span> s<span class="op">;</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>ind1 <span class="op">&lt;</span> len1 <span class="op">&amp;&amp;</span> ind2 <span class="op">&lt;</span> len2<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>arr<span class="op">[</span>ind1<span class="op">]</span> <span class="op">&lt;</span> arr<span class="op">[</span>ind2<span class="op">])</span> <span class="op">{</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>      arr<span class="op">[</span>main_arr_ind<span class="op">++]</span> <span class="op">=</span> arr<span class="op">[</span>ind1<span class="op">++];</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>first<span class="op">[</span>ind1<span class="op">]</span> <span class="op">&lt;</span> second<span class="op">[</span>ind2<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>      arr<span class="op">[</span>main_arr_ind<span class="op">++]</span> <span class="op">=</span> first<span class="op">[</span>ind1<span class="op">++];</span></span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>      arr<span class="op">[</span>main_arr_ind<span class="op">++]</span> <span class="op">=</span> arr<span class="op">[</span>ind2<span class="op">++];</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>      arr<span class="op">[</span>main_arr_ind<span class="op">++]</span> <span class="op">=</span> second<span class="op">[</span>ind2<span class="op">++];</span></span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>ind1 <span class="op">&lt;</span> len1<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    arr<span class="op">[</span>main_arr_ind<span class="op">++]</span> <span class="op">=</span> arr<span class="op">[</span>ind1<span class="op">++];</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    arr<span class="op">[</span>main_arr_ind<span class="op">++]</span> <span class="op">=</span> first<span class="op">[</span>ind1<span class="op">++];</span></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> <span class="op">(</span>ind2 <span class="op">&lt;</span> len2<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    arr<span class="op">[</span>main_arr_ind<span class="op">++]</span> <span class="op">=</span> arr<span class="op">[</span>ind2<span class="op">++];</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    arr<span class="op">[</span>main_arr_ind<span class="op">++]</span> <span class="op">=</span> second<span class="op">[</span>ind2<span class="op">++];</span></span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
 <span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="kw">delete</span> <span class="op">[]</span>first<span class="op">;</span></span>

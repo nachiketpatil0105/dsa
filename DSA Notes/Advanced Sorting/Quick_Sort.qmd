@@ -25,6 +25,12 @@ Quick Sort is a **divide and conquer** sorting algorithm. It works by selecting 
 
 ---
 
+**Applications:**
+
+- Useful for finding the kth smallest/ largest element (Quickselect algorithm).
+
+---
+
 ### ✅ Code (C++)
 
 ```cpp
@@ -55,6 +61,8 @@ int partition(vector<int>& arr, int s, int e) {
       j--;
     }
   }
+
+  return pivot;
 }
 
 void quickSort(vector<int>& arr, int s, int e) {
