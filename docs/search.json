@@ -162,7 +162,7 @@
     "href": "DSA Notes/Binary Search/Binary_Search.html",
     "title": "Binary Search",
     "section": "",
-    "text": "📖 Theory\nBinary Search is an efficient algorithm to find the position of a target value within a sorted array.\nIt repeatedly divides the search interval in half, comparing the target with the middle element.\n\nNote: Only works when array is sorted.\n\nSteps:\n\nSet s = 0, e = n - 1.\nWhile s &lt;= e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] == target, return mid.\nIf arr[mid] &lt; target, set s = mid + 1.\nIf arr[mid] &gt; target, set e = mid - 1.\n\nIf not found, return -1.\n\nTime Complexity:\n\nBest: O(1) (if the middle is the target)\nAverage: O(log n)\nWorst: O(log n)\n\nSpace Complexity: O(1)\n\n\n\n✅ Code (C++)\nint binarySearch(const vector&lt;int&gt;& arr, int target) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt;= e) {\n        if (arr[mid] == target) {\n            return mid;\n        }\n        else if (arr[mid] &lt; target) {\n            s = mid + 1;\n        }\n        else {\n            e = mid - 1;\n        }\n    }\n    return -1; // Not found\n}",
+    "text": "📖 Theory\nBinary Search is an efficient algorithm to find the position of a target value within a sorted array.\nIt repeatedly divides the search interval in half, comparing the target with the middle element.\n\nNote: Only works when array is sorted.\n\nSteps:\n\nSet s = 0, e = n - 1.\nWhile s &lt;= e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] == target, return mid.\nIf arr[mid] &lt; target, set s = mid + 1.\nIf arr[mid] &gt; target, set e = mid - 1.\n\nIf not found, return -1.\n\nTime Complexity:\n\nBest: O(1) (if the middle is the target)\nAverage: O(log n)\nWorst: O(log n)\n\nSpace Complexity: O(1)\n\n\n\n✅ Code (C++)\nint binarySearch(const vector&lt;int&gt;& arr, int target) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt;= e) {\n        if (arr[mid] == target) {\n            return mid;\n        }\n        else if (arr[mid] &lt; target) {\n            s = mid + 1;\n        }\n        else {\n            e = mid - 1;\n        }\n        mid = s + (e - s) / 2;\n    }\n    return -1; // Not found\n}",
     "crumbs": [
       "Home",
       "Binary Search",
@@ -174,11 +174,23 @@
     "href": "DSA Notes/Binary Search/BS_rotated_no_dupli.html",
     "title": "Binary Search in Rotated Sorted Array (No Duplicates)",
     "section": "",
-    "text": "📖 Theory\nThe array will be like {5, 6, 7, 8, 1, 2, 3}, here we have to find target element.\n\nHello",
+    "text": "📖 Theory\nThe array will be like {5, 6, 7, 8, 1, 2, 3}, here we have to find target element with the help of Binary Search.\n\nSteps:\n\nTo find the pivot index (index of the smallest element), set s = 0, e = n - 1.\nWhile s &lt; e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] &gt;= arr[0], set s = mid + 1.\nElse set e = mid.\n\nAfter the loop, s will be the index of the smallest element (pivot).\nCompare the target element with arr[0]:\n\nIf target &gt;= arr[0], apply binary search on the range [0, pivot - 1].\nElse, apply binary search on the range [pivot, n - 1].\n\n\n\n\n\n✅ Code (C++)\nint pivot(vector &lt;int&gt; &arr) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt; e) {\n        if (arr[mid] &gt;= arr[0]) {\n            s = mid + 1;\n        }\n        else {\n            e = mid;\n        }\n        mid = s + (e - s) / 2;\n    }\n\n    return s;\n}\n\n// Now apply Binary Search",
     "crumbs": [
       "Home",
       "Binary Search",
       "BS in Rotated Array (No Duplicates)"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Binary Search/BS_rotated_dupli.html",
+    "href": "DSA Notes/Binary Search/BS_rotated_dupli.html",
+    "title": "Binary Search in Rotated Sorted Array (With Duplicates)",
+    "section": "",
+    "text": "📖 Theory\nThe array will be like {3, 3, 5, 6, 7, 8, 8, 8, 1, 2, 3}, here we have to find target element with the help of Binary Search.\n\nSteps:\n\nTo find the pivot index (index of the smallest element), set s = 0, e = n - 1.\nWhile s &lt; e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] &gt; arr[e], set s = mid + 1.\nElse if arr[mid] &lt; arr[e], set e = mid.\nElse (arr[mid] == arr[e]), decrement e by 1.\n\nAfter the loop, s will be the index of the smallest element (pivot).\nCompare the target element with arr[0]:\n\nIf target &gt;= arr[0], apply binary search on the range [0, pivot - 1].\nElse, apply binary search on the range [pivot, n - 1].\n\n\n\n\n\n✅ Code (C++)\nint pivot(vector &lt;int&gt; &arr) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt; e) {\n        if (arr[mid] &gt; arr[e]) {\n            s = mid + 1;        \n        }\n        else if (arr[mid] &lt; arr[e]) {\n            e = mid;             \n        }\n        else {\n            e--;                  \n        }\n        mid = s + (e - s) / 2;\n    }\n\n    return s;\n}\n\n// Now apply Binary Search",
+    "crumbs": [
+      "Home",
+      "Binary Search",
+      "BS in Rotated Array (Duplicates)"
     ]
   }
 ]
