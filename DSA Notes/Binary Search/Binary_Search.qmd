@@ -32,6 +32,12 @@ It repeatedly divides the search interval in half, comparing the target with the
 
 **Space Complexity:** O(1)
 
+**Applications:**
+
+- Used in searching in sorted arrays/lists.
+- Lower/upper bound problems.
+- Finding insert position in sorted data.
+
 **Extra Things to Know:**
 
 1. Some times we face issue of **index out of range**. In such cases try taking s = 1 and e = n - 2. And ensure conditions on 0 and n - 1 before applying the while loop.
@@ -57,5 +63,25 @@ int binarySearch(const vector<int>& arr, int target) {
         mid = s + (e - s) / 2;
     }
     return -1; // Not found
+}
+```
+
+*Recursive Verison*
+
+```cpp
+int binarySearchRecursive(const vector<int>& arr, int s, int e, int target) {
+    if (s > e) {
+        return -1;
+    }
+    int mid = s + (e - s) / 2;
+    if (arr[mid] == target) {
+        return mid;
+    }
+    else if (arr[mid] < target) {
+        return binarySearchRecursive(arr, mid + 1, e, target);
+    }
+    else {
+        return binarySearchRecursive(arr, s, mid - 1, target);
+    }
 }
 ```
