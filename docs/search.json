@@ -16,9 +16,9 @@
   {
     "objectID": "DSA Notes/Basic Sorting/Selection_Sort.html",
     "href": "DSA Notes/Basic Sorting/Selection_Sort.html",
-    "title": "DSA",
+    "title": "Selection Sort",
     "section": "",
-    "text": "Find the minimum element from the unsorted part of array and put it at the end of sorted part of array at the begining.\nSteps:\n\nStart from the first element (index 0).\nFind the minimum element in the unsorted part (from current index to end).\nSwap this minimum element with the element at the current index.\nMove to the next index and repeat until the array is sorted.\n\nTime Complexity:\n\nBest: O(n²)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\nStable: ❌ No\nIn-place: ✅ Yes\n\n\n\n\nvoid selectionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 0; i &lt; n - 1; i++) {\n        int minIdx = i;\n        for (int j = i + 1; j &lt; n; j++) {\n            if (arr[j] &lt; arr[minIdx]) {\n                minIdx = j;\n            }\n        }\n        swap(arr[i], arr[minIdx]);\n    }\n}",
+    "text": "📖 Theory\nFind the minimum element from the unsorted part of array and put it at the end of sorted part of array at the begining.\nSteps:\n\nStart from the first element (index 0).\nFind the minimum element in the unsorted part (from current index to end).\nSwap this minimum element with the element at the current index.\nMove to the next index and repeat until the array is sorted.\n\nTime Complexity:\n\nBest: O(n²)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\nStable: ❌ No\nIn-place: ✅ Yes\n\n\n\n✅ Code (C++)\nvoid selectionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 0; i &lt; n - 1; i++) {\n        int minIdx = i;\n        for (int j = i + 1; j &lt; n; j++) {\n            if (arr[j] &lt; arr[minIdx]) {\n                minIdx = j;\n            }\n        }\n        swap(arr[i], arr[minIdx]);\n    }\n}",
     "crumbs": [
       "Home",
       "Basic Sorting",
@@ -40,9 +40,9 @@
   {
     "objectID": "DSA Notes/Advanced Sorting/Quick_Sort.html",
     "href": "DSA Notes/Advanced Sorting/Quick_Sort.html",
-    "title": "DSA",
+    "title": "Quick Sort",
     "section": "",
-    "text": "Quick Sort is a divide and conquer sorting algorithm. It works by selecting a “pivot” element from the array and partitioning the other elements into two subarrays, according to whether they are less than or greater than the pivot. The subarrays are then sorted recursively.\nSteps:\n\nChoose a pivot element (commonly the last element).\nPartition the array so that all elements less than the pivot are on the left, and all elements greater than the pivot are on the right.\nRecursively apply the above steps to the subarrays on the left and right of the pivot.\n\nTime Complexity:\n\nBest: O(n log n)\nAverage: O(n log n)\nWorst: O(n²) (when the smallest or largest element is always chosen as the pivot)\n\nSpace Complexity: O(log n) (due to recursion stack)\nStable: ❌ No\nIn-place: ✅ Yes\n\n\n\n\nint partition(vector&lt;int&gt;& arr, int s, int e) {\n  int pivot = s;\n  int count = 0;\n\n  // Count all the numbers which are less the pivot number\n  for (int i = s; i &lt; e + 1; i++) {\n    if (arr[i] &lt; arr[pivot]) {\n      count++;\n    }\n  }\n\n  pivot = s + count;\n  int i = s, j = e;\n\n  while (i &lt; pivot && j &gt; pivot) {\n    if (arr[i] &lt; arr[pivot]) {\n      i++;\n    }\n    else if (arr[j] &gt;= arr[pivot]) {\n      j--;\n    }\n    else {\n      swap(arr[i], arr[j]);\n      i++;\n      j--;\n    }\n  }\n}\n\nvoid quickSort(vector&lt;int&gt;& arr, int s, int e) {\n  if (s &gt;= e) {\n    return;\n  }\n\n  int p = partition(arr, s, e);\n\n  quickSort(arr, s, p - 1);\n  quickSort(arr, p + 1, e);\n}",
+    "text": "📖 Theory\nQuick Sort is a divide and conquer sorting algorithm. It works by selecting a “pivot” element from the array and partitioning the other elements into two subarrays, according to whether they are less than or greater than the pivot. The subarrays are then sorted recursively.\nSteps:\n\nChoose a pivot element (commonly the last element).\nPartition the array so that all elements less than the pivot are on the left, and all elements greater than the pivot are on the right.\nRecursively apply the above steps to the subarrays on the left and right of the pivot.\n\nTime Complexity:\n\nBest: O(n log n)\nAverage: O(n log n)\nWorst: O(n²) (when the smallest or largest element is always chosen as the pivot)\n\nSpace Complexity: O(log n) (due to recursion stack)\nStable: ❌ No\nIn-place: ✅ Yes\n\n\n\n✅ Code (C++)\nint partition(vector&lt;int&gt;& arr, int s, int e) {\n  int pivot = s;\n  int count = 0;\n\n  // Count all the numbers which are less the pivot number\n  for (int i = s; i &lt; e + 1; i++) {\n    if (arr[i] &lt; arr[pivot]) {\n      count++;\n    }\n  }\n\n  pivot = s + count;\n  int i = s, j = e;\n\n  while (i &lt; pivot && j &gt; pivot) {\n    if (arr[i] &lt; arr[pivot]) {\n      i++;\n    }\n    else if (arr[j] &gt;= arr[pivot]) {\n      j--;\n    }\n    else {\n      swap(arr[i], arr[j]);\n      i++;\n      j--;\n    }\n  }\n}\n\nvoid quickSort(vector&lt;int&gt;& arr, int s, int e) {\n  if (s &gt;= e) {\n    return;\n  }\n\n  int p = partition(arr, s, e);\n\n  quickSort(arr, s, p - 1);\n  quickSort(arr, p + 1, e);\n}",
     "crumbs": [
       "Home",
       "Advanced Sorting",
@@ -64,9 +64,9 @@
   {
     "objectID": "DSA Notes/Advanced Sorting/Merge_Sort.html",
     "href": "DSA Notes/Advanced Sorting/Merge_Sort.html",
-    "title": "DSA",
+    "title": "Merge Sort",
     "section": "",
-    "text": "Merge Sort is a divide and conquer algorithm. It divides the array into two halves, sorts each half recursively, and then merges the two sorted halves.\nSteps:\n\nDivide the array in two halves (like binary).\nRecursively sort both halves.\nMerge both sorted halves into a single sorted array.\n\nTime Complexity:\n\nBest: O(n log n)\nAverage: O(n log n)\nWorst: O(n log n)\n\nSpace Complexity: O(n) (extra space for merging)\nStable: ✅ Yes\nIn-place: ❌ No\n\n\n\n\nvoid mergeSort(vector &lt;int&gt; &arr, int s, int e) {\n  if (s &gt;= e) {\n    return;\n  }\n\n  int mid = s + (e - s) / 2;\n\n  mergeSort(arr, s, mid);\n  mergeSort(arr, mid + 1, e);\n\n  merge(arr, s, e);\n}\n\nvoid merge(&lt;vector&gt; &arr, int s, int e) {\n  int mid = s + (e - s) / 2;\n  int len1 = mid - s + 1;\n  int len2 = e - mid;\n\n  int *first = new int[len1];\n  int *second = new int[len2];\n\n  int main_arr_ind = s;\n  for (int i = 0; i &lt; len1; i++) {\n    first[i] = arr[main_arr_ind++];\n  }\n\n  main_arr_ind = mid + 1;\n  for (int i = 0; i &lt; len2; i++) {\n    second[i] = arr[main_arr_ind++];\n  }\n\n  int ind1 = 0, ind2 = 0;\n  main_arr_ind = s;\n\n  while (ind1 &lt; len1 && ind2 &lt; len2) {\n    if (arr[ind1] &lt; arr[ind2]) {\n      arr[main_arr_ind++] = arr[ind1++];\n    }\n    else {\n      arr[main_arr_ind++] = arr[ind2++];\n    }\n  }\n\n  while (ind1 &lt; len1) {\n    arr[main_arr_ind++] = arr[ind1++];\n  }\n\n  while (ind2 &lt; len2) {\n    arr[main_arr_ind++] = arr[ind2++];\n  }\n\n  delete []first;\n  delete []second;\n}",
+    "text": "📖 Theory\nMerge Sort is a divide and conquer algorithm. It divides the array into two halves, sorts each half recursively, and then merges the two sorted halves.\nSteps:\n\nDivide the array in two halves (like binary).\nRecursively sort both halves.\nMerge both sorted halves into a single sorted array.\n\nTime Complexity:\n\nBest: O(n log n)\nAverage: O(n log n)\nWorst: O(n log n)\n\nSpace Complexity: O(n) (extra space for merging)\nStable: ✅ Yes\nIn-place: ❌ No\n\n\n\n✅ Code (C++)\nvoid mergeSort(vector &lt;int&gt; &arr, int s, int e) {\n  if (s &gt;= e) {\n    return;\n  }\n\n  int mid = s + (e - s) / 2;\n\n  mergeSort(arr, s, mid);\n  mergeSort(arr, mid + 1, e);\n\n  merge(arr, s, e);\n}\n\nvoid merge(&lt;vector&gt; &arr, int s, int e) {\n  int mid = s + (e - s) / 2;\n  int len1 = mid - s + 1;\n  int len2 = e - mid;\n\n  int *first = new int[len1];\n  int *second = new int[len2];\n\n  int main_arr_ind = s;\n  for (int i = 0; i &lt; len1; i++) {\n    first[i] = arr[main_arr_ind++];\n  }\n\n  main_arr_ind = mid + 1;\n  for (int i = 0; i &lt; len2; i++) {\n    second[i] = arr[main_arr_ind++];\n  }\n\n  int ind1 = 0, ind2 = 0;\n  main_arr_ind = s;\n\n  while (ind1 &lt; len1 && ind2 &lt; len2) {\n    if (arr[ind1] &lt; arr[ind2]) {\n      arr[main_arr_ind++] = arr[ind1++];\n    }\n    else {\n      arr[main_arr_ind++] = arr[ind2++];\n    }\n  }\n\n  while (ind1 &lt; len1) {\n    arr[main_arr_ind++] = arr[ind1++];\n  }\n\n  while (ind2 &lt; len2) {\n    arr[main_arr_ind++] = arr[ind2++];\n  }\n\n  delete []first;\n  delete []second;\n}",
     "crumbs": [
       "Home",
       "Advanced Sorting",
@@ -88,9 +88,9 @@
   {
     "objectID": "DSA Notes/Basic Sorting/Bubble_Sort.html",
     "href": "DSA Notes/Basic Sorting/Bubble_Sort.html",
-    "title": "DSA",
+    "title": "Bubble Sort",
     "section": "",
-    "text": "Compare adjacent elements, and move the large element to right in each loop.\n\nSteps:\n\nStart from the first element.\nCompare each pair of adjacent elements.\nIf the left element is greater than the right, swap them.\nRepeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).\nStop if no swaps are made in a pass (array is sorted).\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid bubbleSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    bool swapped;\n    for (int i = 0; i &lt; n - 1; i++) {\n        swapped = false;\n        for (int j = 0; j &lt; n - i - 1; j++) {\n            if (arr[j] &gt; arr[j + 1]) {\n                swap(arr[j], arr[j + 1]);\n                swapped = true;\n            }\n        }\n        if (!swapped) break;  // Optimization\n    }\n}",
+    "text": "📖 Theory\nCompare adjacent elements, and move the large element to right in each loop.\n\nSteps:\n\nStart from the first element.\nCompare each pair of adjacent elements.\nIf the left element is greater than the right, swap them.\nRepeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).\nStop if no swaps are made in a pass (array is sorted).\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n✅ Code (C++)\nvoid bubbleSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    bool swapped;\n    for (int i = 0; i &lt; n - 1; i++) {\n        swapped = false;\n        for (int j = 0; j &lt; n - i - 1; j++) {\n            if (arr[j] &gt; arr[j + 1]) {\n                swap(arr[j], arr[j + 1]);\n                swapped = true;\n            }\n        }\n        if (!swapped) break;  // Optimization\n    }\n}",
     "crumbs": [
       "Home",
       "Basic Sorting",
@@ -112,9 +112,9 @@
   {
     "objectID": "DSA Notes/Basic Sorting/Insertion_Sort.html",
     "href": "DSA Notes/Basic Sorting/Insertion_Sort.html",
-    "title": "DSA",
+    "title": "Insertion Sort",
     "section": "",
-    "text": "Take the first element from unsorted part, and put it at its correct position in sorted part.\n\nSteps:\n\nStart from the second element (index 1).\nCompare it with elements before it.\nShift larger elements one position to the right.\nInsert the current element into the correct position.\nRepeat for all elements.\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid insertionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 1; i &lt; n; i++) {\n        int key = arr[i];\n        int j = i - 1;\n\n        // Move elements greater than key to one position ahead\n        while (j &gt;= 0 && arr[j] &gt; key) {\n            arr[j + 1] = arr[j];\n            j--;\n        }\n\n        arr[j + 1] = key;\n    }\n}",
+    "text": "📖 Theory\nTake the first element from unsorted part, and put it at its correct position in sorted part.\n\nSteps:\n\nStart from the second element (index 1).\nCompare it with elements before it.\nShift larger elements one position to the right.\nInsert the current element into the correct position.\nRepeat for all elements.\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n✅ Code (C++)\nvoid insertionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 1; i &lt; n; i++) {\n        int key = arr[i];\n        int j = i - 1;\n\n        // Move elements greater than key to one position ahead\n        while (j &gt;= 0 && arr[j] &gt; key) {\n            arr[j + 1] = arr[j];\n            j--;\n        }\n\n        arr[j + 1] = key;\n    }\n}",
     "crumbs": [
       "Home",
       "Basic Sorting",
@@ -136,9 +136,9 @@
   {
     "objectID": "DSA Notes/Binary_Search.html",
     "href": "DSA Notes/Binary_Search.html",
-    "title": "DSA",
+    "title": "Binary Search",
     "section": "",
-    "text": "Binary Search is an efficient algorithm to find the position of a target value within a sorted array.\nIt repeatedly divides the search interval in half, comparing the target with the middle element.\n\nNote: Only works when array is sorted.\n\nSteps:\n\nSet s = 0, e = n - 1.\nWhile s &lt;= e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] == target, return mid.\nIf arr[mid] &lt; target, set s = mid + 1.\nIf arr[mid] &gt; target, set e = mid - 1.\n\nIf not found, return -1.\n\nTime Complexity:\n\nBest: O(1) (if the middle is the target)\nAverage: O(log n)\nWorst: O(log n)\n\nSpace Complexity: O(1)\n\n\n\n\nint binarySearch(const vector&lt;int&gt;& arr, int target) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt;= e) {\n        if (arr[mid] == target) {\n            return mid;\n        }\n        else if (arr[mid] &lt; target) {\n            s = mid + 1;\n        }\n        else {\n            e = mid - 1;\n        }\n    }\n    return -1; // Not found\n}",
+    "text": "📖 Theory\nBinary Search is an efficient algorithm to find the position of a target value within a sorted array.\nIt repeatedly divides the search interval in half, comparing the target with the middle element.\n\nNote: Only works when array is sorted.\n\nSteps:\n\nSet s = 0, e = n - 1.\nWhile s &lt;= e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] == target, return mid.\nIf arr[mid] &lt; target, set s = mid + 1.\nIf arr[mid] &gt; target, set e = mid - 1.\n\nIf not found, return -1.\n\nTime Complexity:\n\nBest: O(1) (if the middle is the target)\nAverage: O(log n)\nWorst: O(log n)\n\nSpace Complexity: O(1)\n\n\n\n✅ Code (C++)\nint binarySearch(const vector&lt;int&gt;& arr, int target) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt;= e) {\n        if (arr[mid] == target) {\n            return mid;\n        }\n        else if (arr[mid] &lt; target) {\n            s = mid + 1;\n        }\n        else {\n            e = mid - 1;\n        }\n    }\n    return -1; // Not found\n}",
     "crumbs": [
       "Home",
       "Binary Search",
@@ -155,6 +155,30 @@
       "Home",
       "Binary Search",
       "Binary Search"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Binary Search/Binary_Search.html",
+    "href": "DSA Notes/Binary Search/Binary_Search.html",
+    "title": "Binary Search",
+    "section": "",
+    "text": "📖 Theory\nBinary Search is an efficient algorithm to find the position of a target value within a sorted array.\nIt repeatedly divides the search interval in half, comparing the target with the middle element.\n\nNote: Only works when array is sorted.\n\nSteps:\n\nSet s = 0, e = n - 1.\nWhile s &lt;= e:\n\nFind mid = (s + e) / 2.\nIf arr[mid] == target, return mid.\nIf arr[mid] &lt; target, set s = mid + 1.\nIf arr[mid] &gt; target, set e = mid - 1.\n\nIf not found, return -1.\n\nTime Complexity:\n\nBest: O(1) (if the middle is the target)\nAverage: O(log n)\nWorst: O(log n)\n\nSpace Complexity: O(1)\n\n\n\n✅ Code (C++)\nint binarySearch(const vector&lt;int&gt;& arr, int target) {\n    int s = 0, e = arr.size() - 1;\n    int mid = s + (e - s) / 2;\n    while (s &lt;= e) {\n        if (arr[mid] == target) {\n            return mid;\n        }\n        else if (arr[mid] &lt; target) {\n            s = mid + 1;\n        }\n        else {\n            e = mid - 1;\n        }\n    }\n    return -1; // Not found\n}",
+    "crumbs": [
+      "Home",
+      "Binary Search",
+      "Binary Search"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Binary Search/BS_rotated_no_dupli.html",
+    "href": "DSA Notes/Binary Search/BS_rotated_no_dupli.html",
+    "title": "Binary Search in Rotated Sorted Array (No Duplicates)",
+    "section": "",
+    "text": "📖 Theory\nThe array will be like {5, 6, 7, 8, 1, 2, 3}, here we have to find target element.",
+    "crumbs": [
+      "Home",
+      "Binary Search",
+      "BS in Rotated Array (No Duplicates)"
     ]
   }
 ]

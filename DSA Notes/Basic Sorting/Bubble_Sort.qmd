@@ -1,4 +1,6 @@
-## 📌 Bubble Sort
+---
+title: "Bubble Sort"
+---
 
 ### 📖 Theory
 

@@ -1,4 +1,6 @@
-## 📌 Merge Sort
+---
+title: "Merge Sort"
+---
 
 ### 📖 Theory
 

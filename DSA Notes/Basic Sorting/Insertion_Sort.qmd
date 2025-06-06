@@ -1,4 +1,7 @@
-## 📌 Insertion Sort
+
+---
+title: "Insertion Sort"
+---
 
 ### 📖 Theory
 

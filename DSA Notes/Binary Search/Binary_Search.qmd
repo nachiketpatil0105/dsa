@@ -1,4 +1,7 @@
-## 📌 Binary Search
+
+---
+title: "Binary Search"
+---
 
 ### 📖 Theory
 

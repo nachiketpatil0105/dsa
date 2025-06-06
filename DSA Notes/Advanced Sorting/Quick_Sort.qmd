@@ -1,4 +1,6 @@
-## 📌 Quick Sort
+---
+title: "Quick Sort"
+---
 
 ### 📖 Theory
 

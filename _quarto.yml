@@ -36,11 +36,11 @@ website:
       - section: 'Binary Search'
         contents:
           - text: Binary Search
-            href: DSA Notes/Binary_Search.qmd
+            href: DSA Notes/Binary Search/Binary_Search.qmd
           - text: BS in Rotated Array (No Duplicates)
-            href: DSA Notes/BS_rotated_no_dupli.qmd
+            href: DSA Notes/Binary Search/BS_rotated_no_dupli.qmd
           - text: BS in Rotated Array (Duplicates)
-            href: DSA Notes/BS_rotated_Dupli.qmd
+            href: DSA Notes/Binary Search/BS_rotated_dupli.qmd
 
 format:
   html:

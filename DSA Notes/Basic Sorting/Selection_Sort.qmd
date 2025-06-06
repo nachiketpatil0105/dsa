@@ -1,4 +1,6 @@
-## 📌 Selection Sort
+---
+title: "Selection Sort"
+---
 
 ### 📖 Theory
 
