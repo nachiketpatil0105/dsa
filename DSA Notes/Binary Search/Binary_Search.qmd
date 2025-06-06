@@ -34,7 +34,7 @@ It repeatedly divides the search interval in half, comparing the target with the
 
 **Applications:**
 
-- Used in searching in sorted arrays/lists.
+- Used in searching in sorted arrays.
 - Lower/upper bound problems.
 - Finding insert position in sorted data.
 
