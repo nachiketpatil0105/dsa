@@ -1,5 +1,6 @@
 ---
 title: "DSA"
+author: "Nachiket Patil"
 ---
 
 This is a Quarto website.
