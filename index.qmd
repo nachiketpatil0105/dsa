@@ -1,9 +1,8 @@
 ---
 title: "DSA"
-author: "Nachiket Patil"
 ---
 
-This is a Quarto website.
+Hello, I am Nachiket Patil.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+I have decided to take notes while learning DSA.
 

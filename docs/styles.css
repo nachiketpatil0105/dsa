@@ -104,3 +104,23 @@ body {
   background: var(--accent) !important;
   color: black !important;
 }
+
+.sidebar {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE and Edge */
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;                  /* Chrome, Safari, Opera */
+}
+
+/* Hide scrollbar for body and html (all browsers) */
+body, html {
+  scrollbar-width: none !important;          /* Firefox */
+  -ms-overflow-style: none !important;       /* IE and Edge */
+}
+
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  display: none !important;                  /* Chrome, Safari, Opera */
+}
