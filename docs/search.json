@@ -116,7 +116,6 @@
     "section": "",
     "text": "Take the first element from unsorted part, and put it at its correct position in sorted part.\n\nSteps:\n\nStart from the second element (index 1).\nCompare it with elements before it.\nShift larger elements one position to the right.\nInsert the current element into the correct position.\nRepeat for all elements.\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid insertionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 1; i &lt; n; i++) {\n        int key = arr[i];\n        int j = i - 1;\n\n        // Move elements greater than key to one position ahead\n        while (j &gt;= 0 && arr[j] &gt; key) {\n            arr[j + 1] = arr[j];\n            j--;\n        }\n\n        arr[j + 1] = key;\n    }\n}",
     "crumbs": [
-      "Home",
       "Basic Sorting",
       "Insertion Sort"
     ]
@@ -128,7 +127,6 @@
     "section": "",
     "text": "Take the first element from unsorted part, and put it at its correct position in sorted part.\n\nSteps:\n\nStart from the second element (index 1).\nCompare it with elements before it.\nShift larger elements one position to the right.\nInsert the current element into the correct position.\nRepeat for all elements.\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid insertionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 1; i &lt; n; i++) {\n        int key = arr[i];\n        int j = i - 1;\n\n        // Move elements greater than key to one position ahead\n        while (j &gt;= 0 && arr[j] &gt; key) {\n            arr[j + 1] = arr[j];\n            j--;\n        }\n\n        arr[j + 1] = key;\n    }\n}",
     "crumbs": [
-      "Home",
       "Basic Sorting",
       "Insertion Sort"
     ]

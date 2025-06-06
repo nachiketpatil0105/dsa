@@ -4,14 +4,17 @@ project:
 
 website:
   title: 'DSA'
+  favicon: favicon.ico
   navbar:
+    background: primary
     left:
       - text: Home
         href: index.qmd
       - text: About
         href: about.qmd
   sidebar:
-    style: 'docked'
+    style: docked
+    collapse-level: 1
     search: true
     contents:
       - section: 'Basic Sorting'
@@ -28,3 +31,10 @@ website:
             href: DSA Notes/Advanced Sorting/Quick_Sort.qmd
           - text: Merge Sort
             href: DSA Notes/Advanced Sorting/Merge_Sort.qmd
+
+format:
+  html:
+    theme:
+      - cosmo
+      # - custom.scss
+    css: styles.css

@@ -1,0 +1,106 @@
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+/* Color variables */
+:root {
+  --primary: #7f5af0;
+  --secondary: #2cb67d;
+  --accent: #fbbf24;
+  --background: #16161a;
+  --surface: #232336; /* Changed to solid for better sidebar contrast */
+  --text: #fffffe;
+  --muted: #a7a9be;
+  --glass-blur: blur(12px);
+  --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Remove body margin/padding on the left */
+body {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* Sidebar styles */
+.sidebar {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  box-shadow: var(--shadow);
+  border-top-right-radius: 24px;
+  border-bottom-right-radius: 24px;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+/* Fix Quarto's default sidebar panel background */
+.sidebar .sidebar-menu-container {
+  background: transparent !important;
+}
+
+/* Sidebar section headers */
+.sidebar-section-title {
+  color: var(--primary) !important;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 18px 24px 8px 24px;
+  font-size: 1.08em;
+}
+
+/* Sidebar links */
+.sidebar-item a {
+  color: var(--text) !important;
+  padding: 10px 10px;
+  display: block;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+  text-decoration: none;
+  font-size: 1em;
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: transparent !important;
+}
+
+.sidebar-item a:hover {
+  background: var(--primary) !important;
+  color: #fff !important;
+}
+
+.sidebar-item.active > a,
+.sidebar-item a[aria-current='page'] {
+  background: var(--secondary) !important;
+  color: #fff !important;
+  font-weight: bold; */
+}
+
+/* Main content: ensure it's not hidden behind sidebar */
+#quarto-content {
+  background: var(--background);
+  color: var(--text);
+  font-family: 'Montserrat', Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Navbar styles */
+.navbar {
+  z-index: 1100;
+  position: relative;
+  background: var(--background) !important;
+  color: var(--text) !important;
+  border-bottom: 2px solid var(--primary);
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.navbar a,
+.navbar .navbar-brand {
+  color: var(--text) !important;
+}
+
+.navbar a:hover {
+  color: var(--primary) !important;
+}
+
+/* Optional: highlight on hover */
+.sidebar-item .sidebar-item a:hover {
+  background: var(--accent) !important;
+  color: black !important;
+}
