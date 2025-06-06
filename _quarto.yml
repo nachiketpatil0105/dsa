@@ -9,9 +9,11 @@ website:
     background: primary
     left:
       - text: Home
+        href: https://nachiketpatil0105.github.io/home/
+      - text: About Me
+        href: https://nachiketpatil0105.github.io/home/profile
+      - text: DSA Notes
         href: index.qmd
-      - text: About
-        href: about.qmd
   sidebar:
     style: docked
     collapse-level: 1
