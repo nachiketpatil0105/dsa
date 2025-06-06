@@ -19,20 +19,22 @@ website:
     collapse-level: 1
     search: true
     contents:
-      - section: 'Basic Sorting'
+      - section: 'Sorting'
         contents:
-          - text: Bubble Sort
-            href: DSA Notes/Basic Sorting/Bubble_Sort.qmd
-          - text: Selection Sort
-            href: DSA Notes/Basic Sorting/Selection_Sort.qmd
-          - text: Insertion Sort
-            href: DSA Notes/Basic Sorting/Insertion_Sort.qmd
-      - section: 'Advanced Sorting'
-        contents:
-          - text: Quick Sort
-            href: DSA Notes/Advanced Sorting/Quick_Sort.qmd
-          - text: Merge Sort
-            href: DSA Notes/Advanced Sorting/Merge_Sort.qmd
+          - section: 'Basic Sorting'
+            contents:
+              - text: Bubble Sort
+                href: DSA Notes/Basic Sorting/Bubble_Sort.qmd
+              - text: Selection Sort
+                href: DSA Notes/Basic Sorting/Selection_Sort.qmd
+              - text: Insertion Sort
+                href: DSA Notes/Basic Sorting/Insertion_Sort.qmd
+          - section: 'Advanced Sorting'
+            contents:
+              - text: Quick Sort
+                href: DSA Notes/Advanced Sorting/Quick_Sort.qmd
+              - text: Merge Sort
+                href: DSA Notes/Advanced Sorting/Merge_Sort.qmd
 
 format:
   html:

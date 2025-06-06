@@ -93,6 +93,7 @@
     "text": "Compare adjacent elements, and move the large element to right in each loop.\n\nSteps:\n\nStart from the first element.\nCompare each pair of adjacent elements.\nIf the left element is greater than the right, swap them.\nRepeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).\nStop if no swaps are made in a pass (array is sorted).\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid bubbleSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    bool swapped;\n    for (int i = 0; i &lt; n - 1; i++) {\n        swapped = false;\n        for (int j = 0; j &lt; n - i - 1; j++) {\n            if (arr[j] &gt; arr[j + 1]) {\n                swap(arr[j], arr[j + 1]);\n                swapped = true;\n            }\n        }\n        if (!swapped) break;  // Optimization\n    }\n}",
     "crumbs": [
       "Home",
+      "Sorting",
       "Basic Sorting",
       "Bubble Sort"
     ]
@@ -105,6 +106,7 @@
     "text": "Compare adjacent elements, and move the large element to right in each loop.\n\nSteps:\n\nStart from the first element.\nCompare each pair of adjacent elements.\nIf the left element is greater than the right, swap them.\nRepeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).\nStop if no swaps are made in a pass (array is sorted).\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid bubbleSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    bool swapped;\n    for (int i = 0; i &lt; n - 1; i++) {\n        swapped = false;\n        for (int j = 0; j &lt; n - i - 1; j++) {\n            if (arr[j] &gt; arr[j + 1]) {\n                swap(arr[j], arr[j + 1]);\n                swapped = true;\n            }\n        }\n        if (!swapped) break;  // Optimization\n    }\n}",
     "crumbs": [
       "Home",
+      "Sorting",
       "Basic Sorting",
       "Bubble Sort"
     ]
