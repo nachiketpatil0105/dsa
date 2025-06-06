@@ -7,6 +7,10 @@ It repeatedly divides the search interval in half, comparing the target with the
 
 ---
 
+**Note:** Only works when array is sorted.
+
+---
+
 **Steps:**
 
 1. Set s = 0, e = n - 1.
