@@ -16,7 +16,7 @@ website:
     contents:
       - section: 'Basic Sorting'
         contents:
-          - text: Bubble Sorts
+          - text: Bubble Sort
             href: DSA Notes/Basic Sorting/Bubble_Sort.qmd
           - text: Selection Sort
             href: DSA Notes/Basic Sorting/Selection_Sort.qmd

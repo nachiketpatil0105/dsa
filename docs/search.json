@@ -21,6 +21,7 @@
     "text": "Find the minimum element from the unsorted part of array and put it at the end of sorted part of array at the begining.\nSteps:\n\nStart from the first element (index 0).\nFind the minimum element in the unsorted part (from current index to end).\nSwap this minimum element with the element at the current index.\nMove to the next index and repeat until the array is sorted.\n\nTime Complexity:\n\nBest: O(n²)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\nStable: ❌ No\nIn-place: ✅ Yes\n\n\n\n\nvoid selectionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 0; i &lt; n - 1; i++) {\n        int minIdx = i;\n        for (int j = i + 1; j &lt; n; j++) {\n            if (arr[j] &lt; arr[minIdx]) {\n                minIdx = j;\n            }\n        }\n        swap(arr[i], arr[minIdx]);\n    }\n}",
     "crumbs": [
       "Home",
+      "Basic Sorting",
       "Selection Sort"
     ]
   },
@@ -32,6 +33,7 @@
     "text": "Find the minimum element from the unsorted part of array and put it at the end of sorted part of array at the begining.\nSteps:\n\nStart from the first element (index 0).\nFind the minimum element in the unsorted part (from current index to end).\nSwap this minimum element with the element at the current index.\nMove to the next index and repeat until the array is sorted.\n\nTime Complexity:\n\nBest: O(n²)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\nStable: ❌ No\nIn-place: ✅ Yes\n\n\n\n\nvoid selectionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 0; i &lt; n - 1; i++) {\n        int minIdx = i;\n        for (int j = i + 1; j &lt; n; j++) {\n            if (arr[j] &lt; arr[minIdx]) {\n                minIdx = j;\n            }\n        }\n        swap(arr[i], arr[minIdx]);\n    }\n}",
     "crumbs": [
       "Home",
+      "Basic Sorting",
       "Selection Sort"
     ]
   },
@@ -91,6 +93,7 @@
     "text": "Compare adjacent elements, and move the large element to right in each loop.\n\nSteps:\n\nStart from the first element.\nCompare each pair of adjacent elements.\nIf the left element is greater than the right, swap them.\nRepeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).\nStop if no swaps are made in a pass (array is sorted).\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid bubbleSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    bool swapped;\n    for (int i = 0; i &lt; n - 1; i++) {\n        swapped = false;\n        for (int j = 0; j &lt; n - i - 1; j++) {\n            if (arr[j] &gt; arr[j + 1]) {\n                swap(arr[j], arr[j + 1]);\n                swapped = true;\n            }\n        }\n        if (!swapped) break;  // Optimization\n    }\n}",
     "crumbs": [
       "Home",
+      "Basic Sorting",
       "Bubble Sort"
     ]
   },
@@ -102,6 +105,7 @@
     "text": "Compare adjacent elements, and move the large element to right in each loop.\n\nSteps:\n\nStart from the first element.\nCompare each pair of adjacent elements.\nIf the left element is greater than the right, swap them.\nRepeat for all elements, reducing the range by one each time (since the last element is sorted after each pass).\nStop if no swaps are made in a pass (array is sorted).\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid bubbleSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    bool swapped;\n    for (int i = 0; i &lt; n - 1; i++) {\n        swapped = false;\n        for (int j = 0; j &lt; n - i - 1; j++) {\n            if (arr[j] &gt; arr[j + 1]) {\n                swap(arr[j], arr[j + 1]);\n                swapped = true;\n            }\n        }\n        if (!swapped) break;  // Optimization\n    }\n}",
     "crumbs": [
       "Home",
+      "Basic Sorting",
       "Bubble Sort"
     ]
   },
@@ -113,6 +117,7 @@
     "text": "Take the first element from unsorted part, and put it at its correct position in sorted part.\n\nSteps:\n\nStart from the second element (index 1).\nCompare it with elements before it.\nShift larger elements one position to the right.\nInsert the current element into the correct position.\nRepeat for all elements.\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid insertionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 1; i &lt; n; i++) {\n        int key = arr[i];\n        int j = i - 1;\n\n        // Move elements greater than key to one position ahead\n        while (j &gt;= 0 && arr[j] &gt; key) {\n            arr[j + 1] = arr[j];\n            j--;\n        }\n\n        arr[j + 1] = key;\n    }\n}",
     "crumbs": [
       "Home",
+      "Basic Sorting",
       "Insertion Sort"
     ]
   },
@@ -124,6 +129,7 @@
     "text": "Take the first element from unsorted part, and put it at its correct position in sorted part.\n\nSteps:\n\nStart from the second element (index 1).\nCompare it with elements before it.\nShift larger elements one position to the right.\nInsert the current element into the correct position.\nRepeat for all elements.\n\nTime Complexity:\n\nBest: O(n) (when already sorted)\nAverage: O(n²)\nWorst: O(n²)\n\nSpace Complexity: O(1)\n\nStable: ✅ Yes\nIn-place: ✅ Yes\n\n\n\n\n\nvoid insertionSort(vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    for (int i = 1; i &lt; n; i++) {\n        int key = arr[i];\n        int j = i - 1;\n\n        // Move elements greater than key to one position ahead\n        while (j &gt;= 0 && arr[j] &gt; key) {\n            arr[j + 1] = arr[j];\n            j--;\n        }\n\n        arr[j + 1] = key;\n    }\n}",
     "crumbs": [
       "Home",
+      "Basic Sorting",
       "Insertion Sort"
     ]
   }
