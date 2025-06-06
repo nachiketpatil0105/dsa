@@ -303,6 +303,8 @@ It repeatedly divides the search interval in half, comparing the target with the
 <li>Worst: O(log n)</li>
 </ul>
 <p><strong>Space Complexity:</strong> O(1)</p>
+<p><strong>Extra Things to Know</strong></p>
+<p>Some times we face issue of <strong>index out of range</strong>. In such cases try taking s = 1 and e = n - 2. And ensure conditions on 0 and n - 1 before applying the while loop.</p>
 <hr>
 </section>
 <section id="code-c" class="level3">
