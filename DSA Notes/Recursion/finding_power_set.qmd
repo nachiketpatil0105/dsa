@@ -4,10 +4,10 @@ title: "Finding the Power Set"
 
 ### 📖 Theory
 
-You will be given an array like `{1, 2, 3}` or a string `"abc"`.
+You will be given an array like {1, 2, 3} or a string "abc".
 You need to find out all possible subsets, e.g.:
-- For `{1, 2, 3}`: `{[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]}`
-- For `"abc"`: `{"", "a", "ab", "abc", "ac", "b", "bc", "c"}`
+- For {1, 2, 3}: {[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]}
+- For "abc": {"", "a", "ab", "abc", "ac", "b", "bc", "c"}
 
 ---
 
