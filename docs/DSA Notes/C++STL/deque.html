@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Deque – DSA</title>
+<title>deque – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -309,153 +309,13 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/deque.html">Deque</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Deque</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/deque.html">Deque</a></li></ol></nav></header>
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
 
 
-</header>
 
-
-<section id="important-points-related-to-deques" class="level2">
-<h2 class="anchored" data-anchor-id="important-points-related-to-deques">Important Points Related to Deques</h2>
-<ul>
-<li><p>deque&lt;T&gt; d;<br>
-Declares an empty deque of type T.</p></li>
-<li><p>deque&lt;int&gt; d(10, 0);<br>
-Initializes a deque of 10 integers, all set to 0.</p></li>
-<li><p>deque&lt;char&gt; d2(d1);<br>
-Copies all elements from deque d1 to d2.</p></li>
-<li><p>deque&lt;int&gt; d = {1, 2, 3};<br>
-Initializes a deque with given values.</p></li>
-<li><p>d.assign(n, value);<br>
-Assigns n copies of value to the deque, replacing current contents.</p></li>
-<li><p>d.size();<br>
-Returns the number of elements in the deque.</p></li>
-<li><p>d.max_size();<br>
-Returns the maximum number of elements the deque can hold.</p></li>
-<li><p>d.resize(n);<br>
-Changes the size of the deque to n.&nbsp;If n is greater, new elements are default-initialized.</p></li>
-<li><p>d.push_back(x);<br>
-Appends element x to the end of the deque.</p></li>
-<li><p>d.push_front(x);<br>
-Inserts element x at the beginning of the deque.</p></li>
-<li><p>d.emplace_back(args);<br>
-Constructs element in-place at the end (faster than push_back for objects).</p></li>
-<li><p>d.emplace_front(args);<br>
-Constructs element in-place at the front.</p></li>
-<li><p>d.at(i);<br>
-Returns the element at index i (with bounds checking).</p></li>
-<li><p>d[i];<br>
-Returns the element at index i (no bounds checking).</p></li>
-<li><p>d.front();<br>
-Returns the first element.</p></li>
-<li><p>d.back();<br>
-Returns the last element.</p></li>
-<li><p>d.pop_back();<br>
-Removes the last element.</p></li>
-<li><p>d.pop_front();<br>
-Removes the first element.</p></li>
-<li><p>d.clear();<br>
-Removes all elements. Size becomes 0.</p></li>
-<li><p>d.empty();<br>
-Returns true if the deque is empty.</p></li>
-<li><p>d.swap(d2);<br>
-Swaps the contents of d and d2.</p></li>
-</ul>
-<hr>
-</section>
-<section id="useful-operations" class="level2">
-<h2 class="anchored" data-anchor-id="useful-operations">Useful Operations</h2>
-<ul>
-<li><p>sort(d.begin(), d.end());<br>
-Sorts the deque in ascending order. Time: O(N log N).</p></li>
-<li><p>reverse(d.begin(), d.end());<br>
-Reverses the order of elements.</p></li>
-<li><p>d.erase(d.begin() + i);<br>
-Removes the element at index i.</p></li>
-<li><p>d.erase(d.begin() + i, d.begin() + j);<br>
-Removes elements from index i up to (but not including) index j.</p></li>
-<li><p>d.insert(d.begin() + i, x);<br>
-Inserts element x at index i.</p></li>
-<li><p>d.insert(d.begin() + i, n, x);<br>
-Inserts n copies of x at index i.</p></li>
-<li><p>d.insert(d.end(), {a, b, c});<br>
-Inserts multiple elements at the end.</p></li>
-<li><p>find(d.begin(), d.end(), x);<br>
-Returns an iterator to the first occurrence of x (or d.end() if not found).</p></li>
-<li><p>lower_bound(d.begin(), d.end(), x);<br>
-Returns iterator to the first element not less than x (deque must be sorted).</p></li>
-<li><p>upper_bound(d.begin(), d.end(), x);<br>
-Returns iterator to the first element greater than x (deque must be sorted).</p></li>
-<li><p>accumulate(d.begin(), d.end(), 0);<br>
-Returns the sum of all elements (requires #include &lt;numeric&gt;).</p></li>
-</ul>
-<hr>
-</section>
-<section id="iterating-over-a-deque" class="level2">
-<h2 class="anchored" data-anchor-id="iterating-over-a-deque">Iterating Over a Deque</h2>
-<ul>
-<li><p>Using index:<br>
-for (int i = 0; i &lt; d.size(); i++) <strong>{ access d[i] }</strong></p></li>
-<li><p>Using iterator:<br>
-for (auto it = d.begin(); it != d.end(); ++it) <strong>{ access *it }</strong></p></li>
-<li><p>Using range-based for loop:<br>
-for (auto x : d) <strong>{ access x }</strong></p></li>
-</ul>
-<hr>
-</section>
-<section id="notes" class="level2">
-<h2 class="anchored" data-anchor-id="notes">Notes</h2>
-<ul>
-<li>Deques (double-ended queues) allow fast insertion and deletion at both the front and back (O(1) time).</li>
-<li>Random access to elements is O(1), similar to vector.</li>
-<li>Memory is not guaranteed to be contiguous (unlike vector).</li>
-<li>Accessing elements out of bounds with d[i] is undefined behavior; use d.at(i) for safety.</li>
-<li>Iterators may become invalid after insertions or deletions.</li>
-<li>Deques are useful when you need to add or remove elements from both ends frequently.</li>
-<li>No capacity() or shrink_to_fit() functions, as memory management is handled differently than vector.</li>
-<li>Use reserve() is not available for deque.</li>
-<li>Deques are generally slower than vectors for pure back operations due to more complex memory management.</li>
-<li>Suitable for implementing both stacks and queues efficiently.</li>
-<li>Standard library queue and stack containers use deque as the default underlying container.</li>
-</ul>
-<hr>
-</section>
-<section id="when-to-use-deque" class="level2">
-<h2 class="anchored" data-anchor-id="when-to-use-deque">When to Use Deque</h2>
-<ul>
-<li>When you need fast insertions and deletions at both the front and back.</li>
-<li>When you need random access to elements (like vector).</li>
-<li>When memory contiguity is not a strict requirement.</li>
-</ul>
-<hr>
-</section>
-<section id="additional-points" class="level2">
-<h2 class="anchored" data-anchor-id="additional-points">Additional Points</h2>
-<ul>
-<li>Deques may allocate memory in multiple chunks, so their memory is not guaranteed to be contiguous.</li>
-<li>There is no direct way to reduce the memory usage of a deque (no shrink_to_fit).</li>
-<li>Deques do not support the reserve function.</li>
-<li>If you need contiguous memory, use vector instead.</li>
-<li>For multi-threaded use, consider using mutexes or thread-safe containers.</li>
-</ul>
-
-
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

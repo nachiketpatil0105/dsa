@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Priority Queue – DSA</title>
+<title>Queue – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/priority_queue.html">Priority Queue</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/queue.html">Queue</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,13 +168,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/queue.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/queue.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Queue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/priority_queue.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../DSA Notes/C++STL/priority_queue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Priority Queue</span></a>
   </div>
 </li>
@@ -317,9 +317,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/priority_queue.html">Priority Queue</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/queue.html">Queue</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Priority Queue</h1>
+<h1 class="title">Queue</h1>
 </div>
 
 
@@ -336,60 +336,71 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="important-points-related-to-priority-queues" class="level2">
-<h2 class="anchored" data-anchor-id="important-points-related-to-priority-queues">Important Points Related to Priority Queues</h2>
+<section id="important-points-related-to-queues" class="level2">
+<h2 class="anchored" data-anchor-id="important-points-related-to-queues">Important Points Related to Queues</h2>
 <ul>
-<li><p>priority_queue&lt;T&gt; pq;<br>
-Declares a max-heap priority queue of type T (largest element at top).</p></li>
-<li><p>priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;<br>
-Declares a min-heap priority queue (smallest element at top).</p></li>
-<li><p>priority_queue&lt;T&gt; pq1(pq2);<br>
-Copies all elements from pq2 to pq1.</p></li>
-<li><p>pq.push(x);<br>
-Inserts element x into the priority queue.</p></li>
-<li><p>pq.emplace(args);<br>
-Constructs element in-place at the top (faster than push for objects).</p></li>
-<li><p>pq.pop();<br>
-Removes the top element.</p></li>
-<li><p>pq.top();<br>
-Returns a reference to the top element.</p></li>
-<li><p>pq.size();<br>
-Returns the number of elements in the priority queue.</p></li>
-<li><p>pq.empty();<br>
-Returns true if the priority queue is empty.</p></li>
-<li><p>pq.swap(pq2);<br>
-Swaps the contents of pq and pq2.</p></li>
+<li><p>queue&lt;T&gt; q;<br>
+Declares an empty queue of type T.</p></li>
+<li><p>queue&lt;int&gt; q2(q1);<br>
+Copies all elements from queue q1 to q2.</p></li>
+<li><p>queue&lt;int&gt; q = queue&lt;int&gt;();<br>
+Initializes an empty queue of integers.</p></li>
+<li><p>q.size();<br>
+Returns the number of elements in the queue. <strong>O(1)</strong></p></li>
+<li><p>q.empty();<br>
+Returns true if the queue is empty. <strong>O(1)</strong></p></li>
+<li><p>q.push(x);<br>
+Adds element x to the back of the queue. <strong>O(1)</strong></p></li>
+<li><p>q.emplace(args);<br>
+Constructs element in-place at the back (faster than push for objects). <strong>O(1)</strong></p></li>
+<li><p>q.pop();<br>
+Removes the front element (does not return it). <strong>O(1)</strong></p></li>
+<li><p>q.front();<br>
+Returns a reference to the front element. <strong>O(1)</strong></p></li>
+<li><p>q.back();<br>
+Returns a reference to the last element. <strong>O(1)</strong></p></li>
+<li><p>q.swap(q2);<br>
+Swaps the contents of q and q2. <strong>O(1)</strong></p></li>
+<li><p>There is no direct way to access elements other than the front and back.</p></li>
 </ul>
 <hr>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>By default, priority_queue is a max-heap (top() returns the largest element).</li>
-<li>To create a min-heap, use greater&lt;T&gt; as the third template argument.</li>
-<li>Underlying container is usually vector (can also use deque).</li>
-<li>No direct way to access elements other than the top.</li>
-<li>No iterators or random access.</li>
-<li>Not thread-safe by default.</li>
-<li>Useful for greedy algorithms, Dijkstra’s algorithm, scheduling, etc.</li>
-<li>To clear a priority queue, repeatedly call pop() until empty.</li>
+<li>Queue is a container adapter; by default, it uses deque as the underlying container (can also use list).</li>
+<li>You can specify the underlying container: queue&lt;int, list&lt;int&gt;&gt; q;</li>
+<li>Follows First-In-First-Out (FIFO) principle.</li>
+<li>No iterators or random access; you cannot traverse or access elements by index.</li>
+<li>Only the front and back elements can be accessed.</li>
+<li>To clear a queue, repeatedly call pop() until empty (no clear() function).</li>
+<li>Not thread-safe by default; use mutexes for multi-threaded scenarios.</li>
+<li>All main operations (push, pop, front, back, size, empty, swap) are O(1).</li>
 </ul>
 <hr>
 </section>
-<section id="when-to-use-priority-queue" class="level2">
-<h2 class="anchored" data-anchor-id="when-to-use-priority-queue">When to Use Priority Queue</h2>
+<section id="common-applications" class="level2">
+<h2 class="anchored" data-anchor-id="common-applications">Common Applications</h2>
 <ul>
-<li>When you need quick access to the largest or smallest element.</li>
-<li>For problems involving ordering by priority (e.g., task scheduling, shortest path).</li>
+<li>Breadth-First Search (BFS) in graphs/trees.</li>
+<li>Level-order traversal in trees.</li>
+<li>Task scheduling and buffering data streams.</li>
 </ul>
 <hr>
 </section>
-<section id="additional-points" class="level2">
-<h2 class="anchored" data-anchor-id="additional-points">Additional Points</h2>
+<section id="when-to-use-queue" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-queue">When to Use Queue</h2>
 <ul>
-<li>Custom comparators can be used for user-defined types.</li>
-<li>For multi-threaded use, consider using mutexes or thread-safe containers.</li>
-<li>If you need to access or modify elements other than the top, use other containers like set or multiset.</li>
+<li>When you need FIFO (First-In-First-Out) access.</li>
+<li>For problems involving level-order traversal, task scheduling, or buffering.</li>
+</ul>
+<hr>
+</section>
+<section id="when-not-to-use-queue" class="level2">
+<h2 class="anchored" data-anchor-id="when-not-to-use-queue">When Not to Use Queue</h2>
+<ul>
+<li>If you need to access or remove elements from the middle, use deque or list.</li>
+<li>If you need random access, use vector or deque.</li>
 </ul>
 
 

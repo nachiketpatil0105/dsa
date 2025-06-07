@@ -29,6 +29,8 @@ website:
             href: DSA Notes/C++STL/list.qmd
           - text: Stack
             href: DSA Notes/C++STL/stack.qmd
+          - text: Queue
+            href: DSA Notes/C++STL/queue.qmd
           - text: Priority Queue
             href: DSA Notes/C++STL/priority_queue.qmd
           - text: Set

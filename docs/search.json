@@ -952,5 +952,77 @@
       "C++ STL",
       "Algorithm"
     ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/queue.html",
+    "href": "DSA Notes/C++STL/queue.html",
+    "title": "Queue",
+    "section": "",
+    "text": "queue&lt;T&gt; q;\nDeclares an empty queue of type T.\nqueue&lt;int&gt; q2(q1);\nCopies all elements from queue q1 to q2.\nqueue&lt;int&gt; q = queue&lt;int&gt;();\nInitializes an empty queue of integers.\nq.size();\nReturns the number of elements in the queue. O(1)\nq.empty();\nReturns true if the queue is empty. O(1)\nq.push(x);\nAdds element x to the back of the queue. O(1)\nq.emplace(args);\nConstructs element in-place at the back (faster than push for objects). O(1)\nq.pop();\nRemoves the front element (does not return it). O(1)\nq.front();\nReturns a reference to the front element. O(1)\nq.back();\nReturns a reference to the last element. O(1)\nq.swap(q2);\nSwaps the contents of q and q2. O(1)\nThere is no direct way to access elements other than the front and back.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/queue.html#important-points-related-to-queues",
+    "href": "DSA Notes/C++STL/queue.html#important-points-related-to-queues",
+    "title": "Queue",
+    "section": "",
+    "text": "queue&lt;T&gt; q;\nDeclares an empty queue of type T.\nqueue&lt;int&gt; q2(q1);\nCopies all elements from queue q1 to q2.\nqueue&lt;int&gt; q = queue&lt;int&gt;();\nInitializes an empty queue of integers.\nq.size();\nReturns the number of elements in the queue. O(1)\nq.empty();\nReturns true if the queue is empty. O(1)\nq.push(x);\nAdds element x to the back of the queue. O(1)\nq.emplace(args);\nConstructs element in-place at the back (faster than push for objects). O(1)\nq.pop();\nRemoves the front element (does not return it). O(1)\nq.front();\nReturns a reference to the front element. O(1)\nq.back();\nReturns a reference to the last element. O(1)\nq.swap(q2);\nSwaps the contents of q and q2. O(1)\nThere is no direct way to access elements other than the front and back.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/queue.html#notes",
+    "href": "DSA Notes/C++STL/queue.html#notes",
+    "title": "Queue",
+    "section": "Notes",
+    "text": "Notes\n\nQueue is a container adapter; by default, it uses deque as the underlying container (can also use list).\nYou can specify the underlying container: queue&lt;int, list&lt;int&gt;&gt; q;\nFollows First-In-First-Out (FIFO) principle.\nNo iterators or random access; you cannot traverse or access elements by index.\nOnly the front and back elements can be accessed.\nTo clear a queue, repeatedly call pop() until empty (no clear() function).\nNot thread-safe by default; use mutexes for multi-threaded scenarios.\nAll main operations (push, pop, front, back, size, empty, swap) are O(1).",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/queue.html#common-applications",
+    "href": "DSA Notes/C++STL/queue.html#common-applications",
+    "title": "Queue",
+    "section": "Common Applications",
+    "text": "Common Applications\n\nBreadth-First Search (BFS) in graphs/trees.\nLevel-order traversal in trees.\nTask scheduling and buffering data streams.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/queue.html#when-to-use-queue",
+    "href": "DSA Notes/C++STL/queue.html#when-to-use-queue",
+    "title": "Queue",
+    "section": "When to Use Queue",
+    "text": "When to Use Queue\n\nWhen you need FIFO (First-In-First-Out) access.\nFor problems involving level-order traversal, task scheduling, or buffering.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/queue.html#when-not-to-use-queue",
+    "href": "DSA Notes/C++STL/queue.html#when-not-to-use-queue",
+    "title": "Queue",
+    "section": "When Not to Use Queue",
+    "text": "When Not to Use Queue\n\nIf you need to access or remove elements from the middle, use deque or list.\nIf you need random access, use vector or deque.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Queue"
+    ]
   }
 ]
