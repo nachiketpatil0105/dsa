@@ -4,11 +4,17 @@ title: "Paring of Two or Multiple Arrays"
 
 ### 📖 Theory
 
-We will be given with **[[a, b, c], [x, y, z]]** and need to pair them in all possibilities as **ax, ay, az, bx** and so on.
+We will be given with **[[a, b, c], [x, y, z]]** and need to pair them in all possible ways as **ax, ay, az, bx** and so on.
 
 ---
 
 **Using Recursion**
+
+- At each step (for each array), pick one element from the current array.
+- Move to the next array and repeat the process, building up the current combination.
+- Base Case: If you have picked one element from each array (i.e., reached the end), print or store the current combination.
+- This approach generates all possible pairings (or tuples) by exploring every choice at each level.
+
 
 ```cpp
   Base Case:

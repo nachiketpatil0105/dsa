@@ -367,9 +367,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="theory" class="level3">
 <h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
-<p>We will be given with <strong>[[a, b, c], [x, y, z]]</strong> and need to pair them in all possibilities as <strong>ax, ay, az, bx</strong> and so on.</p>
+<p>We will be given with <strong>[[a, b, c], [x, y, z]]</strong> and need to pair them in all possible ways as <strong>ax, ay, az, bx</strong> and so on.</p>
 <hr>
 <p><strong>Using Recursion</strong></p>
+<ul>
+<li>At each step (for each array), pick one element from the current array.</li>
+<li>Move to the next array and repeat the process, building up the current combination.</li>
+<li>Base Case: If you have picked one element from each array (i.e., reached the end), print or store the current combination.</li>
+<li>This approach generates all possible pairings (or tuples) by exploring every choice at each level.</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  Base Case<span class="op">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    i <span class="op">&gt;=</span> arr<span class="op">.</span>size<span class="op">();</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>

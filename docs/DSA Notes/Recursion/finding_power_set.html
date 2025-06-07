@@ -367,9 +367,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="theory" class="level3">
 <h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
-<p>You will be given an array like {1, 2, 3} or string “abc”. You need to find out all possible subsets like {[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]} or {a, ab, abc, ac, b, bc, c}.</p>
+<p>You will be given an array like <code>{1, 2, 3}</code> or a string <code>"abc"</code>. You need to find out all possible subsets, e.g.: - For <code>{1, 2, 3}</code>: <code>{[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]}</code> - For <code>"abc"</code>: <code>{"", "a", "ab", "abc", "ac", "b", "bc", "c"}</code></p>
 <hr>
 <p><strong>Using Recursion</strong></p>
+<ul>
+<li>At each step, decide to include or exclude the current element.</li>
+<li>Base Case: If i &gt;= arr.size(), print or store the current subset.</li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>  Base Case<span class="op">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    i <span class="op">&gt;=</span> arr<span class="op">.</span>size<span class="op">();</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
