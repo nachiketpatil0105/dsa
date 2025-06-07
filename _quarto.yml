@@ -59,6 +59,12 @@ website:
             href: DSA Notes/Binary Search/BS_rotated_no_dupli.qmd
           - text: BS in Rotated Array (Duplicates)
             href: DSA Notes/Binary Search/BS_rotated_dupli.qmd
+      - section: 'Recursion'
+        contents:
+          - text: Recursion
+            href: DSA Notes/Recursion/recursion.qmd
+          - text: Finding the Power Set
+            href: DSA Notes/Recursion/finding_power_set.qmd
 
 format:
   html:

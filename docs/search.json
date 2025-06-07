@@ -192,5 +192,136 @@
       "Binary Search",
       "BS in Rotated Array (Duplicates)"
     ]
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html",
+    "href": "DSA Notes/Recursion/recursion.html",
+    "title": "Recursion",
+    "section": "",
+    "text": "📖 Theory\nRecursion is a programming technique where a function calls itself to solve smaller instances of a problem.\n\nWhy Use Recursion?\n\nSimplifies code for problems that have a natural recursive structure (e.g., trees, graphs, divide & conquer).\nMakes code easier to read for certain problems.\n\n\nKey Concepts\n\nBase Case: The condition under which the recursion ends. Prevents infinite recursion.\nProcessing: Where you perform some opeartions before next recursive call.\nRecursive Case: The part where the function calls itself with a smaller or simpler input.\n\n\nAnatomy of a Recursive Function\nvoid recursiveFunction(parameters) {\n    if (base_case_condition) {\n        // Handle base case\n        return;\n    }\n\n    // Processing\n\n    // Recursive call(s)\n    recursiveFunction(smaller_problem);\n}\n\nExample 1: Factorial\nint factorial(int n) {\n    if (n == 0) return 1; // Base case\n    return n * factorial(n - 1); // Recursive case\n}\nExample 2: Fibonacci Numbers\nint fibonacci(int n) {\n    if (n &lt;= 1) return n; // Base case\n    return fibonacci(n - 1) + fibonacci(n - 2); // Recursive case\n}\n\nHow Recursion Works (Call Stack)\n\nEach recursive call adds a new frame to the call stack.\nWhen a base case is reached, the stack unwinds.\n\nCommon Mistakes\n\nMissing base case: Leads to infinite recursion (stack overflow).\nIncorrect base case: May cause wrong results.\nNot reducing the problem: The recursive call must progress toward the base case.\n\nWhen to Use Recursion\n\nProblems that can be broken into similar subproblems (e.g., tree traversals, searching, sorting).\nWhen iterative solutions are complex or less readable.\n\n\nAdvanced Recursion\n\nBacktracking: Used for problems like permutations, combinations, N-Queens, Sudoku.\nDivide and Conquer: Algorithms like Merge Sort, Quick Sort use recursion to divide the problem.\nDynamic Programming (Memoization): Optimize recursive solutions by storing results of subproblems.\n\n\nExample: Backtracking (N-Queens)\nvoid solveNQueens(int row, vector&lt;string&gt;& board, vector&lt;vector&lt;string&gt;&gt;& solutions) {\n    if (row == board.size()) {\n        solutions.push_back(board);\n        return;\n    }\n    for (int col = 0; col &lt; board.size(); col++) {\n        if (isSafe(board, row, col)) {\n            board[row][col] = 'Q';\n            solveNQueens(row + 1, board, solutions);\n            board[row][col] = '.'; // Backtrack\n        }\n    }\n}\n\nTips to Master Recursion\n\nDraw the recursion tree for small inputs.\nTrace the call stack step by step.\nStart with the base case and build up.\n\n\nRecursion vs Iteration\n\n\n\nRecursion\nIteration\n\n\n\n\nElegant for some problems\nUsually more efficient\n\n\nUses call stack\nUses loop variables\n\n\nCan be less efficient\nOften faster and uses less memory"
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#what-is-recursion",
+    "href": "DSA Notes/Recursion/recursion.html#what-is-recursion",
+    "title": "Recursion",
+    "section": "",
+    "text": "Recursion is a programming technique where a function calls itself to solve smaller instances of a problem."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#why-use-recursion",
+    "href": "DSA Notes/Recursion/recursion.html#why-use-recursion",
+    "title": "Recursion",
+    "section": "Why Use Recursion?",
+    "text": "Why Use Recursion?\n\nSimplifies code for problems that have a natural recursive structure (e.g., trees, graphs, divide & conquer).\nMakes code easier to read for certain problems."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#key-concepts",
+    "href": "DSA Notes/Recursion/recursion.html#key-concepts",
+    "title": "Recursion",
+    "section": "Key Concepts",
+    "text": "Key Concepts\n\n1. Base Case\nThe condition under which the recursion ends. Prevents infinite recursion.\n\n\n2. Recursive Case\nThe part where the function calls itself with a smaller or simpler input."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#anatomy-of-a-recursive-function",
+    "href": "DSA Notes/Recursion/recursion.html#anatomy-of-a-recursive-function",
+    "title": "Recursion",
+    "section": "Anatomy of a Recursive Function",
+    "text": "Anatomy of a Recursive Function\nvoid recursiveFunction(parameters) {\n    if (base_case_condition) {\n        // Handle base case\n        return;\n    }\n    // Recursive call(s)\n    recursiveFunction(smaller_problem);\n}"
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#example-1-factorial",
+    "href": "DSA Notes/Recursion/recursion.html#example-1-factorial",
+    "title": "Recursion",
+    "section": "Example 1: Factorial",
+    "text": "Example 1: Factorial\nint factorial(int n) {\n    if (n == 0) return 1; // Base case\n    return n * factorial(n - 1); // Recursive case\n}"
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#example-2-fibonacci-numbers",
+    "href": "DSA Notes/Recursion/recursion.html#example-2-fibonacci-numbers",
+    "title": "Recursion",
+    "section": "Example 2: Fibonacci Numbers",
+    "text": "Example 2: Fibonacci Numbers\nint fibonacci(int n) {\n    if (n &lt;= 1) return n; // Base case\n    return fibonacci(n - 1) + fibonacci(n - 2); // Recursive case\n}"
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#how-recursion-works-call-stack",
+    "href": "DSA Notes/Recursion/recursion.html#how-recursion-works-call-stack",
+    "title": "Recursion",
+    "section": "How Recursion Works (Call Stack)",
+    "text": "How Recursion Works (Call Stack)\n\nEach recursive call adds a new frame to the call stack.\nWhen a base case is reached, the stack unwinds."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#common-mistakes",
+    "href": "DSA Notes/Recursion/recursion.html#common-mistakes",
+    "title": "Recursion",
+    "section": "Common Mistakes",
+    "text": "Common Mistakes\n\nMissing base case: Leads to infinite recursion (stack overflow).\nIncorrect base case: May cause wrong results.\nNot reducing the problem: The recursive call must progress toward the base case."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#when-to-use-recursion",
+    "href": "DSA Notes/Recursion/recursion.html#when-to-use-recursion",
+    "title": "Recursion",
+    "section": "When to Use Recursion",
+    "text": "When to Use Recursion\n\nProblems that can be broken into similar subproblems (e.g., tree traversals, searching, sorting).\nWhen iterative solutions are complex or less readable."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#practice-problems",
+    "href": "DSA Notes/Recursion/recursion.html#practice-problems",
+    "title": "Recursion",
+    "section": "Practice Problems",
+    "text": "Practice Problems\n\nSum of Array: Write a recursive function to sum all elements of an array.\nReverse a String: Recursively reverse a string.\nPower Function: Compute a^b recursively.\nCheck Palindrome: Check if a string is a palindrome using recursion.\nTower of Hanoi: Classic recursion puzzle."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#advanced-recursion",
+    "href": "DSA Notes/Recursion/recursion.html#advanced-recursion",
+    "title": "Recursion",
+    "section": "Advanced Recursion",
+    "text": "Advanced Recursion\n\n1. Backtracking\nUsed for problems like permutations, combinations, N-Queens, Sudoku.\n\n\n2. Divide and Conquer\nAlgorithms like Merge Sort, Quick Sort use recursion to divide the problem.\n\n\n3. Dynamic Programming (Memoization)\nOptimize recursive solutions by storing results of subproblems."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#example-backtracking-n-queens",
+    "href": "DSA Notes/Recursion/recursion.html#example-backtracking-n-queens",
+    "title": "Recursion",
+    "section": "Example: Backtracking (N-Queens)",
+    "text": "Example: Backtracking (N-Queens)\nvoid solveNQueens(int row, vector&lt;string&gt;& board, vector&lt;vector&lt;string&gt;&gt;& solutions) {\n    if (row == board.size()) {\n        solutions.push_back(board);\n        return;\n    }\n    for (int col = 0; col &lt; board.size(); col++) {\n        if (isSafe(board, row, col)) {\n            board[row][col] = 'Q';\n            solveNQueens(row + 1, board, solutions);\n            board[row][col] = '.'; // Backtrack\n        }\n    }\n}"
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#tips-to-master-recursion",
+    "href": "DSA Notes/Recursion/recursion.html#tips-to-master-recursion",
+    "title": "Recursion",
+    "section": "Tips to Master Recursion",
+    "text": "Tips to Master Recursion\n\nDraw the recursion tree for small inputs.\nTrace the call stack step by step.\nStart with the base case and build up.\nPractice! The more problems you solve, the better you’ll understand recursion."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#recursion-vs-iteration",
+    "href": "DSA Notes/Recursion/recursion.html#recursion-vs-iteration",
+    "title": "Recursion",
+    "section": "Recursion vs Iteration",
+    "text": "Recursion vs Iteration\n\n\n\nRecursion\nIteration\n\n\n\n\nElegant for some problems\nUsually more efficient\n\n\nUses call stack\nUses loop variables\n\n\nCan be less efficient\nOften faster and uses less memory"
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#summary",
+    "href": "DSA Notes/Recursion/recursion.html#summary",
+    "title": "Recursion",
+    "section": "Summary",
+    "text": "Summary\n\nRecursion is a powerful tool for solving complex problems.\nAlways define a clear base case.\nPractice with classic problems to build intuition."
+  },
+  {
+    "objectID": "DSA Notes/Recursion/recursion.html#further-reading",
+    "href": "DSA Notes/Recursion/recursion.html#further-reading",
+    "title": "Recursion",
+    "section": "Further Reading",
+    "text": "Further Reading\n\nRecursion (GeeksforGeeks)\nVisualgo Recursion Visualizer\nLeetCode Recursion Problems"
+  },
+  {
+    "objectID": "DSA Notes/Recursion/finding_power_set.html",
+    "href": "DSA Notes/Recursion/finding_power_set.html",
+    "title": "Finding the Power Set",
+    "section": "",
+    "text": "📖 Theory\nYou will be given an array like {1, 2, 3} or string “abc”. You need to find out all possible subsets like {[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]} or {a, ab, abc, ac, b, bc, c}",
+    "crumbs": [
+      "Home",
+      "Recursion",
+      "Finding the Power Set"
+    ]
   }
 ]

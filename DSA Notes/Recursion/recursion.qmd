@@ -1,0 +1,135 @@
+---
+title: "Recursion"
+---
+
+### 📖 Theory
+
+**Recursion** is a programming technique where a function calls itself to solve smaller instances of a problem.
+
+---
+
+**Why Use Recursion?**
+
+- Simplifies code for problems that have a natural recursive structure (e.g., trees, graphs, divide & conquer).
+- Makes code easier to read for certain problems.
+
+---
+
+**Key Concepts**
+
+1. **Base Case:**
+The condition under which the recursion ends. Prevents infinite recursion.
+
+2. **Processing:**
+Where you perform some opeartions before next recursive call.
+
+3. **Recursive Case:**
+The part where the function calls itself with a smaller or simpler input.
+
+---
+
+**Anatomy of a Recursive Function**
+
+```cpp
+void recursiveFunction(parameters) {
+    if (base_case_condition) {
+        // Handle base case
+        return;
+    }
+
+    // Processing
+
+    // Recursive call(s)
+    recursiveFunction(smaller_problem);
+}
+```
+
+---
+
+*Example 1: Factorial*
+
+```cpp
+int factorial(int n) {
+    if (n == 0) return 1; // Base case
+    return n * factorial(n - 1); // Recursive case
+}
+```
+
+*Example 2: Fibonacci Numbers*
+
+```cpp
+int fibonacci(int n) {
+    if (n <= 1) return n; // Base case
+    return fibonacci(n - 1) + fibonacci(n - 2); // Recursive case
+}
+```
+
+---
+
+**How Recursion Works (Call Stack)**
+
+- Each recursive call adds a new frame to the call stack.
+- When a base case is reached, the stack unwinds.
+
+**Common Mistakes**
+
+- **Missing base case:** Leads to infinite recursion (stack overflow).
+- **Incorrect base case:** May cause wrong results.
+- **Not reducing the problem:** The recursive call must progress toward the base case.
+
+**When to Use Recursion**
+
+- Problems that can be broken into similar subproblems (e.g., tree traversals, searching, sorting).
+- When iterative solutions are complex or less readable.
+
+---
+
+**Advanced Recursion**
+
+1. **Backtracking:**
+Used for problems like permutations, combinations, N-Queens, Sudoku.
+
+2. **Divide and Conquer:**
+Algorithms like Merge Sort, Quick Sort use recursion to divide the problem.
+
+3. **Dynamic Programming (Memoization):**
+Optimize recursive solutions by storing results of subproblems.
+
+---
+
+*Example: Backtracking (N-Queens)*
+
+```cpp
+void solveNQueens(int row, vector<string>& board, vector<vector<string>>& solutions) {
+    if (row == board.size()) {
+        solutions.push_back(board);
+        return;
+    }
+    for (int col = 0; col < board.size(); col++) {
+        if (isSafe(board, row, col)) {
+            board[row][col] = 'Q';
+            solveNQueens(row + 1, board, solutions);
+            board[row][col] = '.'; // Backtrack
+        }
+    }
+}
+```
+
+---
+
+**Tips to Master Recursion**
+
+- **Draw the recursion tree** for small inputs.
+- **Trace the call stack** step by step.
+- **Start with the base case** and build up.
+
+---
+
+**Recursion vs Iteration**
+
+| Recursion | Iteration |
+|-----------|-----------|
+| Elegant for some problems | Usually more efficient |
+| Uses call stack | Uses loop variables |
+| Can be less efficient | Often faster and uses less memory |
+
