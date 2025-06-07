@@ -317,11 +317,23 @@
     "href": "DSA Notes/Recursion/finding_power_set.html",
     "title": "Finding the Power Set",
     "section": "",
-    "text": "📖 Theory\nYou will be given an array like {1, 2, 3} or string “abc”. You need to find out all possible subsets like {[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]} or {a, ab, abc, ac, b, bc, c}",
+    "text": "📖 Theory\nYou will be given an array like {1, 2, 3} or string “abc”. You need to find out all possible subsets like {[], [1], [2], [1,2], [3], [1,3], [2,3], [1,2,3]} or {a, ab, abc, ac, b, bc, c}.\n\nUsing Recursion\n  Base Case:\n    i &gt;= arr.size();\n\n   i        output                            \n  {1, 2, 3} , {}\n   |                         i      output\n   |-- |-- include 1 --&gt; {1, 2, 3} , {1,}\n       |                     |                        i    output              \n       |                     |-- include 2 --&gt; {1, 2, 3} , {1, 2}\n       |                     |                        i    output\n       |                     |-- exclude 2 --&gt; {1, 2, 3} , {1,}\n       |\n       |                     i      output\n       |-- exclude 1 --&gt; {1, 2, 3} , {}\n       |                     |                        i    output              \n       |                     |-- include 2 --&gt; {1, 2, 3} , {2}\n       |                     |                        i    output\n       |                     |-- exclude 2 --&gt; {1, 2, 3} , {}\n\nLike wise include and exclude the next numbers recursively.",
     "crumbs": [
       "Home",
       "Recursion",
       "Finding the Power Set"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Recursion/pairing_two_or_multiple_sets.html",
+    "href": "DSA Notes/Recursion/pairing_two_or_multiple_sets.html",
+    "title": "Paring of Two or Multiple Arrays",
+    "section": "",
+    "text": "📖 Theory\nWe will be given with [[a, b, c], [x, y, z]] and need to pair them in all possibilities as ax, ay, az, bx and so on.\n\nUsing Recursion\n  Base Case:\n    i &gt;= arr.size();\n\n  (   i   )             output\n  [a, b, c] & [x, y, z] , {}\n      |               (   i   )  output              (   i   )  output              (   i   )  output\n      |-- [a, b, c] & [x, y, z] , {a,} & [a, b, c] & [x, y, z] , {b,} & [a, b, c] & [x, y, z] , {c,}\n                          |\n                          |                       &lt; i output                       &lt; i output                       &lt; i output\n                          |-- [a, b, c] & [x, y, z] , {a, x} & [a, b, c] & [x, y, z] , {a, y} & [a, b, c] & [x, y, z] , {a, z}                                                                                               \n      \nLike wise bx, by, bz and cx, cy, cz.",
+    "crumbs": [
+      "Home",
+      "Recursion",
+      "Paring of Two or Multiple Arrays"
     ]
   }
 ]

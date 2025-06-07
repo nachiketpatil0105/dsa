@@ -65,6 +65,8 @@ website:
             href: DSA Notes/Recursion/recursion.qmd
           - text: Finding the Power Set
             href: DSA Notes/Recursion/finding_power_set.qmd
+          - text: Paring of Two or Multiple Arrays
+            href: DSA Notes/Recursion/pairing_two_or_multiple_sets.qmd
 
 format:
   html:

@@ -1,0 +1,26 @@
+---
+title: "Paring of Two or Multiple Arrays"
+---
+
+### 📖 Theory
+
+We will be given with **[[a, b, c], [x, y, z]]** and need to pair them in all possibilities as **ax, ay, az, bx** and so on.
+
+---
+
+**Using Recursion**
+
+```cpp
+  Base Case:
+    i >= arr.size();
+
+  (   i   )             output
+  [a, b, c] & [x, y, z] , {}
+      |               (   i   )  output              (   i   )  output              (   i   )  output
+      |-- [a, b, c] & [x, y, z] , {a,} & [a, b, c] & [x, y, z] , {b,} & [a, b, c] & [x, y, z] , {c,}
+                          |
+                          |                       < i output                       < i output                       < i output
+                          |-- [a, b, c] & [x, y, z] , {a, x} & [a, b, c] & [x, y, z] , {a, y} & [a, b, c] & [x, y, z] , {a, z}                                                                                               
+      
+Like wise bx, by, bz and cx, cy, cz.
+```
