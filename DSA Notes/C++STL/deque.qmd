@@ -1,0 +1,152 @@
+---
+title: "Deque"
+---
+
+## Important Points Related to Deques
+
+- deque&lt;T&gt; d;  
+  Declares an empty deque of type T.
+
+- deque&lt;int&gt; d(10, 0);  
+  Initializes a deque of 10 integers, all set to 0.
+
+- deque&lt;char&gt; d2(d1);  
+  Copies all elements from deque d1 to d2.
+
+- deque&lt;int&gt; d = {1, 2, 3};  
+  Initializes a deque with given values.
+
+- d.assign(n, value);  
+  Assigns n copies of value to the deque, replacing current contents.
+
+- d.size();  
+  Returns the number of elements in the deque.
+
+- d.max_size();  
+  Returns the maximum number of elements the deque can hold.
+
+- d.resize(n);  
+  Changes the size of the deque to n. If n is greater, new elements are default-initialized.
+
+- d.push_back(x);  
+  Appends element x to the end of the deque.
+
+- d.push_front(x);  
+  Inserts element x at the beginning of the deque.
+
+- d.emplace_back(args);  
+  Constructs element in-place at the end (faster than push_back for objects).
+
+- d.emplace_front(args);  
+  Constructs element in-place at the front.
+
+- d.at(i);  
+  Returns the element at index i (with bounds checking).
+
+- d[i];  
+  Returns the element at index i (no bounds checking).
+
+- d.front();  
+  Returns the first element.
+
+- d.back();  
+  Returns the last element.
+
+- d.pop_back();  
+  Removes the last element.
+
+- d.pop_front();  
+  Removes the first element.
+
+- d.clear();  
+  Removes all elements. Size becomes 0.
+
+- d.empty();  
+  Returns true if the deque is empty.
+
+- d.swap(d2);  
+  Swaps the contents of d and d2.
+
+---
+
+## Useful Operations
+
+- sort(d.begin(), d.end());  
+  Sorts the deque in ascending order. Time: O(N log N).
+
+- reverse(d.begin(), d.end());  
+  Reverses the order of elements.
+
+- d.erase(d.begin() + i);  
+  Removes the element at index i.
+
+- d.erase(d.begin() + i, d.begin() + j);  
+  Removes elements from index i up to (but not including) index j.
+
+- d.insert(d.begin() + i, x);  
+  Inserts element x at index i.
+
+- d.insert(d.begin() + i, n, x);  
+  Inserts n copies of x at index i.
+
+- d.insert(d.end(), {a, b, c});  
+  Inserts multiple elements at the end.
+
+- find(d.begin(), d.end(), x);  
+  Returns an iterator to the first occurrence of x (or d.end() if not found).
+
+- lower_bound(d.begin(), d.end(), x);  
+  Returns iterator to the first element not less than x (deque must be sorted).
+
+- upper_bound(d.begin(), d.end(), x);  
+  Returns iterator to the first element greater than x (deque must be sorted).
+
+- accumulate(d.begin(), d.end(), 0);  
+  Returns the sum of all elements (requires #include &lt;numeric&gt;).
+
+---
+
+## Iterating Over a Deque
+
+- Using index:  
+  for (int i = 0; i < d.size(); i++) **{ access d[i] }**
+
+- Using iterator:  
+  for (auto it = d.begin(); it != d.end(); ++it) **{ access \*it }**
+
+- Using range-based for loop:  
+  for (auto x : d) **{ access x }**
+
+---
+
+## Notes
+
+- Deques (double-ended queues) allow fast insertion and deletion at both the front and back (O(1) time).
+- Random access to elements is O(1), similar to vector.
+- Memory is not guaranteed to be contiguous (unlike vector).
+- Accessing elements out of bounds with d[i] is undefined behavior; use d.at(i) for safety.
+- Iterators may become invalid after insertions or deletions.
+- Deques are useful when you need to add or remove elements from both ends frequently.
+- No capacity() or shrink_to_fit() functions, as memory management is handled differently than vector.
+- Use reserve() is not available for deque.
+- Deques are generally slower than vectors for pure back operations due to more complex memory management.
+- Suitable for implementing both stacks and queues efficiently.
+- Standard library queue and stack containers use deque as the default underlying container.
+
+---
+
+## When to Use Deque
+
+- When you need fast insertions and deletions at both the front and back.
+- When you need random access to elements (like vector).
+- When memory contiguity is not a strict requirement.
+
+---
+
+## Additional Points
+
+- Deques may allocate memory in multiple chunks, so their memory is not guaranteed to be contiguous.
+- There is no direct way to reduce the memory usage of a deque (no shrink_to_fit).
+- Deques do not support the reserve function.
+- If you need contiguous memory, use vector instead.
+- For multi-threaded use, consider using mutexes or thread-safe containers.

@@ -1,0 +1,158 @@
+---
+title: "Algorithm"
+---
+
+## Important Points Related to STL Algorithms
+
+- STL algorithms are generic functions that operate on containers using iterators.
+- Most algorithms are defined in the &lt;algorithm&gt; header.
+- Work with all standard containers (vector, deque, list, set, map, etc.) that support iterators.
+
+---
+
+## Commonly Used Algorithms (with Time Complexities)
+
+- sort(first, last);  
+  Sorts the range [first, last) in ascending order. **O(N log N)**
+
+- sort(first, last, comp);  
+  Sorts with a custom comparator. **O(N log N)**
+
+- stable_sort(first, last);  
+  Sorts while preserving the relative order of equal elements. **O(N log N)**
+
+- partial_sort(first, middle, last);  
+  Sorts the range so that the smallest elements are before middle. **O(N log M), M = middle-first**
+
+- nth_element(first, nth, last);  
+  Rearranges so that the element at nth is the one that would be in that position in a sorted sequence. **O(N)**
+
+- reverse(first, last);  
+  Reverses the order of elements in the range. **O(N)**
+
+- rotate(first, middle, last);  
+  Rotates the elements in the range. **O(N)**
+
+- find(first, last, value);  
+  Returns iterator to the first occurrence of value, or last if not found. **O(N)**
+
+- find_if(first, last, pred);  
+  Returns iterator to the first element satisfying predicate. **O(N)**
+
+- count(first, last, value);  
+  Counts the number of elements equal to value. **O(N)**
+
+- count_if(first, last, pred);  
+  Counts elements satisfying predicate. **O(N)**
+
+- accumulate(first, last, init);  
+  Returns the sum of elements in the range (requires &lt;numeric&gt;). **O(N)**
+
+- min_element(first, last);  
+  Returns iterator to the smallest element. **O(N)**
+
+- max_element(first, last);  
+  Returns iterator to the largest element. **O(N)**
+
+- minmax_element(first, last);  
+  Returns a pair of iterators to the smallest and largest elements. **O(N)**
+
+- binary_search(first, last, value);  
+  Returns true if value is present (range must be sorted). **O(log N)**
+
+- lower_bound(first, last, value);  
+  Returns iterator to the first element not less than value (range must be sorted). **O(log N)**
+
+- upper_bound(first, last, value);  
+  Returns iterator to the first element greater than value (range must be sorted). **O(log N)**
+
+- equal_range(first, last, value);  
+  Returns a pair of iterators for the subrange of equal elements. **O(log N)**
+
+- next_permutation(first, last);  
+  Transforms the range to the next lexicographically greater permutation. **O(N)**
+
+- prev_permutation(first, last);  
+  Transforms the range to the previous permutation. **O(N)**
+
+- unique(first, last);  
+  Removes consecutive duplicates (returns new logical end). **O(N)**
+
+- remove(first, last, value);  
+  Moves all elements not equal to value to the front (use with erase for containers). **O(N)**
+
+- remove_if(first, last, pred);  
+  Removes elements satisfying predicate. **O(N)**
+
+- fill(first, last, value);  
+  Assigns value to all elements in the range. **O(N)**
+
+- copy(first, last, dest);  
+  Copies elements from [first, last) to dest. **O(N)**
+
+- copy_if(first, last, dest, pred);  
+  Copies elements satisfying predicate. **O(N)**
+
+- all_of(first, last, pred);  
+  Returns true if all elements satisfy predicate. **O(N)**
+
+- any_of(first, last, pred);  
+  Returns true if any element satisfies predicate. **O(N)**
+
+- none_of(first, last, pred);  
+  Returns true if no elements satisfy predicate. **O(N)**
+
+- for_each(first, last, func);  
+  Applies func to each element in the range. **O(N)**
+
+- merge(first1, last1, first2, last2, dest);  
+  Merges two sorted ranges. **O(N1 + N2)**
+
+- set_union(first1, last1, first2, last2, dest);  
+  Computes the union of two sorted ranges. **O(N1 + N2)**
+
+- set_intersection(first1, last1, first2, last2, dest);  
+  Computes the intersection of two sorted ranges. **O(N1 + N2)**
+
+- set_difference(first1, last1, first2, last2, dest);  
+  Computes the difference of two sorted ranges. **O(N1 + N2)**
+
+- set_symmetric_difference(first1, last1, first2, last2, dest);  
+  Computes the symmetric difference of two sorted ranges. **O(N1 + N2)**
+
+---
+
+## Example Usage
+
+- Sorting a vector:  
+  sort(v.begin(), v.end());
+
+- Finding an element:  
+  auto it = find(v.begin(), v.end(), x);
+
+- Counting occurrences:  
+  int cnt = count(v.begin(), v.end(), x);
+
+- Summing elements:  
+  int sum = accumulate(v.begin(), v.end(), 0);
+
+- Binary search:  
+  bool found = binary_search(v.begin(), v.end(), x);
+
+---
+
+## Notes
+
+- Most algorithms work on ranges defined by iterators: [first, last).
+- Many algorithms are non-modifying (find, count), while others modify the container (sort, reverse, remove).
+- Some algorithms require sorted ranges (binary_search, lower_bound, upper_bound, set operations).
+- Use lambda functions for custom predicates or comparators.
+- Algorithms do not change the size of containers unless used with erase (e.g., remove-erase idiom).
+- For multi-threaded use, consider thread-safe containers or synchronization.
+
+---
+
+## When to Use STL Algorithms
+
+- When you need efficient, reusable, and well-tested operations on containers.
+- To avoid writing common routines (sorting, searching, counting, set operations, etc.) manually.

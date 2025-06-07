@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>stack – DSA</title>
+<title>Stack – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -273,6 +273,35 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Recursion</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recursion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding the Power Set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -280,13 +309,115 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/stack.html">Stack</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/stack.html">Stack</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Stack</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="important-points-related-to-stacks" class="level2">
+<h2 class="anchored" data-anchor-id="important-points-related-to-stacks">Important Points Related to Stacks</h2>
+<ul>
+<li><p>stack&lt;T&gt; s;<br>
+Declares an empty stack of type T.</p></li>
+<li><p>stack&lt;int&gt; s2(s1);<br>
+Copies all elements from stack s1 to s2.</p></li>
+<li><p>stack&lt;int&gt; s = stack&lt;int&gt;();<br>
+Initializes an empty stack of integers.</p></li>
+<li><p>s.size();<br>
+Returns the number of elements in the stack.</p></li>
+<li><p>s.empty();<br>
+Returns true if the stack is empty.</p></li>
+<li><p>s.push(x);<br>
+Pushes element x onto the top of the stack.</p></li>
+<li><p>s.emplace(args);<br>
+Constructs element in-place at the top (faster than push for objects).</p></li>
+<li><p>s.pop();<br>
+Removes the top element (does not return it).</p></li>
+<li><p>s.top();<br>
+Returns a reference to the top element.</p></li>
+<li><p>s.swap(s2);<br>
+Swaps the contents of s and s2.</p></li>
+<li><p>There is no direct way to access elements other than the top.</p></li>
+</ul>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Stack is a container adapter; by default, it uses deque as the underlying container (can also use vector or list).</li>
+<li>Follows Last-In-First-Out (LIFO) principle.</li>
+<li>No iterators are provided; you cannot traverse a stack.</li>
+<li>Only the top element can be accessed or removed.</li>
+<li>Useful for function call management, expression evaluation, backtracking, undo operations, etc.</li>
+<li>To clear a stack, repeatedly call pop() until empty.</li>
+</ul>
+<hr>
+</section>
+<section id="when-to-use-stack" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-stack">When to Use Stack</h2>
+<ul>
+<li>When you need LIFO (Last-In-First-Out) access.</li>
+<li>For problems involving recursion, parsing, or backtracking.</li>
+<li>When only the most recently added element needs to be accessed or removed.</li>
+</ul>
+<hr>
+</section>
+<section id="additional-points" class="level2">
+<h2 class="anchored" data-anchor-id="additional-points">Additional Points</h2>
+<ul>
+<li><p>You can specify the underlying container:<br>
+stack&lt;int, vector&lt;int&gt;&gt; s2; // Uses vector as the underlying container<br>
+stack&lt;int, deque&lt;int&gt;&gt; s3; // Uses deque (default)</p></li>
+<li><p>Standard library stack does not support iteration or random access.</p></li>
+<li><p>If you need to traverse or access elements, consider using deque or vector directly.</p></li>
+</ul>
+<hr>
+</section>
+<section id="limitations" class="level2">
+<h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
+<ul>
+<li>Cannot access or modify elements other than the top.</li>
+<li>No direct way to clear all elements at once (must pop each element).</li>
+<li>No iterators or random access.</li>
+<li>Not thread-safe by default.</li>
+</ul>
+<hr>
+</section>
+<section id="common-applications" class="level2">
+<h2 class="anchored" data-anchor-id="common-applications">Common Applications</h2>
+<ul>
+<li>Undo/Redo functionality in editors.</li>
+<li>Syntax parsing (parentheses matching, expression evaluation).</li>
+<li>Backtracking algorithms (DFS, maze solving).</li>
+<li>Function call stack in recursion.</li>
+</ul>
+<hr>
+</section>
+<section id="tips" class="level2">
+<h2 class="anchored" data-anchor-id="tips">Tips</h2>
+<ul>
+<li>If you need to access elements other than the top, use vector or deque directly.</li>
+<li>For multi-threaded use, consider using mutexes or thread-safe containers.</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

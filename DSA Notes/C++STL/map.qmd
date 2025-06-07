@@ -1,0 +1,99 @@
+---
+title: "Map"
+---
+
+## Important Points Related to Maps
+
+- map&lt;Key, Value&gt; m;  
+  Declares an empty map with keys of type Key and values of type Value.
+
+- map&lt;int, string&gt; m = {{1, "one"}, {2, "two"}};  
+  Initializes a map with given key-value pairs.
+
+- map&lt;int, string&gt; m2(m1);  
+  Copies all key-value pairs from m1 to m2.
+
+- m[key] = value;  
+  Inserts or updates the value for the given key.
+
+- m.at(key);  
+  Returns the value associated with key (throws exception if key not found).
+
+- m.insert({key, value});  
+  Inserts a key-value pair (does not overwrite if key exists).
+
+- m.erase(key);  
+  Removes the element with the given key.
+
+- m.erase(it);  
+  Removes the element pointed to by iterator it.
+
+- m.erase(m.begin(), m.end());  
+  Removes all elements in the given range.
+
+- m.find(key);  
+  Returns an iterator to the key if found, else m.end().
+
+- m.count(key);  
+  Returns 1 if key is present, 0 otherwise.
+
+- m.size();  
+  Returns the number of key-value pairs in the map.
+
+- m.empty();  
+  Returns true if the map is empty.
+
+- m.clear();  
+  Removes all elements from the map.
+
+- m.lower_bound(key);  
+  Returns iterator to the first element not less than key.
+
+- m.upper_bound(key);  
+  Returns iterator to the first element greater than key.
+
+- m.swap(m2);  
+  Swaps the contents of m and m2.
+
+---
+
+## Useful Operations
+
+- Iterating over a map (ascending order of keys):  
+  for (auto it = m.begin(); it != m.end(); ++it) **{ access it->first, it->second }**
+
+- Range-based for loop:  
+  for (auto &p : m) **{ access p.first, p.second }**
+
+- Reverse iteration:  
+  for (auto it = m.rbegin(); it != m.rend(); ++it) **{ access it->first, it->second }**
+
+---
+
+## Notes
+
+- map stores unique keys in sorted order (by default, ascending).
+- All operations (insert, erase, find, count, lower_bound, upper_bound) have O(log N) time complexity.
+- Underlying data structure is usually a balanced BST (like Red-Black Tree).
+- Keys are immutable; you cannot modify keys in-place.
+- If you need to store duplicate keys, use multimap.
+- If you need faster operations and do not require ordering, use unordered_map (average O(1) time).
+- map provides random access to values via keys, but not by index.
+- Iterators remain valid except for erased elements.
+- For custom sorting, provide a comparator as a template argument.
+
+---
+
+## When to Use Map
+
+- When you need to associate unique keys with values.
+- When you need fast search, insertion, and deletion by key (O(log N)).
+- When order of keys matters.
+
+---
+
+## Additional Points
+
+- map&lt;int, string, greater&lt;int&gt;&gt; m; // Stores keys in descending order.
+- For multi-threaded use, consider using mutexes or thread-safe containers.
+- map is useful for frequency counting, associative arrays, and maintaining ordered key-value pairs.

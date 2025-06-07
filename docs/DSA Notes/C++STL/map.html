@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>map – DSA</title>
+<title>Map – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -273,6 +273,35 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Recursion</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recursion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding the Power Set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -280,13 +309,113 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/map.html">Map</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/map.html">Map</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Map</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="important-points-related-to-maps" class="level2">
+<h2 class="anchored" data-anchor-id="important-points-related-to-maps">Important Points Related to Maps</h2>
+<ul>
+<li><p>map&lt;Key, Value&gt; m;<br>
+Declares an empty map with keys of type Key and values of type Value.</p></li>
+<li><p>map&lt;int, string&gt; m = {{1, “one”}, {2, “two”}};<br>
+Initializes a map with given key-value pairs.</p></li>
+<li><p>map&lt;int, string&gt; m2(m1);<br>
+Copies all key-value pairs from m1 to m2.</p></li>
+<li><p>m[key] = value;<br>
+Inserts or updates the value for the given key.</p></li>
+<li><p>m.at(key);<br>
+Returns the value associated with key (throws exception if key not found).</p></li>
+<li><p>m.insert({key, value});<br>
+Inserts a key-value pair (does not overwrite if key exists).</p></li>
+<li><p>m.erase(key);<br>
+Removes the element with the given key.</p></li>
+<li><p>m.erase(it);<br>
+Removes the element pointed to by iterator it.</p></li>
+<li><p>m.erase(m.begin(), m.end());<br>
+Removes all elements in the given range.</p></li>
+<li><p>m.find(key);<br>
+Returns an iterator to the key if found, else m.end().</p></li>
+<li><p>m.count(key);<br>
+Returns 1 if key is present, 0 otherwise.</p></li>
+<li><p>m.size();<br>
+Returns the number of key-value pairs in the map.</p></li>
+<li><p>m.empty();<br>
+Returns true if the map is empty.</p></li>
+<li><p>m.clear();<br>
+Removes all elements from the map.</p></li>
+<li><p>m.lower_bound(key);<br>
+Returns iterator to the first element not less than key.</p></li>
+<li><p>m.upper_bound(key);<br>
+Returns iterator to the first element greater than key.</p></li>
+<li><p>m.swap(m2);<br>
+Swaps the contents of m and m2.</p></li>
+</ul>
+<hr>
+</section>
+<section id="useful-operations" class="level2">
+<h2 class="anchored" data-anchor-id="useful-operations">Useful Operations</h2>
+<ul>
+<li><p>Iterating over a map (ascending order of keys):<br>
+for (auto it = m.begin(); it != m.end(); ++it) <strong>{ access it-&gt;first, it-&gt;second }</strong></p></li>
+<li><p>Range-based for loop:<br>
+for (auto &amp;p : m) <strong>{ access p.first, p.second }</strong></p></li>
+<li><p>Reverse iteration:<br>
+for (auto it = m.rbegin(); it != m.rend(); ++it) <strong>{ access it-&gt;first, it-&gt;second }</strong></p></li>
+</ul>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>map stores unique keys in sorted order (by default, ascending).</li>
+<li>All operations (insert, erase, find, count, lower_bound, upper_bound) have O(log N) time complexity.</li>
+<li>Underlying data structure is usually a balanced BST (like Red-Black Tree).</li>
+<li>Keys are immutable; you cannot modify keys in-place.</li>
+<li>If you need to store duplicate keys, use multimap.</li>
+<li>If you need faster operations and do not require ordering, use unordered_map (average O(1) time).</li>
+<li>map provides random access to values via keys, but not by index.</li>
+<li>Iterators remain valid except for erased elements.</li>
+<li>For custom sorting, provide a comparator as a template argument.</li>
+</ul>
+<hr>
+</section>
+<section id="when-to-use-map" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-map">When to Use Map</h2>
+<ul>
+<li>When you need to associate unique keys with values.</li>
+<li>When you need fast search, insertion, and deletion by key (O(log N)).</li>
+<li>When order of keys matters.</li>
+</ul>
+<hr>
+</section>
+<section id="additional-points" class="level2">
+<h2 class="anchored" data-anchor-id="additional-points">Additional Points</h2>
+<ul>
+<li>map&lt;int, string, greater&lt;int&gt;&gt; m; // Stores keys in descending order.</li>
+<li>For multi-threaded use, consider using mutexes or thread-safe containers.</li>
+<li>map is useful for frequency counting, associative arrays, and maintaining ordered key-value pairs.</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

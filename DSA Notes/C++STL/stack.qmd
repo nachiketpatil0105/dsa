@@ -1,0 +1,92 @@
+---
+title: "Stack"
+---
+
+## Important Points Related to Stacks
+
+- stack&lt;T&gt; s;  
+  Declares an empty stack of type T.
+
+- stack&lt;int&gt; s2(s1);  
+  Copies all elements from stack s1 to s2.
+
+- stack&lt;int&gt; s = stack&lt;int&gt;();  
+  Initializes an empty stack of integers.
+
+- s.size();  
+  Returns the number of elements in the stack.
+
+- s.empty();  
+  Returns true if the stack is empty.
+
+- s.push(x);  
+  Pushes element x onto the top of the stack.
+
+- s.emplace(args);  
+  Constructs element in-place at the top (faster than push for objects).
+
+- s.pop();  
+  Removes the top element (does not return it).
+
+- s.top();  
+  Returns a reference to the top element.
+
+- s.swap(s2);  
+  Swaps the contents of s and s2.
+
+- There is no direct way to access elements other than the top.
+
+---
+
+## Notes
+
+- Stack is a container adapter; by default, it uses deque as the underlying container (can also use vector or list).
+- Follows Last-In-First-Out (LIFO) principle.
+- No iterators are provided; you cannot traverse a stack.
+- Only the top element can be accessed or removed.
+- Useful for function call management, expression evaluation, backtracking, undo operations, etc.
+- To clear a stack, repeatedly call pop() until empty.
+
+---
+
+## When to Use Stack
+
+- When you need LIFO (Last-In-First-Out) access.
+- For problems involving recursion, parsing, or backtracking.
+- When only the most recently added element needs to be accessed or removed.
+
+---
+
+## Additional Points
+
+- You can specify the underlying container:  
+  stack&lt;int, vector&lt;int&gt;&gt; s2; // Uses vector as the underlying container  
+  stack&lt;int, deque&lt;int&gt;&gt; s3;  // Uses deque (default)
+
+- Standard library stack does not support iteration or random access.
+- If you need to traverse or access elements, consider using deque or vector directly.
+
+---
+
+## Limitations
+
+- Cannot access or modify elements other than the top.
+- No direct way to clear all elements at once (must pop each element).
+- No iterators or random access.
+- Not thread-safe by default.
+
+---
+
+## Common Applications
+
+- Undo/Redo functionality in editors.
+- Syntax parsing (parentheses matching, expression evaluation).
+- Backtracking algorithms (DFS, maze solving).
+- Function call stack in recursion.
+
+---
+
+## Tips
+
+- If you need to access elements other than the top, use vector or deque directly.
+- For multi-threaded use, consider using mutexes or thread-safe containers.

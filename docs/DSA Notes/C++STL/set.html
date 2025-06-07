@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>set – DSA</title>
+<title>Set – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -273,6 +273,35 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Recursion</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recursion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding the Power Set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -280,13 +309,109 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/set.html">Set</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/set.html">Set</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Set</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="important-points-related-to-sets" class="level2">
+<h2 class="anchored" data-anchor-id="important-points-related-to-sets">Important Points Related to Sets</h2>
+<ul>
+<li><p>set&lt;T&gt; s;<br>
+Declares an empty set of type T (elements are unique and sorted).</p></li>
+<li><p>set&lt;int&gt; s = {1, 2, 3};<br>
+Initializes a set with given values.</p></li>
+<li><p>set&lt;int&gt; s2(s1);<br>
+Copies all elements from set s1 to s2.</p></li>
+<li><p>s.insert(x);<br>
+Inserts element x into the set (if not already present).</p></li>
+<li><p>s.erase(x);<br>
+Removes element x from the set (if present).</p></li>
+<li><p>s.erase(it);<br>
+Removes the element pointed to by iterator it.</p></li>
+<li><p>s.erase(s.begin(), s.end());<br>
+Removes all elements in the given range.</p></li>
+<li><p>s.find(x);<br>
+Returns an iterator to x if found, else s.end().</p></li>
+<li><p>s.count(x);<br>
+Returns 1 if x is present, 0 otherwise.</p></li>
+<li><p>s.size();<br>
+Returns the number of elements in the set.</p></li>
+<li><p>s.empty();<br>
+Returns true if the set is empty.</p></li>
+<li><p>s.clear();<br>
+Removes all elements from the set.</p></li>
+<li><p>s.lower_bound(x);<br>
+Returns iterator to the first element not less than x.</p></li>
+<li><p>s.upper_bound(x);<br>
+Returns iterator to the first element greater than x.</p></li>
+<li><p>s.swap(s2);<br>
+Swaps the contents of s and s2.</p></li>
+</ul>
+<hr>
+</section>
+<section id="useful-operations" class="level2">
+<h2 class="anchored" data-anchor-id="useful-operations">Useful Operations</h2>
+<ul>
+<li><p>Iterating over a set (ascending order):<br>
+for (auto it = s.begin(); it != s.end(); ++it) <strong>{ access *it }</strong></p></li>
+<li><p>Range-based for loop:<br>
+for (auto x : s) <strong>{ access x }</strong></p></li>
+<li><p>Reverse iteration:<br>
+for (auto it = s.rbegin(); it != s.rend(); ++it) <strong>{ access *it }</strong></p></li>
+</ul>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>set stores unique elements in sorted order (by default, ascending).</li>
+<li>All operations (insert, erase, find, count, lower_bound, upper_bound) have O(log N) time complexity.</li>
+<li>Underlying data structure is usually a balanced BST (like Red-Black Tree).</li>
+<li>Elements are immutable; you cannot modify elements in-place.</li>
+<li>If you need to store duplicate elements, use multiset.</li>
+<li>If you need faster operations and do not require ordering, use unordered_set (average O(1) time).</li>
+<li>set does not provide random access (no operator[]).</li>
+<li>Iterators remain valid except for erased elements.</li>
+<li>For custom sorting, provide a comparator as a template argument.</li>
+</ul>
+<hr>
+</section>
+<section id="when-to-use-set" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-set">When to Use Set</h2>
+<ul>
+<li>When you need to maintain a collection of unique, sorted elements.</li>
+<li>When you need fast search, insertion, and deletion (O(log N)).</li>
+<li>When order of elements matters.</li>
+</ul>
+<hr>
+</section>
+<section id="additional-points" class="level2">
+<h2 class="anchored" data-anchor-id="additional-points">Additional Points</h2>
+<ul>
+<li>set&lt;int, greater&lt;int&gt;&gt; s; // Stores elements in descending order.</li>
+<li>For multi-threaded use, consider using mutexes or thread-safe containers.</li>
+<li>set can be used for removing duplicates, set operations (union, intersection, difference), and maintaining ordered unique collections.</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

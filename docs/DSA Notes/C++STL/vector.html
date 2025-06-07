@@ -273,6 +273,35 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Recursion</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recursion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding the Power Set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -301,8 +330,107 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="important-points-related-to-vectors" class="level2">
+<h2 class="anchored" data-anchor-id="important-points-related-to-vectors">Important Points Related to Vectors</h2>
+<ul>
+<li><p>vector&lt;T&gt; v;<br>
+Declares an empty vector of type T.</p></li>
+<li><p>vector&lt;int&gt; v(10, 0);<br>
+Initializes a vector of 10 integers, all set to 0.</p></li>
+<li><p>vector&lt;char&gt; v2(v1);<br>
+Copies all elements from vector v1 to v2.</p></li>
+<li><p>vector&lt;int&gt; v = {1, 2, 3};<br>
+Initializes a vector with given values.</p></li>
+<li><p>v.assign(n, value);<br>
+Assigns n copies of value to the vector, replacing current contents.</p></li>
+<li><p>v.size();<br>
+Returns the number of elements in the vector.</p></li>
+<li><p>v.capacity();<br>
+Returns the size of the storage space currently allocated (can be greater than or equal to size).</p></li>
+<li><p>v.max_size();<br>
+Returns the maximum number of elements the vector can hold.</p></li>
+<li><p>v.resize(n);<br>
+Changes the size of the vector to n.&nbsp;If n is greater, new elements are default-initialized.</p></li>
+<li><p>v.push_back(x);<br>
+Appends element x to the end of the vector.</p></li>
+<li><p>v.emplace_back(args);<br>
+Constructs element in-place at the end (faster than push_back for objects).</p></li>
+<li><p>v.at(i);<br>
+Returns the element at index i (with bounds checking).</p></li>
+<li><p>v[i];<br>
+Returns the element at index i (no bounds checking).</p></li>
+<li><p>v.front();<br>
+Returns the first element.</p></li>
+<li><p>v.back();<br>
+Returns the last element.</p></li>
+<li><p>v.pop_back();<br>
+Removes the last element.</p></li>
+<li><p>v.clear();<br>
+Removes all elements. Size becomes 0, but capacity (allocated memory) remains unchanged.</p></li>
+<li><p>v.empty();<br>
+Returns true if the vector is empty.</p></li>
+<li><p>v.swap(v2);<br>
+Swaps the contents of v and v2.</p></li>
+</ul>
+<hr>
+</section>
+<section id="useful-operations" class="level2">
+<h2 class="anchored" data-anchor-id="useful-operations">Useful Operations</h2>
+<ul>
+<li><p>sort(v.begin(), v.end());<br>
+Sorts the vector in ascending order. Time: O(N log N).</p></li>
+<li><p>reverse(v.begin(), v.end());<br>
+Reverses the order of elements.</p></li>
+<li><p>v.erase(v.begin() + i);<br>
+Removes the element at index i.</p></li>
+<li><p>v.erase(v.begin() + i, v.begin() + j);<br>
+Removes elements from index i up to (but not including) index j. Time: O(N).</p></li>
+<li><p>v.insert(v.begin() + i, x);<br>
+Inserts element x at index i.</p></li>
+<li><p>v.insert(v.begin() + i, n, x);<br>
+Inserts n copies of x at index i.</p></li>
+<li><p>v.insert(v.end(), {a, b, c});<br>
+Inserts multiple elements at the end.</p></li>
+<li><p>find(v.begin(), v.end(), x);<br>
+Returns an iterator to the first occurrence of x (or v.end() if not found). Time: O(N).</p></li>
+<li><p>lower_bound(v.begin(), v.end(), x);<br>
+Returns iterator to the first element not less than x (vector must be sorted).</p></li>
+<li><p>upper_bound(v.begin(), v.end(), x);<br>
+Returns iterator to the first element greater than x (vector must be sorted).</p></li>
+<li><p>accumulate(v.begin(), v.end(), 0);<br>
+Returns the sum of all elements (requires #include &lt;numeric&gt;).</p></li>
+</ul>
+<hr>
+</section>
+<section id="iterating-over-a-vector" class="level2">
+<h2 class="anchored" data-anchor-id="iterating-over-a-vector">Iterating Over a Vector</h2>
+<ul>
+<li><p>Using index:<br>
+for (int i = 0; i &lt; v.size(); i++) <strong>{ access v[i] }</strong></p></li>
+<li><p>Using iterator:<br>
+for (auto it = v.begin(); it != v.end(); ++it) <strong>{ access *it }</strong></p></li>
+<li><p>Using range-based for loop:<br>
+for (auto x : v) <strong>{ access x }</strong></p></li>
+</ul>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Vectors are dynamic arrays; they resize automatically as elements are added or removed.</li>
+<li>Memory is contiguous, so vectors can be passed to C-style functions expecting arrays.</li>
+<li>Accessing elements out of bounds with v[i] is undefined behavior; use v.at(i) for safety.</li>
+<li>Iterators become invalid after insertions or deletions (except at the end).</li>
+<li>To shrink capacity to fit size, use: v.shrink_to_fit();</li>
+<li>Inserting or erasing elements at the end is fast (amortized O(1)), but at other positions it is O(N).</li>
+<li>Use reserve(n) to pre-allocate memory if the number of elements is known in advance to avoid multiple reallocations.</li>
+<li>Vectors are not thread-safe by default; use mutexes for multi-threaded scenarios.</li>
+<li>Suitable for situations where you need fast random access and frequent insertions/removals at the end.</li>
+<li>If you need to insert or remove elements frequently at the beginning or middle, consider using deque or list.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

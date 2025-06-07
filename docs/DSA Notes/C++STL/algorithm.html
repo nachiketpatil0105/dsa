@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>algorithm – DSA</title>
+<title>Algorithm – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -273,6 +273,35 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Recursion</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recursion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding the Power Set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -280,13 +309,151 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/algorithm.html">Algorithm</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/algorithm.html">Algorithm</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Algorithm</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="important-points-related-to-stl-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="important-points-related-to-stl-algorithms">Important Points Related to STL Algorithms</h2>
+<ul>
+<li>STL algorithms are generic functions that operate on containers using iterators.</li>
+<li>Most algorithms are defined in the &lt;algorithm&gt; header.</li>
+<li>Work with all standard containers (vector, deque, list, set, map, etc.) that support iterators.</li>
+</ul>
+<hr>
+</section>
+<section id="commonly-used-algorithms-with-time-complexities" class="level2">
+<h2 class="anchored" data-anchor-id="commonly-used-algorithms-with-time-complexities">Commonly Used Algorithms (with Time Complexities)</h2>
+<ul>
+<li><p>sort(first, last);<br>
+Sorts the range [first, last) in ascending order. <strong>O(N log N)</strong></p></li>
+<li><p>sort(first, last, comp);<br>
+Sorts with a custom comparator. <strong>O(N log N)</strong></p></li>
+<li><p>stable_sort(first, last);<br>
+Sorts while preserving the relative order of equal elements. <strong>O(N log N)</strong></p></li>
+<li><p>partial_sort(first, middle, last);<br>
+Sorts the range so that the smallest elements are before middle. <strong>O(N log M), M = middle-first</strong></p></li>
+<li><p>nth_element(first, nth, last);<br>
+Rearranges so that the element at nth is the one that would be in that position in a sorted sequence. <strong>O(N)</strong></p></li>
+<li><p>reverse(first, last);<br>
+Reverses the order of elements in the range. <strong>O(N)</strong></p></li>
+<li><p>rotate(first, middle, last);<br>
+Rotates the elements in the range. <strong>O(N)</strong></p></li>
+<li><p>find(first, last, value);<br>
+Returns iterator to the first occurrence of value, or last if not found. <strong>O(N)</strong></p></li>
+<li><p>find_if(first, last, pred);<br>
+Returns iterator to the first element satisfying predicate. <strong>O(N)</strong></p></li>
+<li><p>count(first, last, value);<br>
+Counts the number of elements equal to value. <strong>O(N)</strong></p></li>
+<li><p>count_if(first, last, pred);<br>
+Counts elements satisfying predicate. <strong>O(N)</strong></p></li>
+<li><p>accumulate(first, last, init);<br>
+Returns the sum of elements in the range (requires &lt;numeric&gt;). <strong>O(N)</strong></p></li>
+<li><p>min_element(first, last);<br>
+Returns iterator to the smallest element. <strong>O(N)</strong></p></li>
+<li><p>max_element(first, last);<br>
+Returns iterator to the largest element. <strong>O(N)</strong></p></li>
+<li><p>minmax_element(first, last);<br>
+Returns a pair of iterators to the smallest and largest elements. <strong>O(N)</strong></p></li>
+<li><p>binary_search(first, last, value);<br>
+Returns true if value is present (range must be sorted). <strong>O(log N)</strong></p></li>
+<li><p>lower_bound(first, last, value);<br>
+Returns iterator to the first element not less than value (range must be sorted). <strong>O(log N)</strong></p></li>
+<li><p>upper_bound(first, last, value);<br>
+Returns iterator to the first element greater than value (range must be sorted). <strong>O(log N)</strong></p></li>
+<li><p>equal_range(first, last, value);<br>
+Returns a pair of iterators for the subrange of equal elements. <strong>O(log N)</strong></p></li>
+<li><p>next_permutation(first, last);<br>
+Transforms the range to the next lexicographically greater permutation. <strong>O(N)</strong></p></li>
+<li><p>prev_permutation(first, last);<br>
+Transforms the range to the previous permutation. <strong>O(N)</strong></p></li>
+<li><p>unique(first, last);<br>
+Removes consecutive duplicates (returns new logical end). <strong>O(N)</strong></p></li>
+<li><p>remove(first, last, value);<br>
+Moves all elements not equal to value to the front (use with erase for containers). <strong>O(N)</strong></p></li>
+<li><p>remove_if(first, last, pred);<br>
+Removes elements satisfying predicate. <strong>O(N)</strong></p></li>
+<li><p>fill(first, last, value);<br>
+Assigns value to all elements in the range. <strong>O(N)</strong></p></li>
+<li><p>copy(first, last, dest);<br>
+Copies elements from [first, last) to dest. <strong>O(N)</strong></p></li>
+<li><p>copy_if(first, last, dest, pred);<br>
+Copies elements satisfying predicate. <strong>O(N)</strong></p></li>
+<li><p>all_of(first, last, pred);<br>
+Returns true if all elements satisfy predicate. <strong>O(N)</strong></p></li>
+<li><p>any_of(first, last, pred);<br>
+Returns true if any element satisfies predicate. <strong>O(N)</strong></p></li>
+<li><p>none_of(first, last, pred);<br>
+Returns true if no elements satisfy predicate. <strong>O(N)</strong></p></li>
+<li><p>for_each(first, last, func);<br>
+Applies func to each element in the range. <strong>O(N)</strong></p></li>
+<li><p>merge(first1, last1, first2, last2, dest);<br>
+Merges two sorted ranges. <strong>O(N1 + N2)</strong></p></li>
+<li><p>set_union(first1, last1, first2, last2, dest);<br>
+Computes the union of two sorted ranges. <strong>O(N1 + N2)</strong></p></li>
+<li><p>set_intersection(first1, last1, first2, last2, dest);<br>
+Computes the intersection of two sorted ranges. <strong>O(N1 + N2)</strong></p></li>
+<li><p>set_difference(first1, last1, first2, last2, dest);<br>
+Computes the difference of two sorted ranges. <strong>O(N1 + N2)</strong></p></li>
+<li><p>set_symmetric_difference(first1, last1, first2, last2, dest);<br>
+Computes the symmetric difference of two sorted ranges. <strong>O(N1 + N2)</strong></p></li>
+</ul>
+<hr>
+</section>
+<section id="example-usage" class="level2">
+<h2 class="anchored" data-anchor-id="example-usage">Example Usage</h2>
+<ul>
+<li><p>Sorting a vector:<br>
+sort(v.begin(), v.end());</p></li>
+<li><p>Finding an element:<br>
+auto it = find(v.begin(), v.end(), x);</p></li>
+<li><p>Counting occurrences:<br>
+int cnt = count(v.begin(), v.end(), x);</p></li>
+<li><p>Summing elements:<br>
+int sum = accumulate(v.begin(), v.end(), 0);</p></li>
+<li><p>Binary search:<br>
+bool found = binary_search(v.begin(), v.end(), x);</p></li>
+</ul>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>Most algorithms work on ranges defined by iterators: [first, last).</li>
+<li>Many algorithms are non-modifying (find, count), while others modify the container (sort, reverse, remove).</li>
+<li>Some algorithms require sorted ranges (binary_search, lower_bound, upper_bound, set operations).</li>
+<li>Use lambda functions for custom predicates or comparators.</li>
+<li>Algorithms do not change the size of containers unless used with erase (e.g., remove-erase idiom).</li>
+<li>For multi-threaded use, consider thread-safe containers or synchronization.</li>
+</ul>
+<hr>
+</section>
+<section id="when-to-use-stl-algorithms" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-stl-algorithms">When to Use STL Algorithms</h2>
+<ul>
+<li>When you need efficient, reusable, and well-tested operations on containers.</li>
+<li>To avoid writing common routines (sorting, searching, counting, set operations, etc.) manually.</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,0 +1,112 @@
+---
+title: "List"
+---
+
+## Important Points Related to Lists
+
+- list&lt;T&gt; l;  
+  Declares an empty doubly linked list of type T.
+
+- list&lt;int&gt; l(5, 0);  
+  Initializes a list of 5 integers, all set to 0.
+
+- list&lt;char&gt; l2(l1);  
+  Copies all elements from list l1 to l2.
+
+- list&lt;int&gt; l = {1, 2, 3};  
+  Initializes a list with given values.
+
+- l.assign(n, value);  
+  Assigns n copies of value to the list, replacing current contents.
+
+- l.size();  
+  Returns the number of elements in the list.
+
+- l.max_size();  
+  Returns the maximum number of elements the list can hold.
+
+- l.push_back(x);  
+  Appends element x to the end of the list.
+
+- l.push_front(x);  
+  Inserts element x at the beginning of the list.
+
+- l.emplace_back(args);  
+  Constructs element in-place at the end.
+
+- l.emplace_front(args);  
+  Constructs element in-place at the front.
+
+- l.pop_back();  
+  Removes the last element.
+
+- l.pop_front();  
+  Removes the first element.
+
+- l.insert(it, x);  
+  Inserts element x before iterator it.
+
+- l.erase(it);  
+  Removes the element pointed to by iterator it.
+
+- l.erase(it1, it2);  
+  Removes elements in the range [it1, it2).
+
+- l.remove(x);  
+  Removes all elements equal to x.
+
+- l.clear();  
+  Removes all elements from the list.
+
+- l.empty();  
+  Returns true if the list is empty.
+
+- l.swap(l2);  
+  Swaps the contents of l and l2.
+
+- l.reverse();  
+  Reverses the order of elements.
+
+- l.sort();  
+  Sorts the list in ascending order.
+
+---
+
+## Useful Operations
+
+- Iterating over a list:  
+  for (auto it = l.begin(); it != l.end(); ++it) **{ access \*it }**
+
+- Range-based for loop:  
+  for (auto x : l) **{ access x }**
+
+- Splicing (moving elements from one list to another):  
+  l1.splice(l1.begin(), l2); // Moves all elements from l2 to l1 at the beginning
+
+---
+
+## Notes
+
+- list is a doubly linked list; allows fast insertion and deletion anywhere (O(1) if iterator is known).
+- No random access (no operator[] or at()).
+- Iterators remain valid even after insertions and deletions (except for erased elements).
+- Useful when frequent insertions/deletions are needed at both ends or in the middle.
+- More memory overhead than vector or deque due to pointers.
+- Not thread-safe by default.
+- For single linked list, use forward_list.
+
+---
+
+## When to Use List
+
+- When you need frequent insertions and deletions at both ends or in the middle.
+- When random access is not required.
+- When stable iterators are important.
+
+---
+
+## Additional Points
+
+- list&lt;int, allocator&gt; l; // Custom allocator can be specified.
+- For multi-threaded use, consider using mutexes or thread-safe containers.
+- Use vector or deque if you need random access or better cache performance.

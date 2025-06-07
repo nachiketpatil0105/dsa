@@ -1,0 +1,75 @@
+---
+title: "Queue"
+---
+
+## Important Points Related to Queues
+
+- queue&lt;T&gt; q;  
+  Declares an empty queue of type T.
+
+- queue&lt;int&gt; q2(q1);  
+  Copies all elements from queue q1 to q2.
+
+- queue&lt;int&gt; q = queue&lt;int&gt;();  
+  Initializes an empty queue of integers.
+
+- q.size();  
+  Returns the number of elements in the queue. **O(1)**
+
+- q.empty();  
+  Returns true if the queue is empty. **O(1)**
+
+- q.push(x);  
+  Adds element x to the back of the queue. **O(1)**
+
+- q.emplace(args);  
+  Constructs element in-place at the back (faster than push for objects). **O(1)**
+
+- q.pop();  
+  Removes the front element (does not return it). **O(1)**
+
+- q.front();  
+  Returns a reference to the front element. **O(1)**
+
+- q.back();  
+  Returns a reference to the last element. **O(1)**
+
+- q.swap(q2);  
+  Swaps the contents of q and q2. **O(1)**
+
+- There is no direct way to access elements other than the front and back.
+
+---
+
+## Notes
+
+- Queue is a container adapter; by default, it uses deque as the underlying container (can also use list).
+- You can specify the underlying container: queue&lt;int, list&lt;int&gt;&gt; q;
+- Follows First-In-First-Out (FIFO) principle.
+- No iterators or random access; you cannot traverse or access elements by index.
+- Only the front and back elements can be accessed.
+- To clear a queue, repeatedly call pop() until empty (no clear() function).
+- Not thread-safe by default; use mutexes for multi-threaded scenarios.
+- All main operations (push, pop, front, back, size, empty, swap) are O(1).
+
+---
+
+## Common Applications
+
+- Breadth-First Search (BFS) in graphs/trees.
+- Level-order traversal in trees.
+- Task scheduling and buffering data streams.
+
+---
+
+## When to Use Queue
+
+- When you need FIFO (First-In-First-Out) access.
+- For problems involving level-order traversal, task scheduling, or buffering.
+
+---
+
+## When Not to Use Queue
+
+- If you need to access or remove elements from the middle, use deque or list.
+- If you need random access, use vector or deque.

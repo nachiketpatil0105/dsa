@@ -2,3 +2,126 @@
 title: "Vector"
 ---
 
+## Important Points Related to Vectors
+
+- vector&lt;T&gt; v;  
+  Declares an empty vector of type T.
+
+- vector&lt;int&gt; v(10, 0);  
+  Initializes a vector of 10 integers, all set to 0.
+
+- vector&lt;char&gt; v2(v1);  
+  Copies all elements from vector v1 to v2.
+
+- vector&lt;int&gt; v = {1, 2, 3};  
+  Initializes a vector with given values.
+
+- v.assign(n, value);  
+  Assigns n copies of value to the vector, replacing current contents.
+
+- v.size();  
+  Returns the number of elements in the vector.
+
+- v.capacity();  
+  Returns the size of the storage space currently allocated (can be greater than or equal to size).
+
+- v.max_size();  
+  Returns the maximum number of elements the vector can hold.
+
+- v.resize(n);  
+  Changes the size of the vector to n. If n is greater, new elements are default-initialized.
+
+- v.push_back(x);  
+  Appends element x to the end of the vector.
+
+- v.emplace_back(args);  
+  Constructs element in-place at the end (faster than push_back for objects).
+
+- v.at(i);  
+  Returns the element at index i (with bounds checking).
+
+- v[i];  
+  Returns the element at index i (no bounds checking).
+
+- v.front();  
+  Returns the first element.
+
+- v.back();  
+  Returns the last element.
+
+- v.pop_back();  
+  Removes the last element.
+
+- v.clear();  
+  Removes all elements. Size becomes 0, but capacity (allocated memory) remains unchanged.
+
+- v.empty();  
+  Returns true if the vector is empty.
+
+- v.swap(v2);  
+  Swaps the contents of v and v2.
+
+---
+
+## Useful Operations
+
+- sort(v.begin(), v.end());  
+  Sorts the vector in ascending order. Time: O(N log N).
+
+- reverse(v.begin(), v.end());  
+  Reverses the order of elements.
+
+- v.erase(v.begin() + i);  
+  Removes the element at index i.
+
+- v.erase(v.begin() + i, v.begin() + j);  
+  Removes elements from index i up to (but not including) index j. Time: O(N).
+
+- v.insert(v.begin() + i, x);  
+  Inserts element x at index i.
+
+- v.insert(v.begin() + i, n, x);  
+  Inserts n copies of x at index i.
+
+- v.insert(v.end(), {a, b, c});  
+  Inserts multiple elements at the end.
+
+- find(v.begin(), v.end(), x);  
+  Returns an iterator to the first occurrence of x (or v.end() if not found). Time: O(N).
+
+- lower_bound(v.begin(), v.end(), x);  
+  Returns iterator to the first element not less than x (vector must be sorted).
+
+- upper_bound(v.begin(), v.end(), x);  
+  Returns iterator to the first element greater than x (vector must be sorted).
+
+- accumulate(v.begin(), v.end(), 0);  
+  Returns the sum of all elements (requires #include &lt;numeric&gt;).
+
+---
+
+## Iterating Over a Vector
+
+- Using index:  
+  for (int i = 0; i < v.size(); i++) **{ access v[i] }**
+
+- Using iterator:  
+  for (auto it = v.begin(); it != v.end(); ++it) **{ access \*it }**
+
+- Using range-based for loop:  
+  for (auto x : v) **{ access x }**
+
+---
+
+## Notes
+
+- Vectors are dynamic arrays; they resize automatically as elements are added or removed.
+- Memory is contiguous, so vectors can be passed to C-style functions expecting arrays.
+- Accessing elements out of bounds with v[i] is undefined behavior; use v.at(i) for safety.
+- Iterators become invalid after insertions or deletions (except at the end).
+- To shrink capacity to fit size, use: v.shrink_to_fit();
+- Inserting or erasing elements at the end is fast (amortized O(1)), but at other positions it is O(N).
+- Use reserve(n) to pre-allocate memory if the number of elements is known in advance to avoid multiple reallocations.
+- Vectors are not thread-safe by default; use mutexes for multi-threaded scenarios.
+- Suitable for situations where you need fast random access and frequent insertions/removals at the end.
+- If you need to insert or remove elements frequently at the beginning or middle, consider using deque or list.

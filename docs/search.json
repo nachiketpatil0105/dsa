@@ -340,5 +340,617 @@
       "Recursion",
       "Paring of Two or Multiple Arrays"
     ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/vector.html",
+    "href": "DSA Notes/C++STL/vector.html",
+    "title": "Vector",
+    "section": "",
+    "text": "vector&lt;T&gt; v;\nDeclares an empty vector of type T.\nvector&lt;int&gt; v(10, 0);\nInitializes a vector of 10 integers, all set to 0.\nvector&lt;char&gt; v2(v1);\nCopies all elements from vector v1 to v2.\nvector&lt;int&gt; v = {1, 2, 3};\nInitializes a vector with given values.\nv.assign(n, value);\nAssigns n copies of value to the vector, replacing current contents.\nv.size();\nReturns the number of elements in the vector.\nv.capacity();\nReturns the size of the storage space currently allocated (can be greater than or equal to size).\nv.max_size();\nReturns the maximum number of elements the vector can hold.\nv.resize(n);\nChanges the size of the vector to n. If n is greater, new elements are default-initialized.\nv.push_back(x);\nAppends element x to the end of the vector.\nv.emplace_back(args);\nConstructs element in-place at the end (faster than push_back for objects).\nv.at(i);\nReturns the element at index i (with bounds checking).\nv[i];\nReturns the element at index i (no bounds checking).\nv.front();\nReturns the first element.\nv.back();\nReturns the last element.\nv.pop_back();\nRemoves the last element.\nv.clear();\nRemoves all elements. Size becomes 0, but capacity (allocated memory) remains unchanged.\nv.empty();\nReturns true if the vector is empty.\nv.swap(v2);\nSwaps the contents of v and v2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Vector"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/vector.html#important-points-related-to-vectors",
+    "href": "DSA Notes/C++STL/vector.html#important-points-related-to-vectors",
+    "title": "Vector",
+    "section": "",
+    "text": "vector&lt;T&gt; v;\nDeclares an empty vector of type T.\nvector&lt;int&gt; v(10, 0);\nInitializes a vector of 10 integers, all set to 0.\nvector&lt;char&gt; v2(v1);\nCopies all elements from vector v1 to v2.\nvector&lt;int&gt; v = {1, 2, 3};\nInitializes a vector with given values.\nv.assign(n, value);\nAssigns n copies of value to the vector, replacing current contents.\nv.size();\nReturns the number of elements in the vector.\nv.capacity();\nReturns the size of the storage space currently allocated (can be greater than or equal to size).\nv.max_size();\nReturns the maximum number of elements the vector can hold.\nv.resize(n);\nChanges the size of the vector to n. If n is greater, new elements are default-initialized.\nv.push_back(x);\nAppends element x to the end of the vector.\nv.emplace_back(args);\nConstructs element in-place at the end (faster than push_back for objects).\nv.at(i);\nReturns the element at index i (with bounds checking).\nv[i];\nReturns the element at index i (no bounds checking).\nv.front();\nReturns the first element.\nv.back();\nReturns the last element.\nv.pop_back();\nRemoves the last element.\nv.clear();\nRemoves all elements. Size becomes 0, but capacity (allocated memory) remains unchanged.\nv.empty();\nReturns true if the vector is empty.\nv.swap(v2);\nSwaps the contents of v and v2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Vector"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/vector.html#useful-operations",
+    "href": "DSA Notes/C++STL/vector.html#useful-operations",
+    "title": "Vector",
+    "section": "Useful Operations",
+    "text": "Useful Operations\n\nsort(v.begin(), v.end());\nSorts the vector in ascending order. Time: O(N log N).\nreverse(v.begin(), v.end());\nReverses the order of elements.\nv.erase(v.begin() + i);\nRemoves the element at index i.\nv.erase(v.begin() + i, v.begin() + j);\nRemoves elements from index i up to (but not including) index j. Time: O(N).\nv.insert(v.begin() + i, x);\nInserts element x at index i.\nv.insert(v.begin() + i, n, x);\nInserts n copies of x at index i.\nv.insert(v.end(), {a, b, c});\nInserts multiple elements at the end.\nfind(v.begin(), v.end(), x);\nReturns an iterator to the first occurrence of x (or v.end() if not found). Time: O(N).\nlower_bound(v.begin(), v.end(), x);\nReturns iterator to the first element not less than x (vector must be sorted).\nupper_bound(v.begin(), v.end(), x);\nReturns iterator to the first element greater than x (vector must be sorted).\naccumulate(v.begin(), v.end(), 0);\nReturns the sum of all elements (requires #include &lt;numeric&gt;).",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Vector"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/vector.html#notes",
+    "href": "DSA Notes/C++STL/vector.html#notes",
+    "title": "Vector",
+    "section": "Notes",
+    "text": "Notes\n\nVectors are dynamic arrays; they resize automatically as elements are added or removed.\nMemory is contiguous, so vectors can be passed to C-style functions expecting arrays.\nAccessing elements out of bounds with v[i] is undefined behavior; use v.at(i) for safety.\nIterators become invalid after insertions or deletions (except at the end).\nTo shrink capacity to fit size, use: v.shrink_to_fit();\nInserting or erasing elements at the end is fast (amortized O(1)), but at other positions it is O(N).\nUse reserve(n) to pre-allocate memory if the number of elements is known in advance to avoid multiple reallocations.\nVectors are not thread-safe by default; use mutexes for multi-threaded scenarios.\nSuitable for situations where you need fast random access and frequent insertions/removals at the end.\nIf you need to insert or remove elements frequently at the beginning or middle, consider using deque or list.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Vector"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/vector.html#iterating-over-a-vector",
+    "href": "DSA Notes/C++STL/vector.html#iterating-over-a-vector",
+    "title": "Vector",
+    "section": "Iterating Over a Vector",
+    "text": "Iterating Over a Vector\n\nUsing index:\nfor (int i = 0; i &lt; v.size(); i++) { access v[i] }\nUsing iterator:\nfor (auto it = v.begin(); it != v.end(); ++it) { access *it }\nUsing range-based for loop:\nfor (auto x : v) { access x }",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Vector"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/deque.html",
+    "href": "DSA Notes/C++STL/deque.html",
+    "title": "Deque",
+    "section": "",
+    "text": "deque&lt;T&gt; d;\nDeclares an empty deque of type T.\ndeque&lt;int&gt; d(10, 0);\nInitializes a deque of 10 integers, all set to 0.\ndeque&lt;char&gt; d2(d1);\nCopies all elements from deque d1 to d2.\ndeque&lt;int&gt; d = {1, 2, 3};\nInitializes a deque with given values.\nd.assign(n, value);\nAssigns n copies of value to the deque, replacing current contents.\nd.size();\nReturns the number of elements in the deque.\nd.max_size();\nReturns the maximum number of elements the deque can hold.\nd.resize(n);\nChanges the size of the deque to n. If n is greater, new elements are default-initialized.\nd.push_back(x);\nAppends element x to the end of the deque.\nd.push_front(x);\nInserts element x at the beginning of the deque.\nd.emplace_back(args);\nConstructs element in-place at the end (faster than push_back for objects).\nd.emplace_front(args);\nConstructs element in-place at the front.\nd.at(i);\nReturns the element at index i (with bounds checking).\nd[i];\nReturns the element at index i (no bounds checking).\nd.front();\nReturns the first element.\nd.back();\nReturns the last element.\nd.pop_back();\nRemoves the last element.\nd.pop_front();\nRemoves the first element.\nd.clear();\nRemoves all elements. Size becomes 0.\nd.empty();\nReturns true if the deque is empty.\nd.swap(d2);\nSwaps the contents of d and d2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Deque"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/deque.html#important-points-related-to-deques",
+    "href": "DSA Notes/C++STL/deque.html#important-points-related-to-deques",
+    "title": "Deque",
+    "section": "",
+    "text": "deque&lt;T&gt; d;\nDeclares an empty deque of type T.\ndeque&lt;int&gt; d(10, 0);\nInitializes a deque of 10 integers, all set to 0.\ndeque&lt;char&gt; d2(d1);\nCopies all elements from deque d1 to d2.\ndeque&lt;int&gt; d = {1, 2, 3};\nInitializes a deque with given values.\nd.assign(n, value);\nAssigns n copies of value to the deque, replacing current contents.\nd.size();\nReturns the number of elements in the deque.\nd.max_size();\nReturns the maximum number of elements the deque can hold.\nd.resize(n);\nChanges the size of the deque to n. If n is greater, new elements are default-initialized.\nd.push_back(x);\nAppends element x to the end of the deque.\nd.push_front(x);\nInserts element x at the beginning of the deque.\nd.emplace_back(args);\nConstructs element in-place at the end (faster than push_back for objects).\nd.emplace_front(args);\nConstructs element in-place at the front.\nd.at(i);\nReturns the element at index i (with bounds checking).\nd[i];\nReturns the element at index i (no bounds checking).\nd.front();\nReturns the first element.\nd.back();\nReturns the last element.\nd.pop_back();\nRemoves the last element.\nd.pop_front();\nRemoves the first element.\nd.clear();\nRemoves all elements. Size becomes 0.\nd.empty();\nReturns true if the deque is empty.\nd.swap(d2);\nSwaps the contents of d and d2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Deque"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/deque.html#useful-operations",
+    "href": "DSA Notes/C++STL/deque.html#useful-operations",
+    "title": "Deque",
+    "section": "Useful Operations",
+    "text": "Useful Operations\n\nsort(d.begin(), d.end());\nSorts the deque in ascending order. Time: O(N log N).\nreverse(d.begin(), d.end());\nReverses the order of elements.\nd.erase(d.begin() + i);\nRemoves the element at index i.\nd.erase(d.begin() + i, d.begin() + j);\nRemoves elements from index i up to (but not including) index j.\nd.insert(d.begin() + i, x);\nInserts element x at index i.\nd.insert(d.begin() + i, n, x);\nInserts n copies of x at index i.\nd.insert(d.end(), {a, b, c});\nInserts multiple elements at the end.\nfind(d.begin(), d.end(), x);\nReturns an iterator to the first occurrence of x (or d.end() if not found).\nlower_bound(d.begin(), d.end(), x);\nReturns iterator to the first element not less than x (deque must be sorted).\nupper_bound(d.begin(), d.end(), x);\nReturns iterator to the first element greater than x (deque must be sorted).\naccumulate(d.begin(), d.end(), 0);\nReturns the sum of all elements (requires #include &lt;numeric&gt;).",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Deque"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/deque.html#iterating-over-a-deque",
+    "href": "DSA Notes/C++STL/deque.html#iterating-over-a-deque",
+    "title": "Deque",
+    "section": "Iterating Over a Deque",
+    "text": "Iterating Over a Deque\n\nUsing index:\nfor (int i = 0; i &lt; d.size(); i++) { access d[i] }\nUsing iterator:\nfor (auto it = d.begin(); it != d.end(); ++it) { access *it }\nUsing range-based for loop:\nfor (auto x : d) { access x }",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Deque"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/deque.html#notes",
+    "href": "DSA Notes/C++STL/deque.html#notes",
+    "title": "Deque",
+    "section": "Notes",
+    "text": "Notes\n\nDeques (double-ended queues) allow fast insertion and deletion at both the front and back (O(1) time).\nRandom access to elements is O(1), similar to vector.\nMemory is not guaranteed to be contiguous (unlike vector).\nAccessing elements out of bounds with d[i] is undefined behavior; use d.at(i) for safety.\nIterators may become invalid after insertions or deletions.\nDeques are useful when you need to add or remove elements from both ends frequently.\nNo capacity() or shrink_to_fit() functions, as memory management is handled differently than vector.\nUse reserve() is not available for deque.\nDeques are generally slower than vectors for pure back operations due to more complex memory management.\nSuitable for implementing both stacks and queues efficiently.\nStandard library queue and stack containers use deque as the default underlying container.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Deque"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/deque.html#when-to-use-deque",
+    "href": "DSA Notes/C++STL/deque.html#when-to-use-deque",
+    "title": "Deque",
+    "section": "When to Use Deque",
+    "text": "When to Use Deque\n\nWhen you need fast insertions and deletions at both the front and back.\nWhen you need random access to elements (like vector).\nWhen memory contiguity is not a strict requirement.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Deque"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/deque.html#additional-points",
+    "href": "DSA Notes/C++STL/deque.html#additional-points",
+    "title": "Deque",
+    "section": "Additional Points",
+    "text": "Additional Points\n\nDeques may allocate memory in multiple chunks, so their memory is not guaranteed to be contiguous.\nThere is no direct way to reduce the memory usage of a deque (no shrink_to_fit).\nDeques do not support the reserve function.\nIf you need contiguous memory, use vector instead.\nFor multi-threaded use, consider using mutexes or thread-safe containers.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Deque"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html",
+    "href": "DSA Notes/C++STL/stack.html",
+    "title": "Stack",
+    "section": "",
+    "text": "stack&lt;T&gt; s;\nDeclares an empty stack of type T.\nstack&lt;int&gt; s2(s1);\nCopies all elements from stack s1 to s2.\nstack&lt;int&gt; s = stack&lt;int&gt;();\nInitializes an empty stack of integers.\ns.size();\nReturns the number of elements in the stack.\ns.empty();\nReturns true if the stack is empty.\ns.push(x);\nPushes element x onto the top of the stack.\ns.emplace(args);\nConstructs element in-place at the top (faster than push for objects).\ns.pop();\nRemoves the top element (does not return it).\ns.top();\nReturns a reference to the top element.\ns.swap(s2);\nSwaps the contents of s and s2.\nThere is no direct way to access elements other than the top.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html#important-points-related-to-stacks",
+    "href": "DSA Notes/C++STL/stack.html#important-points-related-to-stacks",
+    "title": "Stack",
+    "section": "",
+    "text": "stack&lt;T&gt; s;\nDeclares an empty stack of type T.\nstack&lt;int&gt; s2(s1);\nCopies all elements from stack s1 to s2.\nstack&lt;int&gt; s = stack&lt;int&gt;();\nInitializes an empty stack of integers.\ns.size();\nReturns the number of elements in the stack.\ns.empty();\nReturns true if the stack is empty.\ns.push(x);\nPushes element x onto the top of the stack.\ns.emplace(args);\nConstructs element in-place at the top (faster than push for objects).\ns.pop();\nRemoves the top element (does not return it).\ns.top();\nReturns a reference to the top element.\ns.swap(s2);\nSwaps the contents of s and s2.\nThere is no direct way to access elements other than the top.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html#example-usage",
+    "href": "DSA Notes/C++STL/stack.html#example-usage",
+    "title": "Stack",
+    "section": "Example Usage",
+    "text": "Example Usage\n\nCreating a stack of integers:\nstack&lt;int&gt; s;\nPushing elements:\ns.push(10);\ns.push(20);\ns.push(30); // Stack is now: 10 (bottom), 20, 30 (top)\nAccessing the top element:\nint x = s.top(); // x = 30\nRemoving the top element:\ns.pop(); // Stack is now: 10 (bottom), 20 (top)\nChecking if stack is empty:\nif (s.empty()) { /* stack is empty */ }\nGetting the size:\nint n = s.size();",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html#notes",
+    "href": "DSA Notes/C++STL/stack.html#notes",
+    "title": "Stack",
+    "section": "Notes",
+    "text": "Notes\n\nStack is a container adapter; by default, it uses deque as the underlying container (can also use vector or list).\nFollows Last-In-First-Out (LIFO) principle.\nNo iterators are provided; you cannot traverse a stack.\nOnly the top element can be accessed or removed.\nUseful for function call management, expression evaluation, backtracking, undo operations, etc.\nTo clear a stack, repeatedly call pop() until empty.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html#when-to-use-stack",
+    "href": "DSA Notes/C++STL/stack.html#when-to-use-stack",
+    "title": "Stack",
+    "section": "When to Use Stack",
+    "text": "When to Use Stack\n\nWhen you need LIFO (Last-In-First-Out) access.\nFor problems involving recursion, parsing, or backtracking.\nWhen only the most recently added element needs to be accessed or removed.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html#additional-points",
+    "href": "DSA Notes/C++STL/stack.html#additional-points",
+    "title": "Stack",
+    "section": "Additional Points",
+    "text": "Additional Points\n\nYou can specify the underlying container:\nstack&lt;int, vector&lt;int&gt;&gt; s2; // Uses vector as the underlying container\nstack&lt;int, deque&lt;int&gt;&gt; s3; // Uses deque (default)\nStandard library stack does not support iteration or random access.\nIf you need to traverse or access elements, consider using deque or vector directly.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html#limitations",
+    "href": "DSA Notes/C++STL/stack.html#limitations",
+    "title": "Stack",
+    "section": "Limitations",
+    "text": "Limitations\n\nCannot access or modify elements other than the top.\nNo direct way to clear all elements at once (must pop each element).\nNo iterators or random access.\nNot thread-safe by default.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html#common-applications",
+    "href": "DSA Notes/C++STL/stack.html#common-applications",
+    "title": "Stack",
+    "section": "Common Applications",
+    "text": "Common Applications\n\nUndo/Redo functionality in editors.\nSyntax parsing (parentheses matching, expression evaluation).\nBacktracking algorithms (DFS, maze solving).\nFunction call stack in recursion.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/stack.html#tips",
+    "href": "DSA Notes/C++STL/stack.html#tips",
+    "title": "Stack",
+    "section": "Tips",
+    "text": "Tips\n\nIf you need to access elements other than the top, use vector or deque directly.\nFor multi-threaded use, consider using mutexes or thread-safe containers.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/set.html",
+    "href": "DSA Notes/C++STL/set.html",
+    "title": "Set",
+    "section": "",
+    "text": "set&lt;T&gt; s;\nDeclares an empty set of type T (elements are unique and sorted).\nset&lt;int&gt; s = {1, 2, 3};\nInitializes a set with given values.\nset&lt;int&gt; s2(s1);\nCopies all elements from set s1 to s2.\ns.insert(x);\nInserts element x into the set (if not already present).\ns.erase(x);\nRemoves element x from the set (if present).\ns.erase(it);\nRemoves the element pointed to by iterator it.\ns.erase(s.begin(), s.end());\nRemoves all elements in the given range.\ns.find(x);\nReturns an iterator to x if found, else s.end().\ns.count(x);\nReturns 1 if x is present, 0 otherwise.\ns.size();\nReturns the number of elements in the set.\ns.empty();\nReturns true if the set is empty.\ns.clear();\nRemoves all elements from the set.\ns.lower_bound(x);\nReturns iterator to the first element not less than x.\ns.upper_bound(x);\nReturns iterator to the first element greater than x.\ns.swap(s2);\nSwaps the contents of s and s2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Set"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/set.html#important-points-related-to-sets",
+    "href": "DSA Notes/C++STL/set.html#important-points-related-to-sets",
+    "title": "Set",
+    "section": "",
+    "text": "set&lt;T&gt; s;\nDeclares an empty set of type T (elements are unique and sorted).\nset&lt;int&gt; s = {1, 2, 3};\nInitializes a set with given values.\nset&lt;int&gt; s2(s1);\nCopies all elements from set s1 to s2.\ns.insert(x);\nInserts element x into the set (if not already present).\ns.erase(x);\nRemoves element x from the set (if present).\ns.erase(it);\nRemoves the element pointed to by iterator it.\ns.erase(s.begin(), s.end());\nRemoves all elements in the given range.\ns.find(x);\nReturns an iterator to x if found, else s.end().\ns.count(x);\nReturns 1 if x is present, 0 otherwise.\ns.size();\nReturns the number of elements in the set.\ns.empty();\nReturns true if the set is empty.\ns.clear();\nRemoves all elements from the set.\ns.lower_bound(x);\nReturns iterator to the first element not less than x.\ns.upper_bound(x);\nReturns iterator to the first element greater than x.\ns.swap(s2);\nSwaps the contents of s and s2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Set"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/set.html#useful-operations",
+    "href": "DSA Notes/C++STL/set.html#useful-operations",
+    "title": "Set",
+    "section": "Useful Operations",
+    "text": "Useful Operations\n\nIterating over a set (ascending order):\nfor (auto it = s.begin(); it != s.end(); ++it) { access *it }\nRange-based for loop:\nfor (auto x : s) { access x }\nReverse iteration:\nfor (auto it = s.rbegin(); it != s.rend(); ++it) { access *it }",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Set"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/set.html#notes",
+    "href": "DSA Notes/C++STL/set.html#notes",
+    "title": "Set",
+    "section": "Notes",
+    "text": "Notes\n\nset stores unique elements in sorted order (by default, ascending).\nAll operations (insert, erase, find, count, lower_bound, upper_bound) have O(log N) time complexity.\nUnderlying data structure is usually a balanced BST (like Red-Black Tree).\nElements are immutable; you cannot modify elements in-place.\nIf you need to store duplicate elements, use multiset.\nIf you need faster operations and do not require ordering, use unordered_set (average O(1) time).\nset does not provide random access (no operator[]).\nIterators remain valid except for erased elements.\nFor custom sorting, provide a comparator as a template argument.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Set"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/set.html#when-to-use-set",
+    "href": "DSA Notes/C++STL/set.html#when-to-use-set",
+    "title": "Set",
+    "section": "When to Use Set",
+    "text": "When to Use Set\n\nWhen you need to maintain a collection of unique, sorted elements.\nWhen you need fast search, insertion, and deletion (O(log N)).\nWhen order of elements matters.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Set"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/set.html#additional-points",
+    "href": "DSA Notes/C++STL/set.html#additional-points",
+    "title": "Set",
+    "section": "Additional Points",
+    "text": "Additional Points\n\nset&lt;int, greater&lt;int&gt;&gt; s; // Stores elements in descending order.\nFor multi-threaded use, consider using mutexes or thread-safe containers.\nset can be used for removing duplicates, set operations (union, intersection, difference), and maintaining ordered unique collections.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Set"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/priority_queue.html",
+    "href": "DSA Notes/C++STL/priority_queue.html",
+    "title": "Priority Queue",
+    "section": "",
+    "text": "priority_queue&lt;T&gt; pq;\nDeclares a max-heap priority queue of type T (largest element at top).\npriority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;\nDeclares a min-heap priority queue (smallest element at top).\npriority_queue&lt;T&gt; pq1(pq2);\nCopies all elements from pq2 to pq1.\npq.push(x);\nInserts element x into the priority queue.\npq.emplace(args);\nConstructs element in-place at the top (faster than push for objects).\npq.pop();\nRemoves the top element.\npq.top();\nReturns a reference to the top element.\npq.size();\nReturns the number of elements in the priority queue.\npq.empty();\nReturns true if the priority queue is empty.\npq.swap(pq2);\nSwaps the contents of pq and pq2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Priority Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/priority_queue.html#important-points-related-to-priority-queues",
+    "href": "DSA Notes/C++STL/priority_queue.html#important-points-related-to-priority-queues",
+    "title": "Priority Queue",
+    "section": "",
+    "text": "priority_queue&lt;T&gt; pq;\nDeclares a max-heap priority queue of type T (largest element at top).\npriority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;\nDeclares a min-heap priority queue (smallest element at top).\npriority_queue&lt;T&gt; pq1(pq2);\nCopies all elements from pq2 to pq1.\npq.push(x);\nInserts element x into the priority queue.\npq.emplace(args);\nConstructs element in-place at the top (faster than push for objects).\npq.pop();\nRemoves the top element.\npq.top();\nReturns a reference to the top element.\npq.size();\nReturns the number of elements in the priority queue.\npq.empty();\nReturns true if the priority queue is empty.\npq.swap(pq2);\nSwaps the contents of pq and pq2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Priority Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/priority_queue.html#example-usage",
+    "href": "DSA Notes/C++STL/priority_queue.html#example-usage",
+    "title": "Priority Queue",
+    "section": "Example Usage",
+    "text": "Example Usage\n\nMax-heap (default):\npriority_queue&lt;int&gt; pq;\npq.push(10); pq.push(5); pq.push(20);\npq.top(); // 20\nMin-heap:\npriority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;\npq.push(10); pq.push(5); pq.push(20);\npq.top(); // 5",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Priority Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/priority_queue.html#notes",
+    "href": "DSA Notes/C++STL/priority_queue.html#notes",
+    "title": "Priority Queue",
+    "section": "Notes",
+    "text": "Notes\n\nBy default, priority_queue is a max-heap (top() returns the largest element).\nTo create a min-heap, use greater&lt;T&gt; as the third template argument.\nUnderlying container is usually vector (can also use deque).\nNo direct way to access elements other than the top.\nNo iterators or random access.\nNot thread-safe by default.\nUseful for greedy algorithms, Dijkstra’s algorithm, scheduling, etc.\nTo clear a priority queue, repeatedly call pop() until empty.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Priority Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/priority_queue.html#when-to-use-priority-queue",
+    "href": "DSA Notes/C++STL/priority_queue.html#when-to-use-priority-queue",
+    "title": "Priority Queue",
+    "section": "When to Use Priority Queue",
+    "text": "When to Use Priority Queue\n\nWhen you need quick access to the largest or smallest element.\nFor problems involving ordering by priority (e.g., task scheduling, shortest path).",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Priority Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/priority_queue.html#additional-points",
+    "href": "DSA Notes/C++STL/priority_queue.html#additional-points",
+    "title": "Priority Queue",
+    "section": "Additional Points",
+    "text": "Additional Points\n\nCustom comparators can be used for user-defined types.\nFor multi-threaded use, consider using mutexes or thread-safe containers.\nIf you need to access or modify elements other than the top, use other containers like set or multiset.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Priority Queue"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/map.html",
+    "href": "DSA Notes/C++STL/map.html",
+    "title": "Map",
+    "section": "",
+    "text": "map&lt;Key, Value&gt; m;\nDeclares an empty map with keys of type Key and values of type Value.\nmap&lt;int, string&gt; m = {{1, “one”}, {2, “two”}};\nInitializes a map with given key-value pairs.\nmap&lt;int, string&gt; m2(m1);\nCopies all key-value pairs from m1 to m2.\nm[key] = value;\nInserts or updates the value for the given key.\nm.at(key);\nReturns the value associated with key (throws exception if key not found).\nm.insert({key, value});\nInserts a key-value pair (does not overwrite if key exists).\nm.erase(key);\nRemoves the element with the given key.\nm.erase(it);\nRemoves the element pointed to by iterator it.\nm.erase(m.begin(), m.end());\nRemoves all elements in the given range.\nm.find(key);\nReturns an iterator to the key if found, else m.end().\nm.count(key);\nReturns 1 if key is present, 0 otherwise.\nm.size();\nReturns the number of key-value pairs in the map.\nm.empty();\nReturns true if the map is empty.\nm.clear();\nRemoves all elements from the map.\nm.lower_bound(key);\nReturns iterator to the first element not less than key.\nm.upper_bound(key);\nReturns iterator to the first element greater than key.\nm.swap(m2);\nSwaps the contents of m and m2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Map"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/map.html#important-points-related-to-maps",
+    "href": "DSA Notes/C++STL/map.html#important-points-related-to-maps",
+    "title": "Map",
+    "section": "",
+    "text": "map&lt;Key, Value&gt; m;\nDeclares an empty map with keys of type Key and values of type Value.\nmap&lt;int, string&gt; m = {{1, “one”}, {2, “two”}};\nInitializes a map with given key-value pairs.\nmap&lt;int, string&gt; m2(m1);\nCopies all key-value pairs from m1 to m2.\nm[key] = value;\nInserts or updates the value for the given key.\nm.at(key);\nReturns the value associated with key (throws exception if key not found).\nm.insert({key, value});\nInserts a key-value pair (does not overwrite if key exists).\nm.erase(key);\nRemoves the element with the given key.\nm.erase(it);\nRemoves the element pointed to by iterator it.\nm.erase(m.begin(), m.end());\nRemoves all elements in the given range.\nm.find(key);\nReturns an iterator to the key if found, else m.end().\nm.count(key);\nReturns 1 if key is present, 0 otherwise.\nm.size();\nReturns the number of key-value pairs in the map.\nm.empty();\nReturns true if the map is empty.\nm.clear();\nRemoves all elements from the map.\nm.lower_bound(key);\nReturns iterator to the first element not less than key.\nm.upper_bound(key);\nReturns iterator to the first element greater than key.\nm.swap(m2);\nSwaps the contents of m and m2.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Map"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/map.html#useful-operations",
+    "href": "DSA Notes/C++STL/map.html#useful-operations",
+    "title": "Map",
+    "section": "Useful Operations",
+    "text": "Useful Operations\n\nIterating over a map (ascending order of keys):\nfor (auto it = m.begin(); it != m.end(); ++it) { access it-&gt;first, it-&gt;second }\nRange-based for loop:\nfor (auto &p : m) { access p.first, p.second }\nReverse iteration:\nfor (auto it = m.rbegin(); it != m.rend(); ++it) { access it-&gt;first, it-&gt;second }",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Map"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/map.html#notes",
+    "href": "DSA Notes/C++STL/map.html#notes",
+    "title": "Map",
+    "section": "Notes",
+    "text": "Notes\n\nmap stores unique keys in sorted order (by default, ascending).\nAll operations (insert, erase, find, count, lower_bound, upper_bound) have O(log N) time complexity.\nUnderlying data structure is usually a balanced BST (like Red-Black Tree).\nKeys are immutable; you cannot modify keys in-place.\nIf you need to store duplicate keys, use multimap.\nIf you need faster operations and do not require ordering, use unordered_map (average O(1) time).\nmap provides random access to values via keys, but not by index.\nIterators remain valid except for erased elements.\nFor custom sorting, provide a comparator as a template argument.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Map"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/map.html#when-to-use-map",
+    "href": "DSA Notes/C++STL/map.html#when-to-use-map",
+    "title": "Map",
+    "section": "When to Use Map",
+    "text": "When to Use Map\n\nWhen you need to associate unique keys with values.\nWhen you need fast search, insertion, and deletion by key (O(log N)).\nWhen order of keys matters.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Map"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/map.html#additional-points",
+    "href": "DSA Notes/C++STL/map.html#additional-points",
+    "title": "Map",
+    "section": "Additional Points",
+    "text": "Additional Points\n\nmap&lt;int, string, greater&lt;int&gt;&gt; m; // Stores keys in descending order.\nFor multi-threaded use, consider using mutexes or thread-safe containers.\nmap is useful for frequency counting, associative arrays, and maintaining ordered key-value pairs.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Map"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/list.html",
+    "href": "DSA Notes/C++STL/list.html",
+    "title": "List",
+    "section": "",
+    "text": "list&lt;T&gt; l;\nDeclares an empty doubly linked list of type T.\nlist&lt;int&gt; l(5, 0);\nInitializes a list of 5 integers, all set to 0.\nlist&lt;char&gt; l2(l1);\nCopies all elements from list l1 to l2.\nlist&lt;int&gt; l = {1, 2, 3};\nInitializes a list with given values.\nl.assign(n, value);\nAssigns n copies of value to the list, replacing current contents.\nl.size();\nReturns the number of elements in the list.\nl.max_size();\nReturns the maximum number of elements the list can hold.\nl.push_back(x);\nAppends element x to the end of the list.\nl.push_front(x);\nInserts element x at the beginning of the list.\nl.emplace_back(args);\nConstructs element in-place at the end.\nl.emplace_front(args);\nConstructs element in-place at the front.\nl.pop_back();\nRemoves the last element.\nl.pop_front();\nRemoves the first element.\nl.insert(it, x);\nInserts element x before iterator it.\nl.erase(it);\nRemoves the element pointed to by iterator it.\nl.erase(it1, it2);\nRemoves elements in the range [it1, it2).\nl.remove(x);\nRemoves all elements equal to x.\nl.clear();\nRemoves all elements from the list.\nl.empty();\nReturns true if the list is empty.\nl.swap(l2);\nSwaps the contents of l and l2.\nl.reverse();\nReverses the order of elements.\nl.sort();\nSorts the list in ascending order.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "List"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/list.html#important-points-related-to-lists",
+    "href": "DSA Notes/C++STL/list.html#important-points-related-to-lists",
+    "title": "List",
+    "section": "",
+    "text": "list&lt;T&gt; l;\nDeclares an empty doubly linked list of type T.\nlist&lt;int&gt; l(5, 0);\nInitializes a list of 5 integers, all set to 0.\nlist&lt;char&gt; l2(l1);\nCopies all elements from list l1 to l2.\nlist&lt;int&gt; l = {1, 2, 3};\nInitializes a list with given values.\nl.assign(n, value);\nAssigns n copies of value to the list, replacing current contents.\nl.size();\nReturns the number of elements in the list.\nl.max_size();\nReturns the maximum number of elements the list can hold.\nl.push_back(x);\nAppends element x to the end of the list.\nl.push_front(x);\nInserts element x at the beginning of the list.\nl.emplace_back(args);\nConstructs element in-place at the end.\nl.emplace_front(args);\nConstructs element in-place at the front.\nl.pop_back();\nRemoves the last element.\nl.pop_front();\nRemoves the first element.\nl.insert(it, x);\nInserts element x before iterator it.\nl.erase(it);\nRemoves the element pointed to by iterator it.\nl.erase(it1, it2);\nRemoves elements in the range [it1, it2).\nl.remove(x);\nRemoves all elements equal to x.\nl.clear();\nRemoves all elements from the list.\nl.empty();\nReturns true if the list is empty.\nl.swap(l2);\nSwaps the contents of l and l2.\nl.reverse();\nReverses the order of elements.\nl.sort();\nSorts the list in ascending order.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "List"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/list.html#useful-operations",
+    "href": "DSA Notes/C++STL/list.html#useful-operations",
+    "title": "List",
+    "section": "Useful Operations",
+    "text": "Useful Operations\n\nIterating over a list:\nfor (auto it = l.begin(); it != l.end(); ++it) { access *it }\nRange-based for loop:\nfor (auto x : l) { access x }\nSplicing (moving elements from one list to another):\nl1.splice(l1.begin(), l2); // Moves all elements from l2 to l1 at the beginning",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "List"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/list.html#notes",
+    "href": "DSA Notes/C++STL/list.html#notes",
+    "title": "List",
+    "section": "Notes",
+    "text": "Notes\n\nlist is a doubly linked list; allows fast insertion and deletion anywhere (O(1) if iterator is known).\nNo random access (no operator[] or at()).\nIterators remain valid even after insertions and deletions (except for erased elements).\nUseful when frequent insertions/deletions are needed at both ends or in the middle.\nMore memory overhead than vector or deque due to pointers.\nNot thread-safe by default.\nFor single linked list, use forward_list.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "List"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/list.html#when-to-use-list",
+    "href": "DSA Notes/C++STL/list.html#when-to-use-list",
+    "title": "List",
+    "section": "When to Use List",
+    "text": "When to Use List\n\nWhen you need frequent insertions and deletions at both ends or in the middle.\nWhen random access is not required.\nWhen stable iterators are important.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "List"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/list.html#additional-points",
+    "href": "DSA Notes/C++STL/list.html#additional-points",
+    "title": "List",
+    "section": "Additional Points",
+    "text": "Additional Points\n\nlist&lt;int, allocator&gt; l; // Custom allocator can be specified.\nFor multi-threaded use, consider using mutexes or thread-safe containers.\nUse vector or deque if you need random access or better cache performance.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "List"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/algorithm.html",
+    "href": "DSA Notes/C++STL/algorithm.html",
+    "title": "Algorithm",
+    "section": "",
+    "text": "STL algorithms are generic functions that operate on containers using iterators.\nMost algorithms are defined in the &lt;algorithm&gt; header.\nWork with all standard containers (vector, deque, list, set, map, etc.) that support iterators.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Algorithm"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/algorithm.html#important-points-related-to-stl-algorithms",
+    "href": "DSA Notes/C++STL/algorithm.html#important-points-related-to-stl-algorithms",
+    "title": "Algorithm",
+    "section": "",
+    "text": "STL algorithms are generic functions that operate on containers using iterators.\nMost algorithms are defined in the &lt;algorithm&gt; header.\nWork with all standard containers (vector, deque, list, set, map, etc.) that support iterators.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Algorithm"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/algorithm.html#commonly-used-algorithms-with-time-complexities",
+    "href": "DSA Notes/C++STL/algorithm.html#commonly-used-algorithms-with-time-complexities",
+    "title": "Algorithm",
+    "section": "Commonly Used Algorithms (with Time Complexities)",
+    "text": "Commonly Used Algorithms (with Time Complexities)\n\nsort(first, last);\nSorts the range [first, last) in ascending order. O(N log N)\nsort(first, last, comp);\nSorts with a custom comparator. O(N log N)\nstable_sort(first, last);\nSorts while preserving the relative order of equal elements. O(N log N)\npartial_sort(first, middle, last);\nSorts the range so that the smallest elements are before middle. O(N log M), M = middle-first\nnth_element(first, nth, last);\nRearranges so that the element at nth is the one that would be in that position in a sorted sequence. O(N)\nreverse(first, last);\nReverses the order of elements in the range. O(N)\nrotate(first, middle, last);\nRotates the elements in the range. O(N)\nfind(first, last, value);\nReturns iterator to the first occurrence of value, or last if not found. O(N)\nfind_if(first, last, pred);\nReturns iterator to the first element satisfying predicate. O(N)\ncount(first, last, value);\nCounts the number of elements equal to value. O(N)\ncount_if(first, last, pred);\nCounts elements satisfying predicate. O(N)\naccumulate(first, last, init);\nReturns the sum of elements in the range (requires &lt;numeric&gt;). O(N)\nmin_element(first, last);\nReturns iterator to the smallest element. O(N)\nmax_element(first, last);\nReturns iterator to the largest element. O(N)\nminmax_element(first, last);\nReturns a pair of iterators to the smallest and largest elements. O(N)\nbinary_search(first, last, value);\nReturns true if value is present (range must be sorted). O(log N)\nlower_bound(first, last, value);\nReturns iterator to the first element not less than value (range must be sorted). O(log N)\nupper_bound(first, last, value);\nReturns iterator to the first element greater than value (range must be sorted). O(log N)\nequal_range(first, last, value);\nReturns a pair of iterators for the subrange of equal elements. O(log N)\nnext_permutation(first, last);\nTransforms the range to the next lexicographically greater permutation. O(N)\nprev_permutation(first, last);\nTransforms the range to the previous permutation. O(N)\nunique(first, last);\nRemoves consecutive duplicates (returns new logical end). O(N)\nremove(first, last, value);\nMoves all elements not equal to value to the front (use with erase for containers). O(N)\nremove_if(first, last, pred);\nRemoves elements satisfying predicate. O(N)\nfill(first, last, value);\nAssigns value to all elements in the range. O(N)\ncopy(first, last, dest);\nCopies elements from [first, last) to dest. O(N)\ncopy_if(first, last, dest, pred);\nCopies elements satisfying predicate. O(N)\nall_of(first, last, pred);\nReturns true if all elements satisfy predicate. O(N)\nany_of(first, last, pred);\nReturns true if any element satisfies predicate. O(N)\nnone_of(first, last, pred);\nReturns true if no elements satisfy predicate. O(N)\nfor_each(first, last, func);\nApplies func to each element in the range. O(N)\nmerge(first1, last1, first2, last2, dest);\nMerges two sorted ranges. O(N1 + N2)\nset_union(first1, last1, first2, last2, dest);\nComputes the union of two sorted ranges. O(N1 + N2)\nset_intersection(first1, last1, first2, last2, dest);\nComputes the intersection of two sorted ranges. O(N1 + N2)\nset_difference(first1, last1, first2, last2, dest);\nComputes the difference of two sorted ranges. O(N1 + N2)\nset_symmetric_difference(first1, last1, first2, last2, dest);\nComputes the symmetric difference of two sorted ranges. O(N1 + N2)",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Algorithm"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/algorithm.html#example-usage",
+    "href": "DSA Notes/C++STL/algorithm.html#example-usage",
+    "title": "Algorithm",
+    "section": "Example Usage",
+    "text": "Example Usage\n\nSorting a vector:\nsort(v.begin(), v.end());\nFinding an element:\nauto it = find(v.begin(), v.end(), x);\nCounting occurrences:\nint cnt = count(v.begin(), v.end(), x);\nSumming elements:\nint sum = accumulate(v.begin(), v.end(), 0);\nBinary search:\nbool found = binary_search(v.begin(), v.end(), x);",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Algorithm"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/algorithm.html#notes",
+    "href": "DSA Notes/C++STL/algorithm.html#notes",
+    "title": "Algorithm",
+    "section": "Notes",
+    "text": "Notes\n\nMost algorithms work on ranges defined by iterators: [first, last).\nMany algorithms are non-modifying (find, count), while others modify the container (sort, reverse, remove).\nSome algorithms require sorted ranges (binary_search, lower_bound, upper_bound, set operations).\nUse lambda functions for custom predicates or comparators.\nAlgorithms do not change the size of containers unless used with erase (e.g., remove-erase idiom).\nFor multi-threaded use, consider thread-safe containers or synchronization.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Algorithm"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/C++STL/algorithm.html#when-to-use-stl-algorithms",
+    "href": "DSA Notes/C++STL/algorithm.html#when-to-use-stl-algorithms",
+    "title": "Algorithm",
+    "section": "When to Use STL Algorithms",
+    "text": "When to Use STL Algorithms\n\nWhen you need efficient, reusable, and well-tested operations on containers.\nTo avoid writing common routines (sorting, searching, counting, set operations, etc.) manually.",
+    "crumbs": [
+      "Home",
+      "C++ STL",
+      "Algorithm"
+    ]
   }
 ]

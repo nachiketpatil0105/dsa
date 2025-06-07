@@ -1,0 +1,93 @@
+---
+title: "Set"
+---
+
+## Important Points Related to Sets
+
+- set&lt;T&gt; s;  
+  Declares an empty set of type T (elements are unique and sorted).
+
+- set&lt;int&gt; s = {1, 2, 3};  
+  Initializes a set with given values.
+
+- set&lt;int&gt; s2(s1);  
+  Copies all elements from set s1 to s2.
+
+- s.insert(x);  
+  Inserts element x into the set (if not already present).
+
+- s.erase(x);  
+  Removes element x from the set (if present).
+
+- s.erase(it);  
+  Removes the element pointed to by iterator it.
+
+- s.erase(s.begin(), s.end());  
+  Removes all elements in the given range.
+
+- s.find(x);  
+  Returns an iterator to x if found, else s.end().
+
+- s.count(x);  
+  Returns 1 if x is present, 0 otherwise.
+
+- s.size();  
+  Returns the number of elements in the set.
+
+- s.empty();  
+  Returns true if the set is empty.
+
+- s.clear();  
+  Removes all elements from the set.
+
+- s.lower_bound(x);  
+  Returns iterator to the first element not less than x.
+
+- s.upper_bound(x);  
+  Returns iterator to the first element greater than x.
+
+- s.swap(s2);  
+  Swaps the contents of s and s2.
+
+---
+
+## Useful Operations
+
+- Iterating over a set (ascending order):  
+  for (auto it = s.begin(); it != s.end(); ++it) **{ access \*it }**
+
+- Range-based for loop:  
+  for (auto x : s) **{ access x }**
+
+- Reverse iteration:  
+  for (auto it = s.rbegin(); it != s.rend(); ++it) **{ access \*it }**
+
+---
+
+## Notes
+
+- set stores unique elements in sorted order (by default, ascending).
+- All operations (insert, erase, find, count, lower_bound, upper_bound) have O(log N) time complexity.
+- Underlying data structure is usually a balanced BST (like Red-Black Tree).
+- Elements are immutable; you cannot modify elements in-place.
+- If you need to store duplicate elements, use multiset.
+- If you need faster operations and do not require ordering, use unordered_set (average O(1) time).
+- set does not provide random access (no operator[]).
+- Iterators remain valid except for erased elements.
+- For custom sorting, provide a comparator as a template argument.
+
+---
+
+## When to Use Set
+
+- When you need to maintain a collection of unique, sorted elements.
+- When you need fast search, insertion, and deletion (O(log N)).
+- When order of elements matters.
+
+---
+
+## Additional Points
+
+- set&lt;int, greater&lt;int&gt;&gt; s; // Stores elements in descending order.
+- For multi-threaded use, consider using mutexes or thread-safe containers.
+- set can be used for removing duplicates, set operations (union, intersection, difference), and maintaining ordered unique collections.

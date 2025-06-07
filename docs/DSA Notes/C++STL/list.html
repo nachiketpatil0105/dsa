@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>list – DSA</title>
+<title>List – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -273,6 +273,35 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Recursion</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Recursion</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Finding the Power Set</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -280,13 +309,121 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/list.html">List</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/list.html">List</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">List</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="important-points-related-to-lists" class="level2">
+<h2 class="anchored" data-anchor-id="important-points-related-to-lists">Important Points Related to Lists</h2>
+<ul>
+<li><p>list&lt;T&gt; l;<br>
+Declares an empty doubly linked list of type T.</p></li>
+<li><p>list&lt;int&gt; l(5, 0);<br>
+Initializes a list of 5 integers, all set to 0.</p></li>
+<li><p>list&lt;char&gt; l2(l1);<br>
+Copies all elements from list l1 to l2.</p></li>
+<li><p>list&lt;int&gt; l = {1, 2, 3};<br>
+Initializes a list with given values.</p></li>
+<li><p>l.assign(n, value);<br>
+Assigns n copies of value to the list, replacing current contents.</p></li>
+<li><p>l.size();<br>
+Returns the number of elements in the list.</p></li>
+<li><p>l.max_size();<br>
+Returns the maximum number of elements the list can hold.</p></li>
+<li><p>l.push_back(x);<br>
+Appends element x to the end of the list.</p></li>
+<li><p>l.push_front(x);<br>
+Inserts element x at the beginning of the list.</p></li>
+<li><p>l.emplace_back(args);<br>
+Constructs element in-place at the end.</p></li>
+<li><p>l.emplace_front(args);<br>
+Constructs element in-place at the front.</p></li>
+<li><p>l.pop_back();<br>
+Removes the last element.</p></li>
+<li><p>l.pop_front();<br>
+Removes the first element.</p></li>
+<li><p>l.insert(it, x);<br>
+Inserts element x before iterator it.</p></li>
+<li><p>l.erase(it);<br>
+Removes the element pointed to by iterator it.</p></li>
+<li><p>l.erase(it1, it2);<br>
+Removes elements in the range [it1, it2).</p></li>
+<li><p>l.remove(x);<br>
+Removes all elements equal to x.</p></li>
+<li><p>l.clear();<br>
+Removes all elements from the list.</p></li>
+<li><p>l.empty();<br>
+Returns true if the list is empty.</p></li>
+<li><p>l.swap(l2);<br>
+Swaps the contents of l and l2.</p></li>
+<li><p>l.reverse();<br>
+Reverses the order of elements.</p></li>
+<li><p>l.sort();<br>
+Sorts the list in ascending order.</p></li>
+</ul>
+<hr>
+</section>
+<section id="useful-operations" class="level2">
+<h2 class="anchored" data-anchor-id="useful-operations">Useful Operations</h2>
+<ul>
+<li><p>Iterating over a list:<br>
+for (auto it = l.begin(); it != l.end(); ++it) <strong>{ access *it }</strong></p></li>
+<li><p>Range-based for loop:<br>
+for (auto x : l) <strong>{ access x }</strong></p></li>
+<li><p>Splicing (moving elements from one list to another):<br>
+l1.splice(l1.begin(), l2); // Moves all elements from l2 to l1 at the beginning</p></li>
+</ul>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>list is a doubly linked list; allows fast insertion and deletion anywhere (O(1) if iterator is known).</li>
+<li>No random access (no operator[] or at()).</li>
+<li>Iterators remain valid even after insertions and deletions (except for erased elements).</li>
+<li>Useful when frequent insertions/deletions are needed at both ends or in the middle.</li>
+<li>More memory overhead than vector or deque due to pointers.</li>
+<li>Not thread-safe by default.</li>
+<li>For single linked list, use forward_list.</li>
+</ul>
+<hr>
+</section>
+<section id="when-to-use-list" class="level2">
+<h2 class="anchored" data-anchor-id="when-to-use-list">When to Use List</h2>
+<ul>
+<li>When you need frequent insertions and deletions at both ends or in the middle.</li>
+<li>When random access is not required.</li>
+<li>When stable iterators are important.</li>
+</ul>
+<hr>
+</section>
+<section id="additional-points" class="level2">
+<h2 class="anchored" data-anchor-id="additional-points">Additional Points</h2>
+<ul>
+<li>list&lt;int, allocator&gt; l; // Custom allocator can be specified.</li>
+<li>For multi-threaded use, consider using mutexes or thread-safe containers.</li>
+<li>Use vector or deque if you need random access or better cache performance.</li>
+</ul>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

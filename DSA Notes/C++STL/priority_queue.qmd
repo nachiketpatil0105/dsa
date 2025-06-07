@@ -1,0 +1,63 @@
+---
+title: "Priority Queue"
+---
+
+## Important Points Related to Priority Queues
+
+- priority_queue&lt;T&gt; pq;  
+  Declares a max-heap priority queue of type T (largest element at top).
+
+- priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; pq;  
+  Declares a min-heap priority queue (smallest element at top).
+
+- priority_queue&lt;T&gt; pq1(pq2);  
+  Copies all elements from pq2 to pq1.
+
+- pq.push(x);  
+  Inserts element x into the priority queue.
+
+- pq.emplace(args);  
+  Constructs element in-place at the top (faster than push for objects).
+
+- pq.pop();  
+  Removes the top element.
+
+- pq.top();  
+  Returns a reference to the top element.
+
+- pq.size();  
+  Returns the number of elements in the priority queue.
+
+- pq.empty();  
+  Returns true if the priority queue is empty.
+
+- pq.swap(pq2);  
+  Swaps the contents of pq and pq2.
+
+---
+
+## Notes
+
+- By default, priority_queue is a max-heap (top() returns the largest element).
+- To create a min-heap, use greater&lt;T&gt; as the third template argument.
+- Underlying container is usually vector (can also use deque).
+- No direct way to access elements other than the top.
+- No iterators or random access.
+- Not thread-safe by default.
+- Useful for greedy algorithms, Dijkstra's algorithm, scheduling, etc.
+- To clear a priority queue, repeatedly call pop() until empty.
+
+---
+
+## When to Use Priority Queue
+
+- When you need quick access to the largest or smallest element.
+- For problems involving ordering by priority (e.g., task scheduling, shortest path).
+
+---
+
+## Additional Points
+
+- Custom comparators can be used for user-defined types.
+- For multi-threaded use, consider using mutexes or thread-safe containers.
+- If you need to access or modify elements other than the top, use other containers like set or multiset.
