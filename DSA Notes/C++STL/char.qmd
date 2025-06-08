@@ -1,0 +1,78 @@
+---
+title: "Char and Character Functions"
+---
+
+## Overview
+
+The `<cctype>` header provides functions for character classification and conversion. These functions are useful for validating, analyzing, and transforming characters, especially when working with strings.
+
+---
+
+## Character Classification Functions
+
+- **isdigit(c)**  
+  Checks if `c` is a decimal digit (`0-9`).  
+  *Example:* `isdigit('5') // true`
+
+- **isalpha(c)**  
+  Checks if `c` is an alphabetic letter (`A-Z` or `a-z`).  
+  *Example:* `isalpha('a') // true`
+
+- **isalnum(c)**  
+  Checks if `c` is alphanumeric (`A-Z`, `a-z`, `0-9`).  
+  *Example:* `isalnum('9') // true`
+
+- **islower(c)**  
+  Checks if `c` is a lowercase letter (`a-z`).  
+  *Example:* `islower('a') // true`
+
+- **isupper(c)**  
+  Checks if `c` is an uppercase letter (`A-Z`).  
+  *Example:* `isupper('A') // true`
+
+- **isspace(c)**  
+  Checks if `c` is a whitespace character (space, tab, newline, etc.).  
+  *Example:* `isspace(' ') // true`
+
+- **ispunct(c)**  
+  Checks if `c` is a punctuation character (e.g., `.`, `,`, `!`, `?`).  
+  *Example:* `ispunct('!') // true`
+
+- **isxdigit(c)**  
+  Checks if `c` is a hexadecimal digit (`0-9`, `a-f`, `A-F`).  
+  *Example:* `isxdigit('F') // true`
+
+- **iscntrl(c)**  
+  Checks if `c` is a control character (e.g., `\n`, `\t`).  
+  *Example:* `iscntrl('\n') // true`
+
+- **isprint(c)**  
+  Checks if `c` is a printable character (including space).  
+  *Example:* `isprint('A') // true`
+
+- **isgraph(c)**  
+  Checks if `c` has a graphical representation (printable except space).  
+  *Example:* `isgraph('A') // true`
+
+---
+
+## Character Conversion Functions
+
+- **tolower(c)**  
+  Converts `c` to lowercase if possible.  
+  *Example:* `tolower('A') // 'a'`
+
+- **toupper(c)**  
+  Converts `c` to uppercase if possible.  
+  *Example:* `toupper('b') // 'B'`
+
+---
+
+## Notes
+
+- All functions require `#include <cctype>`.
+- They take `char` (promoted to `int`) as input and return `int` (0 for false, nonzero for true).
+- Useful for parsing, validation, and formatting tasks.
+- For non-ASCII or Unicode characters, consider using `<cwctype>` and wide characters (`wchar_t`).
+
+---

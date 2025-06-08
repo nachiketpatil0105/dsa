@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DSA</title>
+<title>Char and Character Functions – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,24 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f9790f549ae1a0a77b79454c30f3fbfc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f9790f549ae1a0a77b79454c30f3fbfc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">DSA</span>
     </a>
   </div>
@@ -99,7 +99,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">DSA Notes</span></a>
   </li>  
 </ul>
@@ -113,7 +113,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">DSA</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/char.html">Char</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -135,76 +135,76 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">C++ STL</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/vector.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/vector.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Vector</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/string.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/string.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">String</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/char.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/char.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Char</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/deque.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/deque.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deque</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/list.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/list.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/stack.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/stack.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stack</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/queue.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/queue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Queue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/priority_queue.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/priority_queue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Priority Queue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/set.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/set.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Set</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/map.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/map.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Map</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/C++STL/algorithm.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/C++STL/algorithm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Algorithm</span></a>
   </div>
 </li>
@@ -221,19 +221,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Basic Sorting/Bubble_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Basic Sorting/Bubble_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bubble Sort</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Basic Sorting/Selection_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Basic Sorting/Selection_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Selection Sort</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Basic Sorting/Insertion_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Basic Sorting/Insertion_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Insertion Sort</span></a>
   </div>
 </li>
@@ -250,13 +250,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Advanced Sorting/Quick_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Advanced Sorting/Quick_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quick Sort</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Advanced Sorting/Merge_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Advanced Sorting/Merge_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Merge Sort</span></a>
   </div>
 </li>
@@ -273,19 +273,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Binary Search/Binary_Search.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Binary Search/Binary_Search.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Binary Search</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Binary Search/BS_rotated_no_dupli.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Binary Search/BS_rotated_no_dupli.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BS in Rotated Array (No Duplicates)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Binary Search/BS_rotated_dupli.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Binary Search/BS_rotated_dupli.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BS in Rotated Array (Duplicates)</span></a>
   </div>
 </li>
@@ -302,19 +302,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recursion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Finding the Power Set</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
   </div>
 </li>
@@ -329,9 +329,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/vector.html">C++ STL</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/C++STL/char.html">Char</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">DSA</h1>
+<h1 class="title">Char and Character Functions</h1>
 </div>
 
 
@@ -348,16 +348,74 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Hello, I am Nachiket Patil.</p>
-<p>I have decided to take notes while learning DSA.</p>
+<section id="overview" class="level2">
+<h2 class="anchored" data-anchor-id="overview">Overview</h2>
+<p>The <code>&lt;cctype&gt;</code> header provides functions for character classification and conversion. These functions are useful for validating, analyzing, and transforming characters, especially when working with strings.</p>
+<hr>
+</section>
+<section id="character-classification-functions" class="level2">
+<h2 class="anchored" data-anchor-id="character-classification-functions">Character Classification Functions</h2>
 <ul>
-<li>ASCII - 128 Characters</li>
-<li>A to Z = 65 to 90</li>
-<li>a to z = 97 to 122</li>
-<li>0 to 9 = 48 to 57</li>
+<li><p><strong>isdigit(c)</strong><br>
+Checks if <code>c</code> is a decimal digit (<code>0-9</code>).<br>
+<em>Example:</em> <code>isdigit('5') // true</code></p></li>
+<li><p><strong>isalpha(c)</strong><br>
+Checks if <code>c</code> is an alphabetic letter (<code>A-Z</code> or <code>a-z</code>).<br>
+<em>Example:</em> <code>isalpha('a') // true</code></p></li>
+<li><p><strong>isalnum(c)</strong><br>
+Checks if <code>c</code> is alphanumeric (<code>A-Z</code>, <code>a-z</code>, <code>0-9</code>).<br>
+<em>Example:</em> <code>isalnum('9') // true</code></p></li>
+<li><p><strong>islower(c)</strong><br>
+Checks if <code>c</code> is a lowercase letter (<code>a-z</code>).<br>
+<em>Example:</em> <code>islower('a') // true</code></p></li>
+<li><p><strong>isupper(c)</strong><br>
+Checks if <code>c</code> is an uppercase letter (<code>A-Z</code>).<br>
+<em>Example:</em> <code>isupper('A') // true</code></p></li>
+<li><p><strong>isspace(c)</strong><br>
+Checks if <code>c</code> is a whitespace character (space, tab, newline, etc.).<br>
+<em>Example:</em> <code>isspace(' ') // true</code></p></li>
+<li><p><strong>ispunct(c)</strong><br>
+Checks if <code>c</code> is a punctuation character (e.g., <code>.</code>, <code>,</code>, <code>!</code>, <code>?</code>).<br>
+<em>Example:</em> <code>ispunct('!') // true</code></p></li>
+<li><p><strong>isxdigit(c)</strong><br>
+Checks if <code>c</code> is a hexadecimal digit (<code>0-9</code>, <code>a-f</code>, <code>A-F</code>).<br>
+<em>Example:</em> <code>isxdigit('F') // true</code></p></li>
+<li><p><strong>iscntrl(c)</strong><br>
+Checks if <code>c</code> is a control character (e.g., <code>\n</code>, <code>\t</code>).<br>
+<em>Example:</em> <code>iscntrl('\n') // true</code></p></li>
+<li><p><strong>isprint(c)</strong><br>
+Checks if <code>c</code> is a printable character (including space).<br>
+<em>Example:</em> <code>isprint('A') // true</code></p></li>
+<li><p><strong>isgraph(c)</strong><br>
+Checks if <code>c</code> has a graphical representation (printable except space).<br>
+<em>Example:</em> <code>isgraph('A') // true</code></p></li>
 </ul>
+<hr>
+</section>
+<section id="character-conversion-functions" class="level2">
+<h2 class="anchored" data-anchor-id="character-conversion-functions">Character Conversion Functions</h2>
+<ul>
+<li><p><strong>tolower(c)</strong><br>
+Converts <code>c</code> to lowercase if possible.<br>
+<em>Example:</em> <code>tolower('A') // 'a'</code></p></li>
+<li><p><strong>toupper(c)</strong><br>
+Converts <code>c</code> to uppercase if possible.<br>
+<em>Example:</em> <code>toupper('b') // 'B'</code></p></li>
+</ul>
+<hr>
+</section>
+<section id="notes" class="level2">
+<h2 class="anchored" data-anchor-id="notes">Notes</h2>
+<ul>
+<li>All functions require <code>#include &lt;cctype&gt;</code>.</li>
+<li>They take <code>char</code> (promoted to <code>int</code>) as input and return <code>int</code> (0 for false, nonzero for true).</li>
+<li>Useful for parsing, validation, and formatting tasks.</li>
+<li>For non-ASCII or Unicode characters, consider using <code>&lt;cwctype&gt;</code> and wide characters (<code>wchar_t</code>).</li>
+</ul>
+<hr>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

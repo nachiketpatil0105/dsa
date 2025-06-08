@@ -23,6 +23,10 @@ website:
         contents:
           - text: Vector
             href: DSA Notes/C++STL/vector.qmd
+          - text: String
+            href: DSA Notes/C++STL/string.qmd
+          - text: Char
+            href: DSA Notes/C++STL/char.qmd
           - text: Deque
             href: DSA Notes/C++STL/deque.qmd
           - text: List
