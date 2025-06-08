@@ -350,45 +350,45 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<p>The <code>&lt;cctype&gt;</code> header provides functions for character classification and conversion. These functions are useful for validating, analyzing, and transforming characters, especially when working with strings.</p>
+<p>The <cctype> header provides functions for character classification and conversion. These functions are useful for validating, analyzing, and transforming characters, especially when working with strings.</cctype></p>
 <hr>
 </section>
 <section id="character-classification-functions" class="level2">
 <h2 class="anchored" data-anchor-id="character-classification-functions">Character Classification Functions</h2>
 <ul>
 <li><p><strong>isdigit(c)</strong><br>
-Checks if <code>c</code> is a decimal digit (<code>0-9</code>).<br>
-<em>Example:</em> <code>isdigit('5') // true</code></p></li>
+Checks if c is a decimal digit (0-9).<br>
+<em>Example:</em> isdigit(‘5’) // true</p></li>
 <li><p><strong>isalpha(c)</strong><br>
-Checks if <code>c</code> is an alphabetic letter (<code>A-Z</code> or <code>a-z</code>).<br>
-<em>Example:</em> <code>isalpha('a') // true</code></p></li>
+Checks if c is an alphabetic letter (A-Z or a-z).<br>
+<em>Example:</em> isalpha(‘a’) // true</p></li>
 <li><p><strong>isalnum(c)</strong><br>
-Checks if <code>c</code> is alphanumeric (<code>A-Z</code>, <code>a-z</code>, <code>0-9</code>).<br>
-<em>Example:</em> <code>isalnum('9') // true</code></p></li>
+Checks if c is alphanumeric (A-Z, a-z, 0-9).<br>
+<em>Example:</em> isalnum(‘9’) // true</p></li>
 <li><p><strong>islower(c)</strong><br>
-Checks if <code>c</code> is a lowercase letter (<code>a-z</code>).<br>
-<em>Example:</em> <code>islower('a') // true</code></p></li>
+Checks if c is a lowercase letter (a-z).<br>
+<em>Example:</em> islower(‘a’) // true</p></li>
 <li><p><strong>isupper(c)</strong><br>
-Checks if <code>c</code> is an uppercase letter (<code>A-Z</code>).<br>
-<em>Example:</em> <code>isupper('A') // true</code></p></li>
+Checks if c is an uppercase letter (A-Z).<br>
+<em>Example:</em> isupper(‘A’) // true</p></li>
 <li><p><strong>isspace(c)</strong><br>
-Checks if <code>c</code> is a whitespace character (space, tab, newline, etc.).<br>
-<em>Example:</em> <code>isspace(' ') // true</code></p></li>
+Checks if c is a whitespace character (space, tab, newline, etc.).<br>
+<em>Example:</em> isspace(’ ’) // true</p></li>
 <li><p><strong>ispunct(c)</strong><br>
-Checks if <code>c</code> is a punctuation character (e.g., <code>.</code>, <code>,</code>, <code>!</code>, <code>?</code>).<br>
-<em>Example:</em> <code>ispunct('!') // true</code></p></li>
+Checks if c is a punctuation character (e.g., ., !, ?).<br>
+<em>Example:</em> ispunct(‘!’) // true</p></li>
 <li><p><strong>isxdigit(c)</strong><br>
-Checks if <code>c</code> is a hexadecimal digit (<code>0-9</code>, <code>a-f</code>, <code>A-F</code>).<br>
-<em>Example:</em> <code>isxdigit('F') // true</code></p></li>
+Checks if c is a hexadecimal digit (0-9, a-f, A-F).<br>
+<em>Example:</em> isxdigit(‘F’) // true</p></li>
 <li><p><strong>iscntrl(c)</strong><br>
-Checks if <code>c</code> is a control character (e.g., <code>\n</code>, <code>\t</code>).<br>
-<em>Example:</em> <code>iscntrl('\n') // true</code></p></li>
+Checks if c is a control character (e.g., , .<br>
+<em>Example:</em> iscntrl(‘’) // true</p></li>
 <li><p><strong>isprint(c)</strong><br>
-Checks if <code>c</code> is a printable character (including space).<br>
-<em>Example:</em> <code>isprint('A') // true</code></p></li>
+Checks if c is a printable character (including space).<br>
+<em>Example:</em> isprint(‘A’) // true</p></li>
 <li><p><strong>isgraph(c)</strong><br>
-Checks if <code>c</code> has a graphical representation (printable except space).<br>
-<em>Example:</em> <code>isgraph('A') // true</code></p></li>
+Checks if c has a graphical representation (printable except space).<br>
+<em>Example:</em> isgraph(‘A’) // true</p></li>
 </ul>
 <hr>
 </section>
@@ -396,21 +396,21 @@ Checks if <code>c</code> has a graphical representation (printable except space)
 <h2 class="anchored" data-anchor-id="character-conversion-functions">Character Conversion Functions</h2>
 <ul>
 <li><p><strong>tolower(c)</strong><br>
-Converts <code>c</code> to lowercase if possible.<br>
-<em>Example:</em> <code>tolower('A') // 'a'</code></p></li>
+Converts c to lowercase if possible.<br>
+<em>Example:</em> tolower(‘A’) // ‘a’</p></li>
 <li><p><strong>toupper(c)</strong><br>
-Converts <code>c</code> to uppercase if possible.<br>
-<em>Example:</em> <code>toupper('b') // 'B'</code></p></li>
+Converts c to uppercase if possible.<br>
+<em>Example:</em> toupper(‘b’) // ‘B’</p></li>
 </ul>
 <hr>
 </section>
 <section id="notes" class="level2">
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
-<li>All functions require <code>#include &lt;cctype&gt;</code>.</li>
-<li>They take <code>char</code> (promoted to <code>int</code>) as input and return <code>int</code> (0 for false, nonzero for true).</li>
+<li>All functions require #include <cctype>.</cctype></li>
+<li>They take char (promoted to int) as input and return int (0 for false, nonzero for true).</li>
 <li>Useful for parsing, validation, and formatting tasks.</li>
-<li>For non-ASCII or Unicode characters, consider using <code>&lt;cwctype&gt;</code> and wide characters (<code>wchar_t</code>).</li>
+<li>For non-ASCII or Unicode characters, consider using <cwctype> and wide characters (wchar_t).</cwctype></li>
 </ul>
 <hr>
 

@@ -1102,7 +1102,7 @@
     "href": "DSA Notes/C++STL/char.html",
     "title": "Char and Character Functions",
     "section": "",
-    "text": "The &lt;cctype&gt; header provides functions for character classification and conversion. These functions are useful for validating, analyzing, and transforming characters, especially when working with strings.",
+    "text": "The  header provides functions for character classification and conversion. These functions are useful for validating, analyzing, and transforming characters, especially when working with strings.",
     "crumbs": [
       "Home",
       "C++ STL",
@@ -1114,7 +1114,7 @@
     "href": "DSA Notes/C++STL/char.html#overview",
     "title": "Char and Character Functions",
     "section": "",
-    "text": "The &lt;cctype&gt; header provides functions for character classification and conversion. These functions are useful for validating, analyzing, and transforming characters, especially when working with strings.",
+    "text": "The  header provides functions for character classification and conversion. These functions are useful for validating, analyzing, and transforming characters, especially when working with strings.",
     "crumbs": [
       "Home",
       "C++ STL",
@@ -1126,7 +1126,7 @@
     "href": "DSA Notes/C++STL/char.html#character-classification-functions",
     "title": "Char and Character Functions",
     "section": "Character Classification Functions",
-    "text": "Character Classification Functions\n\nisdigit(c)\nChecks if c is a decimal digit (0-9).\nExample: isdigit('5') // true\nisalpha(c)\nChecks if c is an alphabetic letter (A-Z or a-z).\nExample: isalpha('a') // true\nisalnum(c)\nChecks if c is alphanumeric (A-Z, a-z, 0-9).\nExample: isalnum('9') // true\nislower(c)\nChecks if c is a lowercase letter (a-z).\nExample: islower('a') // true\nisupper(c)\nChecks if c is an uppercase letter (A-Z).\nExample: isupper('A') // true\nisspace(c)\nChecks if c is a whitespace character (space, tab, newline, etc.).\nExample: isspace(' ') // true\nispunct(c)\nChecks if c is a punctuation character (e.g., ., ,, !, ?).\nExample: ispunct('!') // true\nisxdigit(c)\nChecks if c is a hexadecimal digit (0-9, a-f, A-F).\nExample: isxdigit('F') // true\niscntrl(c)\nChecks if c is a control character (e.g., \\n, \\t).\nExample: iscntrl('\\n') // true\nisprint(c)\nChecks if c is a printable character (including space).\nExample: isprint('A') // true\nisgraph(c)\nChecks if c has a graphical representation (printable except space).\nExample: isgraph('A') // true",
+    "text": "Character Classification Functions\n\nisdigit(c)\nChecks if c is a decimal digit (0-9).\nExample: isdigit(‘5’) // true\nisalpha(c)\nChecks if c is an alphabetic letter (A-Z or a-z).\nExample: isalpha(‘a’) // true\nisalnum(c)\nChecks if c is alphanumeric (A-Z, a-z, 0-9).\nExample: isalnum(‘9’) // true\nislower(c)\nChecks if c is a lowercase letter (a-z).\nExample: islower(‘a’) // true\nisupper(c)\nChecks if c is an uppercase letter (A-Z).\nExample: isupper(‘A’) // true\nisspace(c)\nChecks if c is a whitespace character (space, tab, newline, etc.).\nExample: isspace(’ ’) // true\nispunct(c)\nChecks if c is a punctuation character (e.g., ., !, ?).\nExample: ispunct(‘!’) // true\nisxdigit(c)\nChecks if c is a hexadecimal digit (0-9, a-f, A-F).\nExample: isxdigit(‘F’) // true\niscntrl(c)\nChecks if c is a control character (e.g., , .\nExample: iscntrl(‘’) // true\nisprint(c)\nChecks if c is a printable character (including space).\nExample: isprint(‘A’) // true\nisgraph(c)\nChecks if c has a graphical representation (printable except space).\nExample: isgraph(‘A’) // true",
     "crumbs": [
       "Home",
       "C++ STL",
@@ -1138,7 +1138,7 @@
     "href": "DSA Notes/C++STL/char.html#character-conversion-functions",
     "title": "Char and Character Functions",
     "section": "Character Conversion Functions",
-    "text": "Character Conversion Functions\n\ntolower(c)\nConverts c to lowercase if possible.\nExample: tolower('A') // 'a'\ntoupper(c)\nConverts c to uppercase if possible.\nExample: toupper('b') // 'B'",
+    "text": "Character Conversion Functions\n\ntolower(c)\nConverts c to lowercase if possible.\nExample: tolower(‘A’) // ‘a’\ntoupper(c)\nConverts c to uppercase if possible.\nExample: toupper(‘b’) // ‘B’",
     "crumbs": [
       "Home",
       "C++ STL",
@@ -1150,7 +1150,7 @@
     "href": "DSA Notes/C++STL/char.html#notes",
     "title": "Char and Character Functions",
     "section": "Notes",
-    "text": "Notes\n\nAll functions require #include &lt;cctype&gt;.\nThey take char (promoted to int) as input and return int (0 for false, nonzero for true).\nUseful for parsing, validation, and formatting tasks.\nFor non-ASCII or Unicode characters, consider using &lt;cwctype&gt; and wide characters (wchar_t).",
+    "text": "Notes\n\nAll functions require #include .\nThey take char (promoted to int) as input and return int (0 for false, nonzero for true).\nUseful for parsing, validation, and formatting tasks.\nFor non-ASCII or Unicode characters, consider using  and wide characters (wchar_t).",
     "crumbs": [
       "Home",
       "C++ STL",
