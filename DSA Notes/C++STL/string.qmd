@@ -23,92 +23,92 @@ title: "String"
 - **s.size() / s.length()**  
   Returns the number of characters in the string.  
   *Example:*  
-  `s.size(); // 5 for "hello"`
+  s.size(); // 5 for "hello"
 
 - **s.empty()**  
   Returns true if the string is empty, false otherwise.  
   *Example:*  
-  `s.empty(); // true for ""`
+  s.empty(); // true for ""
 
 - **s.clear()**  
   Removes all characters from the string.  
   *Example:*  
-  `s.clear(); // s becomes ""`
+  s.clear(); // s becomes ""
 
 - **s.push_back('x')**  
   Appends character 'x' at the end of the string.  
   *Example:*  
-  `s.push_back('!'); // "hello!"`
+  s.push_back('!'); // "hello!"
 
 - **s.pop_back()**  
   Removes the last character from the string.  
   *Example:*  
-  `s.pop_back(); // "hello" -> "hell"`
+  s.pop_back(); // "hello" -> "hell"
 
 - **s += "abc"**  
   Appends "abc" to the string.  
   *Example:*  
-  `s += "abc"; // "helloabc"`
+  s += "abc"; // "helloabc"
 
 - **s.append("def")**  
   Appends "def" to the string.  
   *Example:*  
-  `s.append("def"); // "hellodef"`
+  s.append("def"); // "hellodef"
 
 - **s.insert(pos, "xyz")**  
   Inserts "xyz" starting at position pos.  
   *Example:*  
-  `s.insert(2, "xyz"); // "hexyzllo"`
+  s.insert(2, "xyz"); // "hexyzllo"
 
 - **s.erase(pos, len)**  
   Removes len characters starting from position pos.  
   *Example:*  
-  `s.erase(1, 2); // "hello" -> "hlo"`
+  s.erase(1, 2); // "hello" -> "hlo"
 
 - **s.replace(pos, len, "str")**  
   Replaces len characters from pos with "str".  
   *Example:*  
-  `s.replace(1, 2, "xy"); // "hello" -> "hxylo"`
+  s.replace(1, 2, "xy"); // "hello" -> "hxylo"
 
 - **s.substr(pos, len)**  
   Returns a substring starting at pos of length len.  
   *Example:*  
-  `s.substr(1, 3); // "ell" from "hello"`
+  s.substr(1, 3); // "ell" from "hello"
 
 - **s.find("abc")**  
   Returns the index of the first occurrence of "abc" or string::npos if not found.  
   *Example:*  
-  `s.find("ll"); // 2 in "hello"`
+  s.find("ll"); // 2 in "hello"
 
 - **s.rfind("abc")**  
   Returns the index of the last occurrence of "abc" or string::npos if not found.  
   *Example:*  
-  `s.rfind("l"); // 3 in "hello"`
+  s.rfind("l"); // 3 in "hello"
 
 - **s.compare(s2)**  
   Compares s with s2 lexicographically. Returns 0 if equal, <0 if s < s2, >0 if s > s2.  
   *Example:*  
-  `s.compare("hello"); // 0 if s == "hello"`
+  s.compare("hello"); // 0 if s == "hello"
 
 - **s.at(i)**  
   Returns the character at index i with bounds checking (throws exception if out of range).  
   *Example:*  
-  `s.at(1); // 'e' in "hello"`
+  s.at(1); // 'e' in "hello"
 
 - **s.front()**  
   Returns the first character.  
   *Example:*  
-  `s.front(); // 'h' in "hello"`
+  s.front(); // 'h' in "hello"
 
 - **s.back()**  
   Returns the last character.  
   *Example:*  
-  `s.back(); // 'o' in "hello"`
+  s.back(); // 'o' in "hello"
 
 - **s.c_str()**  
   Returns a C-style null-terminated string (const char*).  
   *Example:*  
-  `const char* p = s.c_str();`
+  const char* p = s.c_str();
 
 ---
 
@@ -126,38 +126,38 @@ title: "String"
 - **to_string(num);**  
   Converts a number to a string.  
   *Example:*  
-  `to_string(123); // "123"`
+  to_string(123); // "123"
 
 - **stoi(s);**  
   Converts a string to an integer.  
   *Example:*  
-  `stoi("456"); // 456`
+  stoi("456"); // 456
 
 - **stod(s);**  
   Converts a string to a double.  
   *Example:*  
-  `stod("3.14"); // 3.14`
+  stod("3.14"); // 3.14
 
 ---
 
 ## Iterating Over a String
 
 - Using index:  
-  `for (int i = 0; i < s.size(); i++) { /* access s[i] */ }`
+  for (int i = 0; i < s.size(); i++) { /* access s[i] */ }
 
 - Using iterator:  
-  `for (auto it = s.begin(); it != s.end(); ++it) { /* access *it */ }`
+  for (auto it = s.begin(); it != s.end(); ++it) { /* access *it */ }
 
 - Using range-based for loop:  
-  `for (char c : s) { /* access c */ }`
+  for (char c : s) { /* access c */ }
 
 ---
 
 ## Notes
 
 - Strings are mutable and dynamic; they resize automatically.
-- Supports relational operators: `==`, `<`, `>`, etc.
-- Can use with STL algorithms (e.g., `sort`, `reverse`).
-- Accessing out-of-bounds with `s[i]` is undefined; use `at(i)` for safety.
-- `string::npos` is returned by search functions if not found.
-- Efficient for most string operations; for heavy modifications, consider `stringstream` or other structures.
+- Supports relational operators: ==, <, >, etc.
+- Can use with STL algorithms (e.g., sort, reverse).
+- Accessing out-of-bounds with s[i] is undefined; use at(i) for safety.
+- string::npos is returned by search functions if not found.
+- Efficient for most string operations; for heavy modifications, consider stringstream or other structures.

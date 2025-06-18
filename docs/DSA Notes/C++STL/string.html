@@ -156,6 +156,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/C++STL/char.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Char</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../DSA Notes/C++STL/deque.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deque</span></a>
   </div>
@@ -362,75 +368,75 @@ Initializes a string with n copies of character ‘a’.</p></li>
 <li><p><strong>s.size() / s.length()</strong><br>
 Returns the number of characters in the string.<br>
 <em>Example:</em><br>
-<code>s.size(); // 5 for "hello"</code></p></li>
+s.size(); // 5 for “hello”</p></li>
 <li><p><strong>s.empty()</strong><br>
 Returns true if the string is empty, false otherwise.<br>
 <em>Example:</em><br>
-<code>s.empty(); // true for ""</code></p></li>
+s.empty(); // true for “”</p></li>
 <li><p><strong>s.clear()</strong><br>
 Removes all characters from the string.<br>
 <em>Example:</em><br>
-<code>s.clear(); // s becomes ""</code></p></li>
+s.clear(); // s becomes “”</p></li>
 <li><p><strong>s.push_back(‘x’)</strong><br>
 Appends character ‘x’ at the end of the string.<br>
 <em>Example:</em><br>
-<code>s.push_back('!'); // "hello!"</code></p></li>
+s.push_back(‘!’); // “hello!”</p></li>
 <li><p><strong>s.pop_back()</strong><br>
 Removes the last character from the string.<br>
 <em>Example:</em><br>
-<code>s.pop_back(); // "hello" -&gt; "hell"</code></p></li>
+s.pop_back(); // “hello” -&gt; “hell”</p></li>
 <li><p><strong>s += “abc”</strong><br>
 Appends “abc” to the string.<br>
 <em>Example:</em><br>
-<code>s += "abc"; // "helloabc"</code></p></li>
+s += “abc”; // “helloabc”</p></li>
 <li><p><strong>s.append(“def”)</strong><br>
 Appends “def” to the string.<br>
 <em>Example:</em><br>
-<code>s.append("def"); // "hellodef"</code></p></li>
+s.append(“def”); // “hellodef”</p></li>
 <li><p><strong>s.insert(pos, “xyz”)</strong><br>
 Inserts “xyz” starting at position pos.<br>
 <em>Example:</em><br>
-<code>s.insert(2, "xyz"); // "hexyzllo"</code></p></li>
+s.insert(2, “xyz”); // “hexyzllo”</p></li>
 <li><p><strong>s.erase(pos, len)</strong><br>
 Removes len characters starting from position pos.<br>
 <em>Example:</em><br>
-<code>s.erase(1, 2); // "hello" -&gt; "hlo"</code></p></li>
+s.erase(1, 2); // “hello” -&gt; “hlo”</p></li>
 <li><p><strong>s.replace(pos, len, “str”)</strong><br>
 Replaces len characters from pos with “str”.<br>
 <em>Example:</em><br>
-<code>s.replace(1, 2, "xy"); // "hello" -&gt; "hxylo"</code></p></li>
+s.replace(1, 2, “xy”); // “hello” -&gt; “hxylo”</p></li>
 <li><p><strong>s.substr(pos, len)</strong><br>
 Returns a substring starting at pos of length len.<br>
 <em>Example:</em><br>
-<code>s.substr(1, 3); // "ell" from "hello"</code></p></li>
+s.substr(1, 3); // “ell” from “hello”</p></li>
 <li><p><strong>s.find(“abc”)</strong><br>
 Returns the index of the first occurrence of “abc” or string::npos if not found.<br>
 <em>Example:</em><br>
-<code>s.find("ll"); // 2 in "hello"</code></p></li>
+s.find(“ll”); // 2 in “hello”</p></li>
 <li><p><strong>s.rfind(“abc”)</strong><br>
 Returns the index of the last occurrence of “abc” or string::npos if not found.<br>
 <em>Example:</em><br>
-<code>s.rfind("l"); // 3 in "hello"</code></p></li>
+s.rfind(“l”); // 3 in “hello”</p></li>
 <li><p><strong>s.compare(s2)</strong><br>
 Compares s with s2 lexicographically. Returns 0 if equal, &lt;0 if s &lt; s2, &gt;0 if s &gt; s2.<br>
 <em>Example:</em><br>
-<code>s.compare("hello"); // 0 if s == "hello"</code></p></li>
+s.compare(“hello”); // 0 if s == “hello”</p></li>
 <li><p><strong>s.at(i)</strong><br>
 Returns the character at index i with bounds checking (throws exception if out of range).<br>
 <em>Example:</em><br>
-<code>s.at(1); // 'e' in "hello"</code></p></li>
+s.at(1); // ‘e’ in “hello”</p></li>
 <li><p><strong>s.front()</strong><br>
 Returns the first character.<br>
 <em>Example:</em><br>
-<code>s.front(); // 'h' in "hello"</code></p></li>
+s.front(); // ‘h’ in “hello”</p></li>
 <li><p><strong>s.back()</strong><br>
 Returns the last character.<br>
 <em>Example:</em><br>
-<code>s.back(); // 'o' in "hello"</code></p></li>
+s.back(); // ‘o’ in “hello”</p></li>
 <li><p><strong>s.c_str()</strong><br>
 Returns a C-style null-terminated string (const char<em>).<br>
 </em>Example:*<br>
-<code>const char* p = s.c_str();</code></p></li>
+const char* p = s.c_str();</p></li>
 </ul>
 <hr>
 </section>
@@ -446,15 +452,15 @@ Reverses the string.</p></li>
 <li><p><strong>to_string(num);</strong><br>
 Converts a number to a string.<br>
 <em>Example:</em><br>
-<code>to_string(123); // "123"</code></p></li>
+to_string(123); // “123”</p></li>
 <li><p><strong>stoi(s);</strong><br>
 Converts a string to an integer.<br>
 <em>Example:</em><br>
-<code>stoi("456"); // 456</code></p></li>
+stoi(“456”); // 456</p></li>
 <li><p><strong>stod(s);</strong><br>
 Converts a string to a double.<br>
 <em>Example:</em><br>
-<code>stod("3.14"); // 3.14</code></p></li>
+stod(“3.14”); // 3.14</p></li>
 </ul>
 <hr>
 </section>
@@ -462,11 +468,11 @@ Converts a string to a double.<br>
 <h2 class="anchored" data-anchor-id="iterating-over-a-string">Iterating Over a String</h2>
 <ul>
 <li><p>Using index:<br>
-<code>for (int i = 0; i &lt; s.size(); i++) { /* access s[i] */ }</code></p></li>
+for (int i = 0; i &lt; s.size(); i++) { /* access s[i] */ }</p></li>
 <li><p>Using iterator:<br>
-<code>for (auto it = s.begin(); it != s.end(); ++it) { /* access *it */ }</code></p></li>
+for (auto it = s.begin(); it != s.end(); ++it) { /* access <em>it </em>/ }</p></li>
 <li><p>Using range-based for loop:<br>
-<code>for (char c : s) { /* access c */ }</code></p></li>
+for (char c : s) { /* access c */ }</p></li>
 </ul>
 <hr>
 </section>
@@ -474,11 +480,11 @@ Converts a string to a double.<br>
 <h2 class="anchored" data-anchor-id="notes">Notes</h2>
 <ul>
 <li>Strings are mutable and dynamic; they resize automatically.</li>
-<li>Supports relational operators: <code>==</code>, <code>&lt;</code>, <code>&gt;</code>, etc.</li>
-<li>Can use with STL algorithms (e.g., <code>sort</code>, <code>reverse</code>).</li>
-<li>Accessing out-of-bounds with <code>s[i]</code> is undefined; use <code>at(i)</code> for safety.</li>
-<li><code>string::npos</code> is returned by search functions if not found.</li>
-<li>Efficient for most string operations; for heavy modifications, consider <code>stringstream</code> or other structures.</li>
+<li>Supports relational operators: ==, &lt;, &gt;, etc.</li>
+<li>Can use with STL algorithms (e.g., sort, reverse).</li>
+<li>Accessing out-of-bounds with s[i] is undefined; use at(i) for safety.</li>
+<li>string::npos is returned by search functions if not found.</li>
+<li>Efficient for most string operations; for heavy modifications, consider stringstream or other structures.</li>
 </ul>
 
 
