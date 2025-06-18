@@ -73,6 +73,18 @@ website:
             href: DSA Notes/Recursion/finding_power_set.qmd
           - text: Paring of Two or Multiple Arrays
             href: DSA Notes/Recursion/pairing_two_or_multiple_sets.qmd
+      - section: 'Linked List'
+        contents:
+          - text: Singly Linked List
+            href: DSA Notes/Linked List/sll.qmd
+          - text: Doubly Linked List
+            href: DSA Notes/Linked List/dll.qmd
+          - text: Circular Linked List
+            href: DSA Notes/Linked List/cll.qmd
+      - section: 'Stack'
+        contents:
+          - text: Creation of Stack
+            href: DSA Notes/Stack/creation.qmd
 
 format:
   html:
