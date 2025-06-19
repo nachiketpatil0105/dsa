@@ -71,7 +71,7 @@ website:
             href: DSA Notes/Recursion/recursion.qmd
           - text: Finding the Power Set
             href: DSA Notes/Recursion/finding_power_set.qmd
-          - text: Paring of Two or Multiple Arrays
+          - text: Pairing of Two or Multiple Arrays
             href: DSA Notes/Recursion/pairing_two_or_multiple_sets.qmd
       - section: 'Linked List'
         contents:
@@ -81,6 +81,18 @@ website:
             href: DSA Notes/Linked List/dll.qmd
           - text: Circular Linked List
             href: DSA Notes/Linked List/cll.qmd
+          - text: Floyd Algorithm
+            href: DSA Notes/Linked List/floyd.qmd
+          - text: Reverse Linked List
+            href: DSA Notes/Linked List/reversell.qmd
+          - text: Find Middle of Linked List
+            href: DSA Notes/Linked List/middlell.qmd
+          - text: Merge 2 Sorted Linked List
+            href: DSA Notes/Linked List/merge2sortedll.qmd
+          - text: Palindrome in Linked List
+            href: DSA Notes/Linked List/palindromell.qmd
+          - text: Use of Maps in Linked List
+            href: DSA Notes/Linked List/mapsll.qmd
       - section: 'Stack'
         contents:
           - text: Creation of Stack

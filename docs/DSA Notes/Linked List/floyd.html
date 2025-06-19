@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Circular Linked List – DSA</title>
+<title>Floyd Algorithm – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/cll.html">Circular Linked List</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/floyd.html">Floyd Algorithm</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -350,7 +350,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
+ <span class="menu-text">Pairing of Two or Multiple Arrays</span></a>
   </div>
 </li>
       </ul>
@@ -378,14 +378,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/cll.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../DSA Notes/Linked List/cll.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Circular Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/floyd.html" class="sidebar-item-text sidebar-link">
+  <a href="../../DSA Notes/Linked List/floyd.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Floyd Algorithm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Linked List/reversell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reverse Linked List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Linked List/middlell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Find Middle of Linked List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Linked List/merge2sortedll.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Merge 2 Sorted Linked List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Linked List/palindromell.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Palindrome in Linked List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Linked List/mapsll.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Use of Maps in Linked List</span></a>
   </div>
 </li>
       </ul>
@@ -416,9 +446,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/cll.html">Circular Linked List</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/floyd.html">Floyd Algorithm</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Circular Linked List</h1>
+<h1 class="title">Floyd Algorithm</h1>
 </div>
 
 
@@ -437,211 +467,103 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="theory" class="level3">
 <h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
-<p>A <strong>Circular Linked List (CLL)</strong> is a variation of linked lists in which the last node points back to the first node, forming a circle. This structure can be implemented as singly or doubly linked, but the most common is the singly circular linked list.</p>
+<p><strong>Floyd’s Cycle Detection Algorithm</strong> (also known as the Tortoise and Hare algorithm) is a pointer algorithm used to detect cycles in a linked list. It uses two pointers moving at different speeds to determine if a cycle exists.</p>
 <hr>
-<p><strong>Node Structure:</strong></p>
-<p>Each node in a circular linked list contains:</p>
+<p><strong>How It Works:</strong></p>
 <ul>
-<li>Data: The value or information stored.</li>
-<li>Next: A pointer/reference to the next node.</li>
+<li>Two pointers, slow and fast, start at the head of the linked list.</li>
+<li>In each step:
+<ul>
+<li>slow moves one node at a time (slow = slow -&gt; next)</li>
+<li>fast moves two nodes at a time (fast = fast -&gt; next -&gt; next`)</li>
+</ul></li>
+<li>If there is a cycle, slow and fast will eventually meet.</li>
+<li>If there is no cycle, fast will reach the end (nullptr).</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Node <span class="op">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> data<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> next<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">(</span><span class="dt">int</span> data<span class="op">,</span> Node<span class="op">*</span> next <span class="op">=</span> <span class="kw">nullptr</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span> <span class="op">-&gt;</span> data <span class="op">=</span> data<span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span> <span class="op">-&gt;</span> next <span class="op">=</span> next<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
-<p><strong>Key Operations:</strong></p>
-<ol type="1">
-<li>Insertion</li>
-</ol>
+<p><strong>Algorithm Implementation:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Floyd’s Cycle Detection Algorithm</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> hasCycle<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> slow <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> fast <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>fast <span class="op">&amp;&amp;</span> fast <span class="op">-&gt;</span> next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        slow <span class="op">=</span> slow <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        fast <span class="op">=</span> fast <span class="op">-&gt;</span> next <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>slow <span class="op">==</span> fast<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span> <span class="co">// Cycle detected</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span> <span class="co">// No cycle</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><strong>Finding the Starting Node of the Cycle:</strong></p>
 <ul>
-<li><em>At the Beginning (Head):</em>
+<li>After detecting a cycle, reset slow to head.</li>
+<li>Move both slow and fast one step at a time.</li>
+<li>The point where they meet is the start of the cycle.</li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Find starting node of the cycle</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Node<span class="op">*</span> detectCycleStart<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> slow <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> fast <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>fast <span class="op">&amp;&amp;</span> fast <span class="op">-&gt;</span> next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        slow <span class="op">=</span> slow <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        fast <span class="op">=</span> fast <span class="op">-&gt;</span> next <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>slow <span class="op">==</span> fast<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            slow <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">while</span> <span class="op">(</span>slow <span class="op">!=</span> fast<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                slow <span class="op">=</span> slow <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                fast <span class="op">=</span> fast <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> slow<span class="op">;</span> <span class="co">// Start of cycle</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">nullptr</span><span class="op">;</span> <span class="co">// No cycle</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><strong>Mathematics Behind It:</strong></p>
+<p>After slow and fast meet inside the cycle:</p>
 <ul>
-<li>Create a new node.</li>
-<li>If the list is empty, point new node’s next to itself.</li>
-<li>Otherwise, traverse to the last node, set its next to new node, and set new node’s next to head.</li>
-<li>Update head to the new node.</li>
+<li>Let L = distance from head to start of cycle</li>
+<li>Let x = distance from start of cycle to meeting point</li>
+<li>Let C = length of the cycle</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Insert at head</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> insertAtHead<span class="op">(</span>Node<span class="op">*&amp;</span> head<span class="op">,</span> <span class="dt">int</span> value<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> newNode <span class="op">=</span> <span class="kw">new</span> Node<span class="op">(</span>value<span class="op">);</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        newNode <span class="op">-&gt;</span> next <span class="op">=</span> newNode<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        head <span class="op">=</span> newNode<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> temp <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>temp <span class="op">-&gt;</span> next <span class="op">!=</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> temp <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">-&gt;</span> next <span class="op">=</span> newNode<span class="op">;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    newNode <span class="op">-&gt;</span> next <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    head <span class="op">=</span> newNode<span class="op">;</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><em>At the End (Tail):</em>
+<p>At meeting:</p>
 <ul>
-<li>Create a new node.</li>
-<li>If the list is empty, point new node’s next to itself and set head.</li>
-<li>Otherwise, traverse to the last node, set its next to new node, and new node’s next to head.</li>
+<li>slow has traveled L + x steps</li>
+<li>fast has traveled L + x + n*C steps (n is number of cycles fast completed)</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Insert at tail</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> insertAtTail<span class="op">(</span>Node<span class="op">*&amp;</span> head<span class="op">,</span> <span class="dt">int</span> value<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> newNode <span class="op">=</span> <span class="kw">new</span> Node<span class="op">(</span>value<span class="op">);</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        newNode <span class="op">-&gt;</span> next <span class="op">=</span> newNode<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        head <span class="op">=</span> newNode<span class="op">;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> temp <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>temp <span class="op">-&gt;</span> next <span class="op">!=</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> temp <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">-&gt;</span> next <span class="op">=</span> newNode<span class="op">;</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    newNode <span class="op">-&gt;</span> next <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><em>After a Given Node:</em>
-<ul>
-<li>Find the target node.</li>
-<li>Insert the new node after it.</li>
-</ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Insert after a given node</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> insertAfter<span class="op">(</span>Node<span class="op">*</span> prev<span class="op">,</span> <span class="dt">int</span> value<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>prev<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> newNode <span class="op">=</span> <span class="kw">new</span> Node<span class="op">(</span>value<span class="op">,</span> prev <span class="op">-&gt;</span> next<span class="op">);</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    prev <span class="op">-&gt;</span> next <span class="op">=</span> newNode<span class="op">;</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<ol start="2" type="1">
-<li>Deletion</li>
-</ol>
-<ul>
-<li><em>From the Beginning (Head):</em>
-<ul>
-<li>If the list is empty, return.</li>
-<li>If only one node, delete it and set head to nullptr.</li>
-<li>Otherwise, traverse to the last node, set its next to head’s next, delete head, and update head.</li>
-</ul>
-<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Delete from head</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> deleteHead<span class="op">(</span>Node<span class="op">*&amp;</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>head <span class="op">-&gt;</span> next <span class="op">==</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">delete</span> head<span class="op">;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        head <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> temp <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> last <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>last <span class="op">-&gt;</span> next <span class="op">!=</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        last <span class="op">=</span> last <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    last <span class="op">-&gt;</span> next <span class="op">=</span> head <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    head <span class="op">=</span> head <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="kw">delete</span> temp<span class="op">;</span></span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><em>From the End (Tail):</em>
-<ul>
-<li>If the list is empty, return.</li>
-<li>If only one node, delete it and set head to nullptr.</li>
-<li>Otherwise, traverse to the second last node, set its next to head, and delete the last node.</li>
-</ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Delete from tail</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> deleteTail<span class="op">(</span>Node<span class="op">*&amp;</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>head <span class="op">-&gt;</span> next <span class="op">==</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="kw">delete</span> head<span class="op">;</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        head <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> temp <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>temp <span class="op">-&gt;</span> next <span class="op">-&gt;</span> next <span class="op">!=</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> temp <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> toDelete <span class="op">=</span> temp <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">-&gt;</span> next <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">delete</span> toDelete<span class="op">;</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><em>Specific Node:</em>
-<ul>
-<li>Find the node before the target.</li>
-<li>Update its next to skip the target node.</li>
-<li>If deleting head, update head.</li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Delete node with specific value</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> deleteNode<span class="op">(</span>Node<span class="op">*&amp;</span> head<span class="op">,</span> <span class="dt">int</span> value<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>head <span class="op">-&gt;</span> data <span class="op">==</span> value<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        deleteHead<span class="op">(</span>head<span class="op">);</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> temp <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>temp <span class="op">-&gt;</span> next <span class="op">!=</span> head <span class="op">&amp;&amp;</span> temp <span class="op">-&gt;</span> next <span class="op">-&gt;</span> data <span class="op">!=</span> value<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> temp <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>temp <span class="op">-&gt;</span> next <span class="op">==</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> toDelete <span class="op">=</span> temp <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">-&gt;</span> next <span class="op">=</span> temp <span class="op">-&gt;</span> next <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="kw">delete</span> toDelete<span class="op">;</span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
-<ol start="3" type="1">
-<li>Traversal</li>
-</ol>
-<ul>
-<li><p>Visit each node starting from head, stopping when you reach head again.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Traverse and print</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> traverse<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> temp <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">do</span> <span class="op">{</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        cout <span class="op">&lt;&lt;</span> temp <span class="op">-&gt;</span> data <span class="op">&lt;&lt;</span> <span class="st">" "</span><span class="op">;</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        temp <span class="op">=</span> temp <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">while</span> <span class="op">(</span>temp <span class="op">!=</span> head<span class="op">);</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    cout <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-</ul>
+<p>Since fast moves twice as fast:</p>
+<p>2 * (L + x) = L + x + n*C</p>
+<p>=&gt; L + x = n*C</p>
+<p>=&gt; L = n*C - x</p>
+<p>So, moving L steps from meeting point brings you to the start of the cycle.</p>
+<p>Therefore, resetting slow to head and moving both slow and fast one step at a time, they will meet at the start of the cycle.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Visual<span class="op">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    head</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      v</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span>A<span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span>B<span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span>C<span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span>D<span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span>E<span class="op">]</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                   <span class="op">^</span>             <span class="op">|</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                   <span class="op">|</span>             v</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                  <span class="op">[</span>H<span class="op">]</span> <span class="op">&lt;-</span> <span class="op">[</span>G<span class="op">]</span> <span class="op">&lt;-</span> <span class="op">[</span>F<span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Both pointers meet at the start of the cycle ([C]) after moving L steps.</p>
 <hr>
 <p><strong>Advantages:</strong></p>
 <ul>
-<li><strong>Circular Nature:</strong> Any node can be made the starting point.</li>
-<li><strong>Efficient Insert/Delete:</strong> Especially at both ends.</li>
-<li><strong>No Nulls:</strong> No need for nullptr checks at the end.</li>
-</ul>
-<p><strong>Disadvantages:</strong></p>
-<ul>
-<li><strong>Complex Traversal:</strong> Must be careful to avoid infinite loops.</li>
-<li><strong>No Random Access:</strong> Must traverse to access elements.</li>
-<li><strong>Extra Memory:</strong> Each node stores a pointer.</li>
+<li><strong>Efficient:</strong> O(n) time, O(1) space.</li>
+<li><strong>Simple:</strong> No need for extra data structures.</li>
 </ul>
 <p><strong>Applications:</strong></p>
 <ul>
-<li>Round-robin scheduling.</li>
-<li>Multiplayer games (circular turn order).</li>
-<li>Buffer management.</li>
+<li>Detecting cycles in linked lists.</li>
+<li>Finding loops in data structures.</li>
+<li>Useful in problems involving repeated states.</li>
 </ul>
 <p><strong>Visualization:</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">[</span><span class="dv">1</span> <span class="op">|</span> <span class="op">*]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">2</span> <span class="op">|</span> <span class="op">*]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">3</span> <span class="op">|</span> <span class="op">*]</span> <span class="op">--|</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>   <span class="op">^-----------------------------|</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-<p><strong>Memory Usage:</strong></p>
-<p>Each node in a circular linked list requires extra memory to store the pointer/reference to the next node, in addition to the data itself.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>head <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">5</span><span class="op">]</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                  <span class="op">^</span>                 <span class="op">|</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                  <span class="op">|-----------------|</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><strong>Time and Space Complexity:</strong></p>
 <table class="caption-top table">
@@ -654,24 +576,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Insertion</td>
-<td>O(1) (at head/tail), O(n) (at position)</td>
+<td>Cycle Detection</td>
 <td>O(n)</td>
+<td>O(1)</td>
 </tr>
 <tr class="even">
-<td>Deletion</td>
-<td>O(1) (at head/tail), O(n) (at position)</td>
+<td>Find Cycle Start</td>
 <td>O(n)</td>
-</tr>
-<tr class="odd">
-<td>Search</td>
-<td>O(n)</td>
-<td>O(n)</td>
-</tr>
-<tr class="even">
-<td>Traversal</td>
-<td>O(n)</td>
-<td>O(n)</td>
+<td>O(1)</td>
 </tr>
 </tbody>
 </table>

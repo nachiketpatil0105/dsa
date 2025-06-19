@@ -1,0 +1,140 @@
+---
+title: "Floyd Algorithm"
+---
+
+### 📖 Theory
+
+**Floyd’s Cycle Detection Algorithm** (also known as the Tortoise and Hare algorithm) is a pointer algorithm used to detect cycles in a linked list. It uses two pointers moving at different speeds to determine if a cycle exists.
+
+---
+
+**How It Works:**
+
+- Two pointers, slow and fast, start at the head of the linked list.
+- In each step:
+  - slow moves one node at a time (slow = slow -> next)
+  - fast moves two nodes at a time (fast = fast -> next -> next`)
+- If there is a cycle, slow and fast will eventually meet.
+- If there is no cycle, fast will reach the end (nullptr).
+
+---
+
+**Algorithm Implementation:**
+
+```cpp
+// Floyd’s Cycle Detection Algorithm
+bool hasCycle(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+    while (fast && fast -> next) {
+        slow = slow -> next;
+        fast = fast -> next -> next;
+        if (slow == fast) {
+            return true; // Cycle detected
+        }
+    }
+    return false; // No cycle
+}
+```
+
+---
+
+**Finding the Starting Node of the Cycle:**
+
+- After detecting a cycle, reset slow to head.
+- Move both slow and fast one step at a time.
+- The point where they meet is the start of the cycle.
+
+```cpp
+// Find starting node of the cycle
+Node* detectCycleStart(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+    while (fast && fast -> next) {
+        slow = slow -> next;
+        fast = fast -> next -> next;
+        if (slow == fast) {
+            slow = head;
+            while (slow != fast) {
+                slow = slow -> next;
+                fast = fast -> next;
+            }
+            return slow; // Start of cycle
+        }
+    }
+    return nullptr; // No cycle
+}
+```
+
+---
+
+**Mathematics Behind It:**
+
+After slow and fast meet inside the cycle:
+
+- Let L = distance from head to start of cycle
+- Let x = distance from start of cycle to meeting point
+- Let C = length of the cycle
+
+At meeting:
+
+- slow has traveled L + x steps
+- fast has traveled L + x + n*C steps (n is number of cycles fast completed)
+
+Since fast moves twice as fast:
+
+2 * (L + x) = L + x + n*C
+
+=> L + x = n*C
+
+=> L = n*C - x
+
+So, moving L steps from meeting point brings you to the start of the cycle.
+
+Therefore, resetting slow to head and moving both slow and fast one step at a time,
+they will meet at the start of the cycle.
+
+```cpp
+Visual:
+    head
+      |
+      v
+    [A] -> [B] -> [C] -> [D] -> [E]
+                   ^             |
+                   |             v
+                  [H] <- [G] <- [F]
+```
+
+Both pointers meet at the start of the cycle ([C]) after moving L steps.
+
+---
+
+**Advantages:**
+
+- **Efficient:** O(n) time, O(1) space.
+- **Simple:** No need for extra data structures.
+
+**Applications:**
+
+- Detecting cycles in linked lists.
+- Finding loops in data structures.
+- Useful in problems involving repeated states.
+
+**Visualization:**
+
+```cpp
+head -> [1] -> [2] -> [3] -> [4] -> [5]
+                  ^                 |
+                  |-----------------|
+```
+
+---
+
+**Time and Space Complexity:**
+
+| Operation         | Time Complexity | Space Complexity |
+|-------------------|----------------|------------------|
+| Cycle Detection   | O(n)           | O(1)             |
+| Find Cycle Start  | O(n)           | O(1)             |
+
+---
