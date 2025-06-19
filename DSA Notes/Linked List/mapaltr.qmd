@@ -10,55 +10,87 @@ In some linked list problems, such as cloning a linked list with random pointers
 
 **How It Works:**
 
-- For cloning a linked list with random pointers:
-    - Step 1: Insert cloned nodes in between original nodes.
-    - Step 2: Set the random pointers for the cloned nodes using the interleaved structure.
-    - Step 3: Restore the original list and extract the cloned list.
+- Step 1: Create a clone list with only data copied.
+- Step 2: Insert cloned nodes in between original nodes.
+- Step 3: Set the random pointers for the cloned nodes using the interleaved structure.
+- Step 4: Restore the original list and extract the cloned list.
+- Step 5: Return the head of the cloned list.
 
 ---
 
 **Algorithm Implementation:**
 
 ```cpp
-    // Clone a linked list with random pointers without using maps
-    Node* cloneLinkedList(Node* head) {
-        if (head == nullptr) {
-            return nullptr;
+    void insertAtTail(Node*& head, Node*& tail, int value) {
+        Node* newNode = new Node(value);
+        if (!head) {
+            head = newNode;
+            tail = newNode;
         }
+        else {
+            tail -> next = newNode;
+            tail = newNode;
+        }
+    }
 
-        // Step 1: Insert cloned nodes in between original nodes
+    Node* copyList(Node* head) {
+        // Step 1: Create a Clone List
+        Node* cloneHead = nullptr;
+        Node* cloneTail = nullptr;
         Node* temp = head;
         while (temp != nullptr) {
-            Node* cloneNode = new Node(temp -> data);
-            cloneNode -> next = temp -> next;
-            temp -> next = cloneNode;
-            temp = cloneNode -> next;
+            insertAtTail(cloneHead, cloneTail, temp -> data);
+            temp = temp -> next;
         }
 
-        // Step 2: Set random pointers for cloned nodes
-        temp = head;
-        while (temp != nullptr) {
-            if (temp -> random) {
-                temp -> next -> random = temp -> random -> next;
+        // Step 2: Insert nodes of Clone List in between original list
+        Node* originalNode = head;
+        Node* cloneNode = cloneHead;
+        while (originalNode != nullptr && cloneNode != nullptr) {
+            Node* next = originalNode -> next;
+            originalNode -> next = cloneNode;
+            originalNode = next;
+
+            next = cloneNode -> next;
+            cloneNode -> next = originalNode;
+            cloneNode = next;
+        }
+
+        // Step 3: Random pointer copy
+        originalNode = head;
+        cloneNode = cloneHead;
+        while (originalNode != nullptr && cloneNode != nullptr) {
+            if (originalNode -> random != nullptr) {
+                cloneNode -> random = originalNode -> random -> next;
             }
-            temp = temp -> next -> next;
+            else {
+                cloneNode -> random = nullptr;
+            }
+            cloneNode = cloneNode -> next;
+            originalNode = originalNode -> next;
         }
 
-        // Step 3: Restore original list and extract the cloned list
+        // Step 4: Revert step 2 changes (restore original and extract clone)
         Node* original = head;
-        Node* cloneHead = head -> next;
-        Node* clone = cloneHead;
-
-        while (original && clone) {
-            original -> next = clone -> next;
-            original = original -> next;
-
-            if (original) {
-                clone -> next = original -> next;
+        Node* copy = cloneHead;
+        while (original && copy) {
+            if (original -> next) {
+                original -> next = original -> next -> next;
+            } else {
+                original -> next = original -> next;
             }
-            clone = clone -> next;
+
+            if (copy -> next) {
+                copy -> next = copy -> next -> next;
+            } else {
+                copy -> next = copy -> next;
+            }
+
+            original = original -> next;
+            copy = copy -> next;
         }
 
+        // Step 5: Return the head of the cloned list
         return cloneHead;
     }
 ```
