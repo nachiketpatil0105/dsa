@@ -1,0 +1,101 @@
+---
+title: "Merge 2 Sorted Linked List"
+---
+
+### 📖 Theory
+
+Merging two sorted linked lists means combining them into a single sorted linked list. This is a classic problem that can be solved efficiently using pointers.
+
+---
+
+**How It Works:**
+
+- Always start merging from the list whose head has the smaller value.
+- Use two pointers, left and right:
+    - left starts at the head of the merged list.
+    - right starts at the next node of left.
+- Traverse the merged list with left and right.
+    - If the current node of the second list (second) fits between left and right, insert it there.
+    - Otherwise, move left and right forward.
+- If any nodes remain in the second list after the main loop, attach them to the end of the merged list.
+- The merged list is returned with all nodes in sorted order.
+
+---
+
+**Algorithm Implementation:**
+
+```cpp
+// Call merge
+Node* merge(Node* first, Node* second) {
+    if (!first) {
+        return second;
+    }
+
+    if (!second) {
+        return first;
+    }
+
+    node *left = first;
+    node *right = first -> next;
+
+    while (right) {
+        if (second && second -> data >= left -> data && second -> data <= right -> data) {
+            left -> next = second;
+            node *temp = second -> next;
+            second -> next = right;
+            left = second;
+            second = temp;
+        }
+        else {
+            left = right;
+            right = right -> next;
+        }
+    }
+
+    while (second) {
+        left -> next = second;
+        left = second;
+        second = second -> next; 
+    }
+
+    return first;
+
+}
+
+// Merge two sorted singly linked lists
+Node* mergeTwoLists(Node* list1, Node* list2) {
+    if (list1 -> data < list2 -> data) {
+        return merge(list1, list2);
+    }
+    else {
+        return merge(list2, list1);
+    }
+}
+```
+---
+
+**Visualization:**
+
+```cpp
+    List 1: 1 -> 3 -> 5 -> nullptr
+    List 2: 2 -> 4 -> 6 -> nullptr
+
+    Merged: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> nullptr
+```
+
+---
+
+**Advantages:**
+
+- Efficient: Only one traversal of both lists.
+- No extra space needed (in-place merge).
+
+---
+
+**Time and Space Complexity:**
+
+| Operation         | Time Complexity | Space Complexity |
+|-------------------|----------------|------------------|
+| Merge Lists       | O(n + m)        | O(1)             |
+
+---

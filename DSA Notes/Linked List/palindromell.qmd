@@ -1,0 +1,84 @@
+---
+title: "Palindrome in Linked List"
+---
+
+### 📖 Theory
+
+Checking if a linked list is a palindrome means determining whether the sequence of values is the same forwards and backwards. This is a common interview problem.
+
+---
+
+**How It Works:**
+
+- Use two pointers, slow and fast, to find the middle of the linked list.
+    - Move slow one step and fast two steps at a time.
+    - When fast reaches the end, slow will be at the middle.
+- Reverse the second half of the list starting from slow.
+    - Use prev and temp pointers to reverse links from slow to the end.
+- Compare the first half (starting from head) and the reversed second half (starting from prev) node by node.
+    - If all corresponding nodes match, the list is a palindrome.
+- (Optional) Restore the list to its original order by reversing the second half again.
+
+---
+
+**Algorithm Implementation:**
+
+```cpp
+// Function to check whether the list is palindrome.
+bool isPalindrome(Node* head) {
+    if (!head || !(head -> next)) {
+        return true;
+    }
+    Node* slow = head;
+    Node* fast = head;
+    while (fast) {
+        slow = slow -> next;
+        fast = fast -> next;
+        if (fast) {
+            fast = fast -> next;
+        }
+    }
+    Node* prev = nullptr;
+    while (slow) {
+        Node* temp = slow -> next;
+        slow -> next = prev;
+        prev = slow;
+        slow = temp;
+    }
+    while (prev) {
+        if (head -> data != prev -> data) {
+            return false;
+        }
+        prev = prev -> next;
+        head = head -> next;
+    }
+    return true;
+}
+```
+
+---
+
+**Visualization:**
+
+```cpp
+    Original: 1 -> 2 -> 3 -> 2 -> 1 -> nullptr
+    Reverse second half: 1 -> 2 -> 3 <- 2 <- 1
+    Compare: 1==1, 2==2, 3==3
+```
+
+---
+
+**Advantages:**
+
+- Efficient: Only one traversal to find the middle and one to compare.
+- O(1) extra space (in-place reversal).
+
+---
+
+**Time and Space Complexity:**
+
+| Operation         | Time Complexity | Space Complexity |
+|-------------------|----------------|------------------|
+| Palindrome Check  | O(n)           | O(1)             |
+
+---

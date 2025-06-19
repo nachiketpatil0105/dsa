@@ -93,6 +93,8 @@ website:
             href: DSA Notes/Linked List/palindromell.qmd
           - text: Use of Maps in Linked List
             href: DSA Notes/Linked List/mapsll.qmd
+          - text: Merge Sort in Linked List
+            href: DSA Notes/Linked List/mergesortll.qmd
       - section: 'Stack'
         contents:
           - text: Creation of Stack

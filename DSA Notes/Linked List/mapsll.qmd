@@ -1,0 +1,69 @@
+---
+title: "Use of Maps in Linked List"
+---
+
+### 📖 Theory
+
+Maps (also known as hash maps or unordered_map in C++) are useful in linked list problems for tracking occurrences of values, detecting duplicates, and more. Using a map, you can efficiently remove duplicates from a linked list by storing the count of each value.
+
+---
+
+**How It Works:**
+
+- Traverse the linked list with a pointer.
+- Use a map to store the count of each node's data.
+- If the data is already present in the map, remove the current node.
+- Otherwise, add the data to the map and move to the next node.
+- Continue until the end of the list.
+
+---
+
+**Algorithm Implementation:**
+
+```cpp
+// Remove duplicates from a linked list using map
+Node* removeDuplicates(Node* head) {
+    unordered_map <int, int> freq;
+    Node* curr = head;
+    Node* prev = nullptr;
+    while (curr) {
+        if (freq[curr -> data]) {
+            prev -> next = curr -> next;
+            delete curr;
+            curr = prev -> next;
+        }
+        else {
+            freq[curr -> data] = 1;
+            prev = curr;
+            curr = curr -> next;
+        }
+    }
+    return head;
+}
+```
+
+---
+
+**Visualization:**
+
+```cpp
+    Input: 1 -> 2 -> 3 -> 2 -> 4 -> 1 -> nullptr
+    After removing duplicates: 1 -> 2 -> 3 -> 4 -> nullptr
+```
+
+---
+
+**Advantages:**
+
+- Efficient duplicate removal in O(n) time.
+- Simple and easy to implement.
+
+---
+
+**Time and Space Complexity:**
+
+| Operation             | Time Complexity | Space Complexity |
+|-----------------------|----------------|------------------|
+| Remove Duplicates     | O(n)           | O(n)             |
+
+---

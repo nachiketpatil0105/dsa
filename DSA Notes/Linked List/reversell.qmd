@@ -1,0 +1,67 @@
+---
+title: "Reverse Linked List"
+---
+
+### 📖 Theory
+
+Reversing a linked list means changing the direction of all the next pointers so that the last node becomes the head and the head becomes the last node. This is a common operation in linked list problems.
+
+---
+
+**How It Works:**
+
+- Use three pointers: prev, curr, and next.
+- Initialize prev to nullptr and curr to head.
+- Iterate through the list:
+    - Store curr -> next in next.
+    - Change curr -> next to prev.
+    - Move prev to curr and curr to next.
+- At the end, prev will be the new head.
+
+---
+
+**Algorithm Implementation:**
+
+```cpp
+// Reverse a singly linked list
+Node* reverseList(Node* head) {
+    Node* prev = nullptr;
+    Node* curr = head;
+    while (curr) {
+        Node* nextNode = curr -> next;
+        curr -> next = prev;
+        prev = curr;
+        curr = nextNode;
+    }
+    return prev;
+}
+```
+
+---
+
+**Visualization:**
+
+```cpp
+    Before:
+    head -> [1] -> [2] -> [3] -> [4] -> nullptr
+
+    After:
+    head -> [4] -> [3] -> [2] -> [1] -> nullptr
+```
+
+---
+
+**Advantages:**
+
+- Useful for many linked list problems (e.g., palindrome check, k-group reversal).
+- In-place reversal with O(1) extra space.
+
+---
+
+**Time and Space Complexity:**
+
+| Operation      | Time Complexity | Space Complexity |
+|----------------|----------------|------------------|
+| Reverse List   | O(n)           | O(1)             |
+
+---

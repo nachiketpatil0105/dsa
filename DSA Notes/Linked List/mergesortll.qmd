@@ -1,0 +1,132 @@
+---
+title: "Merge Sort in Linked List"
+---
+
+### 📖 Theory
+
+Merge Sort is an efficient, stable, divide-and-conquer sorting algorithm that can be applied to linked lists. It works by recursively dividing the list into halves, sorting each half, and then merging the sorted halves.
+
+---
+
+**How It Works:**
+
+- Find the middle of the linked list to split it into two halves.
+- Recursively sort each half using merge sort.
+- Merge the two sorted halves into a single sorted list.
+
+---
+
+**Algorithm Implementation:**
+
+```cpp
+    // Find the middle node of the linked list
+    Node* findMiddle(Node* head) {
+        Node* slow = head;
+        Node* fast = head;
+
+        while (fast && fast -> next) {
+            slow = slow -> next;
+            fast = fast -> next -> next;
+        }
+
+        return slow;
+    }
+
+    // Merge two sorted linked lists
+    Node* mergeSortedLists(Node* first, Node* second) {
+        if (!first) {
+            return second;
+        }
+
+        if (!second) {
+            return first;
+        }
+
+        Node* left = first;
+        Node* right = first -> next;
+
+        while (right) {
+            if (second && second -> data >= left -> data && second -> data <= right -> data) {
+                left -> next = second;
+                Node* temp = second -> next;
+                second -> next = right;
+                left = second;
+                second = temp;
+            } else {
+                left = right;
+                right = right -> next;
+            }
+        }
+
+        while (second) {
+            left -> next = second;
+            left = second;
+            second = second -> next;
+        }
+
+        return first;
+    }
+
+    // Merge two sorted lists, always starting with the smaller head
+    Node* mergeLists(Node* head1, Node* head2) {
+        if (head1 -> data > head2 -> data) {
+            return mergeSortedLists(head2, head1);
+        }
+        else {
+            return mergeSortedLists(head1, head2);
+        }
+    }
+
+    // Recursive merge sort for linked list
+    Node* mergeSortUtil(Node* head) {
+        if (!(head -> next)) {
+            return head;
+        }
+
+        Node* mid = findMiddle(head);
+        Node* head2 = mid -> next;
+        mid -> next = nullptr;
+
+        Node* left = mergeSortUtil(head);
+        Node* right = mergeSortUtil(head2);
+
+        return mergeLists(left, right);
+    }
+
+    // Merge Sort main function
+    Node* mergeSort(Node* head) {
+        if (!(head -> next)) {
+            return head;
+        }
+
+        return mergeSortUtil(head);
+    }
+```
+
+---
+
+**Visualization:**
+
+```cpp
+    Original: 4 -> 2 -> 1 -> 3 -> nullptr
+    Split:    4 -> 2    and    1 -> 3
+    Sorted:   2 -> 4    and    1 -> 3
+    Merged:   1 -> 2 -> 3 -> 4 -> nullptr
+```
+
+---
+
+**Advantages:**
+
+- Stable and efficient for linked lists.
+- O(n log n) time complexity.
+
+---
+
+**Time and Space Complexity:**
+
+| Operation      | Time Complexity | Space Complexity |
+|----------------|----------------|------------------|
+| Merge Sort     | O(n log n)     | O(log n) (recursion stack) |
+
+---

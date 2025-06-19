@@ -1,0 +1,64 @@
+---
+title: "Finding the middle of Linked List"
+---
+
+### 📖 Theory
+
+Finding the middle node of a linked list is a common operation. The most efficient way is to use two pointers: slow and fast.
+
+---
+
+**How It Works:**
+
+- Initialize two pointers, slow and fast, at the head.
+- Move slow one step at a time (slow -> next).
+- Move fast two steps at a time (fast -> next -> next).
+- When fast reaches the end (nullptr), slow will be at the middle.
+
+---
+
+**Algorithm Implementation:**
+
+```cpp
+// Find the middle node of a singly linked list
+Node* findMiddle(Node* head) {
+    Node* slow = head;
+    Node* fast = head;
+    while (fast && fast -> next) {
+        slow = slow -> next;
+        fast = fast -> next -> next;
+    }
+    return slow;
+}
+```
+
+---
+
+**Visualization:**
+
+```cpp
+    head -> [1] -> [2] -> [3] -> [4] -> [5] -> nullptr
+                           ^
+                      slow (middle)
+
+    head -> [1] -> [2] -> [3] -> [4] -> nullptr
+                    ^
+                slow (middle)
+```
+
+---
+
+**Advantages:**
+
+- Efficient: Only one traversal needed.
+- No need to count nodes or use extra space.
+
+---
+
+**Time and Space Complexity:**
+
+| Operation         | Time Complexity | Space Complexity |
+|-------------------|----------------|------------------|
+| Find Middle Node  | O(n)           | O(1)             |
+
+---

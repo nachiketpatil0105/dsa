@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>palindromell – DSA</title>
+<title>Palindrome in Linked List – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -315,7 +350,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Paring of Two or Multiple Arrays</span></a>
+ <span class="menu-text">Pairing of Two or Multiple Arrays</span></a>
   </div>
 </li>
       </ul>
@@ -409,13 +444,113 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/palindromell.html">Palindrome in Linked List</a></li></ol></nav></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/palindromell.html">Palindrome in Linked List</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Palindrome in Linked List</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
 
 
+</header>
 
+
+<section id="theory" class="level3">
+<h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
+<p>Checking if a linked list is a palindrome means determining whether the sequence of values is the same forwards and backwards. This is a common interview problem.</p>
+<hr>
+<p><strong>How It Works:</strong></p>
+<ul>
+<li>Use two pointers, slow and fast, to find the middle of the linked list.
+<ul>
+<li>Move slow one step and fast two steps at a time.</li>
+<li>When fast reaches the end, slow will be at the middle.</li>
+</ul></li>
+<li>Reverse the second half of the list starting from slow.
+<ul>
+<li>Use prev and temp pointers to reverse links from slow to the end.</li>
+</ul></li>
+<li>Compare the first half (starting from head) and the reversed second half (starting from prev) node by node.
+<ul>
+<li>If all corresponding nodes match, the list is a palindrome.</li>
+</ul></li>
+<li>(Optional) Restore the list to its original order by reversing the second half again.</li>
+</ul>
+<hr>
+<p><strong>Algorithm Implementation:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Function to check whether the list is palindrome.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPalindrome<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>head <span class="op">||</span> <span class="op">!(</span>head <span class="op">-&gt;</span> next<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> slow <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> fast <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>fast<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        slow <span class="op">=</span> slow <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        fast <span class="op">=</span> fast <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>fast<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>            fast <span class="op">=</span> fast <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> prev <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>slow<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> temp <span class="op">=</span> slow <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        slow <span class="op">-&gt;</span> next <span class="op">=</span> prev<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        prev <span class="op">=</span> slow<span class="op">;</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        slow <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>prev<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>head <span class="op">-&gt;</span> data <span class="op">!=</span> prev <span class="op">-&gt;</span> data<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        prev <span class="op">=</span> prev <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        head <span class="op">=</span> head <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><strong>Visualization:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    Original<span class="op">:</span> <span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">3</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">1</span> <span class="op">-&gt;</span> <span class="kw">nullptr</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Reverse second half<span class="op">:</span> <span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">3</span> <span class="op">&lt;-</span> <span class="dv">2</span> <span class="op">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Compare<span class="op">:</span> <span class="dv">1</span><span class="op">==</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">==</span><span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">==</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Efficient: Only one traversal to find the middle and one to compare.</li>
+<li>O(1) extra space (in-place reversal).</li>
+</ul>
+<hr>
+<p><strong>Time and Space Complexity:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th>Time Complexity</th>
+<th>Space Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Palindrome Check</td>
+<td>O(n)</td>
+<td>O(1)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

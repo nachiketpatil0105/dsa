@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Finding the middle of Linked List – DSA</title>
+<title>Merge Sort in Linked List – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/middlell.html">Find Middle of Linked List</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/mergesortll.html">Merge Sort in Linked List</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -396,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/middlell.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../DSA Notes/Linked List/middlell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Find Middle of Linked List</span></a>
   </div>
 </li>
@@ -416,6 +416,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../../DSA Notes/Linked List/mapsll.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Use of Maps in Linked List</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../DSA Notes/Linked List/mergesortll.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Merge Sort in Linked List</span></a>
   </div>
 </li>
       </ul>
@@ -446,9 +452,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/middlell.html">Find Middle of Linked List</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/sll.html">Linked List</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Linked List/mergesortll.html">Merge Sort in Linked List</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Finding the middle of Linked List</h1>
+<h1 class="title">Merge Sort in Linked List</h1>
 </div>
 
 
@@ -467,41 +473,109 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="theory" class="level3">
 <h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
-<p>Finding the middle node of a linked list is a common operation. The most efficient way is to use two pointers: slow and fast.</p>
+<p>Merge Sort is an efficient, stable, divide-and-conquer sorting algorithm that can be applied to linked lists. It works by recursively dividing the list into halves, sorting each half, and then merging the sorted halves.</p>
 <hr>
 <p><strong>How It Works:</strong></p>
 <ul>
-<li>Initialize two pointers, slow and fast, at the head.</li>
-<li>Move slow one step at a time (slow -&gt; next).</li>
-<li>Move fast two steps at a time (fast -&gt; next -&gt; next).</li>
-<li>When fast reaches the end (nullptr), slow will be at the middle.</li>
+<li>Find the middle of the linked list to split it into two halves.</li>
+<li>Recursively sort each half using merge sort.</li>
+<li>Merge the two sorted halves into a single sorted list.</li>
 </ul>
 <hr>
 <p><strong>Algorithm Implementation:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Find the middle node of a singly linked list</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Node<span class="op">*</span> findMiddle<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> slow <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> fast <span class="op">=</span> head<span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>fast <span class="op">&amp;&amp;</span> fast <span class="op">-&gt;</span> next<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        slow <span class="op">=</span> slow <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        fast <span class="op">=</span> fast <span class="op">-&gt;</span> next <span class="op">-&gt;</span> next<span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> slow<span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Find the middle node of the linked list</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> findMiddle<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> slow <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> fast <span class="op">=</span> head<span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>fast <span class="op">&amp;&amp;</span> fast <span class="op">-&gt;</span> next<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            slow <span class="op">=</span> slow <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>            fast <span class="op">=</span> fast <span class="op">-&gt;</span> next <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> slow<span class="op">;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Merge two sorted linked lists</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> mergeSortedLists<span class="op">(</span>Node<span class="op">*</span> first<span class="op">,</span> Node<span class="op">*</span> second<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!</span>first<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> second<span class="op">;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!</span>second<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> first<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> left <span class="op">=</span> first<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> right <span class="op">=</span> first <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> <span class="op">(</span>second <span class="op">&amp;&amp;</span> second <span class="op">-&gt;</span> data <span class="op">&gt;=</span> left <span class="op">-&gt;</span> data <span class="op">&amp;&amp;</span> second <span class="op">-&gt;</span> data <span class="op">&lt;=</span> right <span class="op">-&gt;</span> data<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                left <span class="op">-&gt;</span> next <span class="op">=</span> second<span class="op">;</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                Node<span class="op">*</span> temp <span class="op">=</span> second <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>                second <span class="op">-&gt;</span> next <span class="op">=</span> right<span class="op">;</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>                left <span class="op">=</span> second<span class="op">;</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>                second <span class="op">=</span> temp<span class="op">;</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>                left <span class="op">=</span> right<span class="op">;</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>                right <span class="op">=</span> right <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>            <span class="op">}</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>second<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>            left <span class="op">-&gt;</span> next <span class="op">=</span> second<span class="op">;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>            left <span class="op">=</span> second<span class="op">;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>            second <span class="op">=</span> second <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> first<span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Merge two sorted lists, always starting with the smaller head</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> mergeLists<span class="op">(</span>Node<span class="op">*</span> head1<span class="op">,</span> Node<span class="op">*</span> head2<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>head1 <span class="op">-&gt;</span> data <span class="op">&gt;</span> head2 <span class="op">-&gt;</span> data<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> mergeSortedLists<span class="op">(</span>head2<span class="op">,</span> head1<span class="op">);</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> mergeSortedLists<span class="op">(</span>head1<span class="op">,</span> head2<span class="op">);</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Recursive merge sort for linked list</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> mergeSortUtil<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!(</span>head <span class="op">-&gt;</span> next<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> head<span class="op">;</span></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> mid <span class="op">=</span> findMiddle<span class="op">(</span>head<span class="op">);</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> head2 <span class="op">=</span> mid <span class="op">-&gt;</span> next<span class="op">;</span></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>        mid <span class="op">-&gt;</span> next <span class="op">=</span> <span class="kw">nullptr</span><span class="op">;</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> left <span class="op">=</span> mergeSortUtil<span class="op">(</span>head<span class="op">);</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>        Node<span class="op">*</span> right <span class="op">=</span> mergeSortUtil<span class="op">(</span>head2<span class="op">);</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> mergeLists<span class="op">(</span>left<span class="op">,</span> right<span class="op">);</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Merge Sort main function</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>    Node<span class="op">*</span> mergeSort<span class="op">(</span>Node<span class="op">*</span> head<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(!(</span>head <span class="op">-&gt;</span> next<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> head<span class="op">;</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> mergeSortUtil<span class="op">(</span>head<span class="op">);</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><strong>Visualization:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    head <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="kw">nullptr</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                           <span class="op">^</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                      slow <span class="op">(</span>middle<span class="op">)</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    head <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">3</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="op">[</span><span class="dv">4</span><span class="op">]</span> <span class="op">-&gt;</span> <span class="kw">nullptr</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                    <span class="op">^</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                slow <span class="op">(</span>middle<span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    Original<span class="op">:</span> <span class="dv">4</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">3</span> <span class="op">-&gt;</span> <span class="kw">nullptr</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    Split<span class="op">:</span>    <span class="dv">4</span> <span class="op">-&gt;</span> <span class="dv">2</span>    <span class="kw">and</span>    <span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">3</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Sorted<span class="op">:</span>   <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">4</span>    <span class="kw">and</span>    <span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">3</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    Merged<span class="op">:</span>   <span class="dv">1</span> <span class="op">-&gt;</span> <span class="dv">2</span> <span class="op">-&gt;</span> <span class="dv">3</span> <span class="op">-&gt;</span> <span class="dv">4</span> <span class="op">-&gt;</span> <span class="kw">nullptr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><strong>Advantages:</strong></p>
 <ul>
-<li>Efficient: Only one traversal needed.</li>
-<li>No need to count nodes or use extra space.</li>
+<li>Stable and efficient for linked lists.</li>
+<li>O(n log n) time complexity.</li>
 </ul>
 <hr>
 <p><strong>Time and Space Complexity:</strong></p>
@@ -515,9 +589,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Find Middle Node</td>
-<td>O(n)</td>
-<td>O(1)</td>
+<td>Merge Sort</td>
+<td>O(n log n)</td>
+<td>O(log n) (recursion stack)</td>
 </tr>
 </tbody>
 </table>
