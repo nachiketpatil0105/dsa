@@ -1,5 +1,5 @@
 ---
-title: "Paring of Two or Multiple Arrays"
+title: "Pairing of Two or Multiple Arrays"
 ---
 
 ### 📖 Theory
