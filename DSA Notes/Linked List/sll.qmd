@@ -17,6 +17,7 @@ Each node in a singly linked list contains:
 
 ```cpp
 class Node {
+public:
     int data;
     Node* next;
 
@@ -115,7 +116,7 @@ class Node {
           return;
       }
       Node* temp = head;
-      while (temp- > next -> next) {
+      while (temp -> next -> next) {
         temp = temp -> next;
       }
       delete temp -> next;
@@ -180,5 +181,34 @@ class Node {
 - **No Random Access:** Must traverse from head to access elements.
 - **Extra Memory:** Each node stores a pointer.
 - **Reverse Traversal Not Possible:** Only one direction.
+
+**Applications:**
+
+- Implementation of stacks and queues.
+- Dynamic memory allocation.
+- Undo functionality in applications.
+
+**Visualization:**
+
+```cpp
+[1 | *] -> [2 | *] -> [3 | nullptr]
+```
+
+---
+
+**Memory Usage:**
+
+Each node in a singly linked list requires extra memory to store the pointer/reference to the next node, in addition to the data itself.
+
+---
+
+**Time and Space Complexity:**
+
+| Operation   | Time Complexity                | Space Complexity |
+|-------------|-------------------------------|------------------|
+| Insertion   | O(1) (at head), O(n) (at end) | O(n)             |
+| Deletion    | O(1) (at head), O(n) (at end) | O(n)             |
+| Search      | O(n)                          | O(n)             |
+| Traversal   | O(n)                          | O(n)             |
 
 ---
