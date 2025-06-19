@@ -1,0 +1,81 @@
+---
+title: "Alternative for Maps with O(1) Space Complexity"
+---
+
+### 📖 Theory
+
+In some linked list problems, such as cloning a linked list with random pointers, maps are often used to keep track of original and cloned nodes. However, you can achieve O(1) space complexity by cleverly manipulating the list structure itself, without using extra data structures like maps.
+
+---
+
+**How It Works:**
+
+- For cloning a linked list with random pointers:
+    - Step 1: Insert cloned nodes in between original nodes.
+    - Step 2: Set the random pointers for the cloned nodes using the interleaved structure.
+    - Step 3: Restore the original list and extract the cloned list.
+
+---
+
+**Algorithm Implementation:**
+
+```cpp
+    // Clone a linked list with random pointers without using maps
+    Node* cloneLinkedList(Node* head) {
+        if (head == nullptr) {
+            return nullptr;
+        }
+
+        // Step 1: Insert cloned nodes in between original nodes
+        Node* temp = head;
+        while (temp != nullptr) {
+            Node* cloneNode = new Node(temp -> data);
+            cloneNode -> next = temp -> next;
+            temp -> next = cloneNode;
+            temp = cloneNode -> next;
+        }
+
+        // Step 2: Set random pointers for cloned nodes
+        temp = head;
+        while (temp != nullptr) {
+            if (temp -> random) {
+                temp -> next -> random = temp -> random -> next;
+            }
+            temp = temp -> next -> next;
+        }
+
+        // Step 3: Restore original list and extract the cloned list
+        Node* original = head;
+        Node* cloneHead = head -> next;
+        Node* clone = cloneHead;
+
+        while (original && clone) {
+            original -> next = clone -> next;
+            original = original -> next;
+
+            if (original) {
+                clone -> next = original -> next;
+            }
+            clone = clone -> next;
+        }
+
+        return cloneHead;
+    }
+```
+
+---
+
+**Advantages:**
+
+- Achieves O(1) extra space (no maps or extra data structures).
+- Efficient and elegant for problems involving random pointers.
+
+---
+
+**Time and Space Complexity:**
+
+| Operation           | Time Complexity | Space Complexity |
+|---------------------|----------------|------------------|
+| Clone Linked List   | O(n)           | O(1)             |
+
+---

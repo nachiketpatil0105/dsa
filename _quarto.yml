@@ -89,12 +89,15 @@ website:
             href: DSA Notes/Linked List/middlell.qmd
           - text: Merge 2 Sorted Linked List
             href: DSA Notes/Linked List/merge2sortedll.qmd
+          - text: Merge Sort in Linked List
+            href: DSA Notes/Linked List/mergesortll.qmd
           - text: Palindrome in Linked List
             href: DSA Notes/Linked List/palindromell.qmd
           - text: Use of Maps in Linked List
             href: DSA Notes/Linked List/mapsll.qmd
-          - text: Merge Sort in Linked List
-            href: DSA Notes/Linked List/mergesortll.qmd
+          - text: Alternative Approach for Maps SC O(1)
+            href: DSA Notes/Linked List/mapaltr.qmd
+
       - section: 'Stack'
         contents:
           - text: Creation of Stack
