@@ -1,0 +1,234 @@
+---
+title: "Doubly Linked List"
+---
+
+### 📖 Theory
+
+A **Doubly Linked List (DLL)** is a linear data structure where each element, called a node, contains data and references to both the next and previous nodes in the sequence. This allows traversal in both directions and provides more flexibility compared to singly linked lists.
+
+---
+
+**Node Structure:**
+
+Each node in a doubly linked list contains:
+
+- Data: The value or information stored.
+- Next: A pointer/reference to the next node.
+- Prev: A pointer/reference to the previous node.
+
+```cpp
+class Node {
+public:
+    int data;
+    Node* prev;
+    Node* next;
+
+    Node(int data, Node* prev = nullptr, Node* next = nullptr) {
+        this -> data = data;
+        this -> prev = prev;
+        this -> next = next;
+    }
+};
+```
+
+---
+
+**Key Operations:**
+
+1. Insertion
+
+- *At the Beginning (Head):*
+  - Create a new node.
+  - Set its next to the current head.
+  - If head exists, set head's prev to the new node.
+  - Update head to the new node.
+
+  ```cpp
+  // Insert at head
+  void insertAtHead(Node*& head, int value) {
+      Node* newNode = new Node(value, nullptr, head);
+      if (head) {
+          head -> prev = newNode;
+      }
+      head = newNode;
+  }
+  ```
+
+- *At the End (Tail):*
+  - Traverse to the last node.
+  - Set its next to the new node.
+  - Set new node's prev to the last node.
+
+  ```cpp
+  // Insert at tail
+  void insertAtTail(Node*& head, int value) {
+      Node* newNode = new Node(value);
+      if (!head) {
+          head = newNode;
+          return;
+      }
+      Node* temp = head;
+      while (temp -> next) {
+          temp = temp -> next;
+      }
+      temp -> next = newNode;
+      newNode -> prev = temp;
+  }
+  ```
+
+- *After a Given Node:*
+  - Find the target node.
+  - Insert the new node after it.
+  - Update the next and prev pointers accordingly.
+
+  ```cpp
+  // Insert after a given node
+  void insertAfter(Node* prevNode, int value) {
+      if (!prevNode) {
+          return;
+      }
+      Node* newNode = new Node(value, prevNode, prevNode -> next);
+      if (prevNode -> next) {
+          prevNode -> next -> prev = newNode;
+      }
+      prevNode -> next = newNode;
+  }
+  ```
+
+2. Deletion
+
+- *From the Beginning:*
+  - Move head to the next node.
+  - If head exists, set its prev to nullptr.
+  - Delete the old head.
+
+  ```cpp
+  // Delete from head
+  void deleteHead(Node*& head) {
+      if (!head) {
+          return;
+      }
+      Node* temp = head;
+      head = head -> next;
+      if (head) {
+          head -> prev = nullptr;
+      }
+      delete temp;
+  }
+  ```
+
+- *From the End:*
+  - Traverse to the last node.
+  - Update the previous node's next to nullptr.
+  - Delete the last node.
+
+  ```cpp
+  // Delete from tail
+  void deleteTail(Node*& head) {
+      if (!head) {
+          return;
+      }
+      if (!head -> next) {
+          delete head;
+          head = nullptr;
+          return;
+      }
+      Node* temp = head;
+      while (temp -> next) {
+          temp = temp -> next;
+      }
+      temp -> prev -> next = nullptr;
+      delete temp;
+  }
+  ```
+
+- *Specific Node:*
+  - Find the node with the target value.
+  - Update the previous and next pointers to skip the node.
+  - Delete the node.
+
+  ```cpp
+  // Delete node with specific value
+  void deleteNode(Node*& head, int value) {
+      if (!head) {
+          return;
+      }
+      Node* temp = head;
+      while (temp && temp -> data != value) {
+          temp = temp -> next;
+      }
+      if (!temp) {
+          return;
+      }
+      if (temp -> prev) {
+          temp -> prev -> next = temp -> next;
+      } else {
+          head = temp -> next;
+      }
+      if (temp -> next) {
+          temp -> next -> prev = temp -> prev;
+      }
+      delete temp;
+  }
+  ```
+
+3. Traversal
+
+- Visit each node from head to end, processing data as needed.
+
+  ```cpp
+  // Traverse and print
+  void traverse(Node* head) {
+      Node* temp = head;
+      while (temp) {
+          cout << temp -> data << " ";
+          temp = temp -> next;
+      }
+      cout << endl;
+  }
+  ```
+
+---
+
+**Advantages:**
+
+- **Bidirectional Traversal:** Can traverse in both directions.
+- **Efficient Insert/Delete:** Especially at both ends (O(1) time).
+- **No Memory Wastage:** Allocates memory as required.
+
+**Disadvantages:**
+
+- **Extra Memory:** Each node stores two pointers.
+- **More Complex:** More pointers to manage.
+- **No Random Access:** Must traverse from head or tail to access elements.
+
+**Applications:**
+
+- Implementation of advanced data structures (e.g., Deque).
+- Navigation systems (forward/backward).
+- Undo/Redo functionality in applications.
+
+**Visualization:**
+
+```cpp
+nullptr <- [1 | * | *] <-> [2 | * | *] <-> [3 | * | nullptr]
+```
+
+---
+
+**Memory Usage:**
+
+Each node in a doubly linked list requires extra memory to store both the next and previous pointers, in addition to the data itself.
+
+---
+
+**Time and Space Complexity:**
+
+| Operation   | Time Complexity                              | Space Complexity |
+|-------------|----------------------------------------------|------------------|
+| Insertion   | O(1) (at head/tail), O(n) (at position)      | O(n)             |
+| Deletion    | O(1) (at head/tail), O(n) (at position)      | O(n)             |
+| Search      | O(n)                                         | O(n)             |
+| Traversal   | O(n)                                         | O(n)             |
+
+---

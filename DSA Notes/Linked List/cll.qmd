@@ -1,0 +1,246 @@
+---
+title: "Circular Linked List"
+---
+
+### 📖 Theory
+
+A **Circular Linked List (CLL)** is a variation of linked lists in which the last node points back to the first node, forming a circle. This structure can be implemented as singly or doubly linked, but the most common is the singly circular linked list.
+
+---
+
+**Node Structure:**
+
+Each node in a circular linked list contains:
+
+- Data: The value or information stored.
+- Next: A pointer/reference to the next node.
+
+```cpp
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int data, Node* next = nullptr) {
+        this -> data = data;
+        this -> next = next;
+    }
+};
+```
+
+---
+
+**Key Operations:**
+
+1. Insertion
+
+- *At the Beginning (Head):*
+  - Create a new node.
+  - If the list is empty, point new node's next to itself.
+  - Otherwise, traverse to the last node, set its next to new node, and set new node's next to head.
+  - Update head to the new node.
+
+  ```cpp
+  // Insert at head
+  void insertAtHead(Node*& head, int value) {
+      Node* newNode = new Node(value);
+      if (!head) {
+          newNode -> next = newNode;
+          head = newNode;
+          return;
+      }
+      Node* temp = head;
+      while (temp -> next != head) {
+          temp = temp -> next;
+      }
+      temp -> next = newNode;
+      newNode -> next = head;
+      head = newNode;
+  }
+  ```
+
+- *At the End (Tail):*
+  - Create a new node.
+  - If the list is empty, point new node's next to itself and set head.
+  - Otherwise, traverse to the last node, set its next to new node, and new node's next to head.
+
+  ```cpp
+  // Insert at tail
+  void insertAtTail(Node*& head, int value) {
+      Node* newNode = new Node(value);
+      if (!head) {
+          newNode -> next = newNode;
+          head = newNode;
+          return;
+      }
+      Node* temp = head;
+      while (temp -> next != head) {
+          temp = temp -> next;
+      }
+      temp -> next = newNode;
+      newNode -> next = head;
+  }
+  ```
+
+- *After a Given Node:*
+  - Find the target node.
+  - Insert the new node after it.
+
+  ```cpp
+  // Insert after a given node
+  void insertAfter(Node* prev, int value) {
+      if (!prev) {
+          return;
+      }
+      Node* newNode = new Node(value, prev -> next);
+      prev -> next = newNode;
+  }
+  ```
+
+2. Deletion
+
+- *From the Beginning (Head):*
+  - If the list is empty, return.
+  - If only one node, delete it and set head to nullptr.
+  - Otherwise, traverse to the last node, set its next to head's next, delete head, and update head.
+
+  ```cpp
+  // Delete from head
+  void deleteHead(Node*& head) {
+      if (!head) {
+          return;
+      }
+      if (head -> next == head) {
+          delete head;
+          head = nullptr;
+          return;
+      }
+      Node* temp = head;
+      Node* last = head;
+      while (last -> next != head) {
+          last = last -> next;
+      }
+      last -> next = head -> next;
+      head = head -> next;
+      delete temp;
+  }
+  ```
+
+- *From the End (Tail):*
+  - If the list is empty, return.
+  - If only one node, delete it and set head to nullptr.
+  - Otherwise, traverse to the second last node, set its next to head, and delete the last node.
+
+  ```cpp
+  // Delete from tail
+  void deleteTail(Node*& head) {
+      if (!head) {
+          return;
+      }
+      if (head -> next == head) {
+          delete head;
+          head = nullptr;
+          return;
+      }
+      Node* temp = head;
+      while (temp -> next -> next != head) {
+          temp = temp -> next;
+      }
+      Node* toDelete = temp -> next;
+      temp -> next = head;
+      delete toDelete;
+  }
+  ```
+
+- *Specific Node:*
+  - Find the node before the target.
+  - Update its next to skip the target node.
+  - If deleting head, update head.
+
+  ```cpp
+  // Delete node with specific value
+  void deleteNode(Node*& head, int value) {
+      if (!head) {
+          return;
+      }
+      if (head -> data == value) {
+          deleteHead(head);
+          return;
+      }
+      Node* temp = head;
+      while (temp -> next != head && temp -> next -> data != value) {
+          temp = temp -> next;
+      }
+      if (temp -> next == head) {
+          return;
+      }
+      Node* toDelete = temp -> next;
+      temp -> next = temp -> next -> next;
+      delete toDelete;
+  }
+  ```
+
+3. Traversal
+
+- Visit each node starting from head, stopping when you reach head again.
+
+  ```cpp
+  // Traverse and print
+  void traverse(Node* head) {
+      if (!head) {
+          return;
+      }
+      Node* temp = head;
+      do {
+          cout << temp -> data << " ";
+          temp = temp -> next;
+      } while (temp != head);
+      cout << endl;
+  }
+  ```
+
+---
+
+**Advantages:**
+
+- **Circular Nature:** Any node can be made the starting point.
+- **Efficient Insert/Delete:** Especially at both ends.
+- **No Nulls:** No need for nullptr checks at the end.
+
+**Disadvantages:**
+
+- **Complex Traversal:** Must be careful to avoid infinite loops.
+- **No Random Access:** Must traverse to access elements.
+- **Extra Memory:** Each node stores a pointer.
+
+**Applications:**
+
+- Round-robin scheduling.
+- Multiplayer games (circular turn order).
+- Buffer management.
+
+**Visualization:**
+
+```cpp
+[1 | *] -> [2 | *] -> [3 | *] --|
+   ^-----------------------------|
+```
+
+---
+
+**Memory Usage:**
+
+Each node in a circular linked list requires extra memory to store the pointer/reference to the next node, in addition to the data itself.
+
+---
+
+**Time and Space Complexity:**
+
+| Operation   | Time Complexity                | Space Complexity |
+|-------------|-------------------------------|------------------|
+| Insertion   | O(1) (at head/tail), O(n) (at position) | O(n)    |
+| Deletion    | O(1) (at head/tail), O(n) (at position) | O(n)    |
+| Search      | O(n)                          | O(n)             |
+| Traversal   | O(n)                          | O(n)             |
+
+---
