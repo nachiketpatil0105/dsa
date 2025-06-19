@@ -1,0 +1,184 @@
+---
+title: "Singly Linked List"
+---
+
+### 📖 Theory
+
+A **Singly Linked List (SLL)** is a fundamental linear data structure where each element, called a node, contains data and a reference to the next node in the sequence. It is widely used due to its simplicity and efficiency in dynamic memory management.
+
+---
+
+**Node Structure:**
+
+Each node in a singly linked list contains:
+
+- Data: The value or information stored.
+- Next: A pointer/reference to the next node.
+
+```cpp
+class Node {
+    int data;
+    Node* next;
+
+    Node(int data, Node* next = nullptr) {
+      this -> data = data;
+      this -> next = next;
+    }
+};
+```
+
+---
+
+**Key Operations:**
+
+1. Insertion
+
+- *At the Beginning (Head):*
+  - Create a new node.
+  - Point its next to the current head.
+  - Update head to the new node.
+
+  ```cpp
+  // Insert at head
+  void insertAtHead(Node*& head, int value) {
+      Node* newNode = new Node(value, head);
+      head = newNode;
+  }
+  ```
+
+- *At the End (Tail):*
+  - Traverse to the last node.
+  - Set its next to the new node.
+
+  ```cpp
+  // Insert at tail
+  void insertAtTail(Node*& head, int value) {
+      Node* newNode = new Node(value, nullptr);
+      if (!head) {
+          head = newNode;
+          return;
+      }
+      Node* temp = head;
+      while (temp -> next) {
+        temp = temp -> next;
+      }
+      temp -> next = newNode;
+  }
+  ```
+
+- *After a Given Node:*
+  - Find the target node.
+  - Insert the new node after it.
+
+  ```cpp
+  // Insert after a given node
+  void insertAfter(Node* prev, int value) {
+      if (!prev) {
+        return;
+      }
+      Node* newNode = new Node(value, prev -> next);
+      prev -> next = newNode;
+  }
+  ```
+
+2. Deletion
+
+- *From the Beginning:*
+  - Move head to the next node.
+  - Delete the old head.
+
+  ```cpp
+  // Delete from head
+  void deleteHead(Node*& head) {
+      if (!head) {
+        return;
+      }
+      Node* temp = head;
+      head = head -> next;
+      delete temp;
+  }
+  ```
+
+- *From the End:*
+  - Traverse to the second last node.
+  - Set its next to nullptr.
+
+  ```cpp
+  // Delete from tail
+  void deleteTail(Node*& head) {
+      if (!head) {
+        return;
+      }
+      if (!head -> next) {
+          delete head;
+          head = nullptr;
+          return;
+      }
+      Node* temp = head;
+      while (temp- > next -> next) {
+        temp = temp -> next;
+      }
+      delete temp -> next;
+      temp -> next = nullptr;
+  }
+  ```
+
+- *Specific Node:*
+  - Find the node before the target.
+  - Update its next to skip the target node.
+
+  ```cpp
+  // Delete node with specific value
+  void deleteNode(Node*& head, int value) {
+      if (!head) {
+        return;
+      }
+      if (head -> data == value) {
+          Node* temp = head;
+          head = head -> next;
+          delete temp;
+          return;
+      }
+      Node* temp = head;
+      while (temp -> next && temp -> next -> data != value) {
+        temp = temp->next;
+      }
+      if (temp -> next) {
+          Node* toDelete = temp -> next;
+          temp -> next = temp -> next -> next;
+          delete toDelete;
+      }
+  }
+  ```
+
+3. Traversal
+
+- Visit each node from head to end, processing data as needed.
+
+  ```cpp
+  // Traverse and print
+  void traverse(Node* head) {
+      Node* temp = head;
+      while (temp) {
+          cout << temp -> data << " ";
+          temp = temp -> next;
+      }
+      cout << endl;
+  }
+  ```
+
+---
+
+**Advantages:**
+
+- **Dynamic Size:** Grows and shrinks as needed.
+- **Efficient Insert/Delete:** Especially at the head (O(1) time).
+- **No Memory Wastage:** Allocates memory as required.
+
+**Disadvantages:**
+
+- **No Random Access:** Must traverse from head to access elements.
+- **Extra Memory:** Each node stores a pointer.
+- **Reverse Traversal Not Possible:** Only one direction.
+
+---
