@@ -1324,5 +1324,17 @@
       "Stack",
       "Next Smaller Element"
     ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/kadane.html",
+    "href": "DSA Notes/Tips and Tricks/kadane.html",
+    "title": "Kadane Algorithm",
+    "section": "",
+    "text": "📖 Theory\nKadane’s Algorithm is an efficient method to find the maximum sum of a contiguous subarray within a one-dimensional array of numbers (which may include negative numbers).\nIt works by iterating through the array and keeping track of the current subarray sum and the maximum sum found so far.\n\nIf the current subarray sum becomes negative, reset it to zero (since a negative sum will not help in finding the maximum sum ahead).\nThe algorithm can be extended to also find the actual subarray, not just the sum.\n\n\nC++ Implementation (Sum Only):\n// Returns the maximum subarray sum\nint kadane(vector&lt;int&gt;& arr) {\n    int all_max = INT_MIN; // Stores the maximum sum found so far\n    int curr_max = 0;  // Stores the current subarray sum\n\n    for (int x : arr) {\n        curr_max += x;\n        all_max = max(curr_max, all_max);\n        if (curr_max &lt; 0) {\n            curr_max = 0;\n        }\n    }\n    return all_max;\n}\n\nC++ Implementation (Sum and Subarray Indices):\n// Returns the maximum subarray sum and its indices\nint kadaneWithIndices(vector&lt;int&gt;& arr, int& start, int& end) {\n    int all_max = INT_MIN;\n    int curr_max = 0;\n    int s = 0;\n    start = end = 0;\n\n    for (int i = 0; i &lt; arr.size(); i++) {\n        curr_max += arr[i];\n        if (all_max &lt; curr_max) {\n            all_max = curr_max;\n            start = s;\n            end = i;\n        }\n        if (curr_max &lt; 0) {\n            curr_max = 0;\n            s = i + 1;\n        }\n    }\n    return all_max;\n}\n\nVariable Explanation:\n\nall_max: The maximum sum found so far.\ncurr_max: The sum of the current subarray being considered.\nstart, end: Indices marking the beginning and end of the maximum sum subarray.\ns: Temporary start index for the current subarray.\n\n\nVisualization:\nGiven array: [-2, 1, -3, 4, -1, 2, 1, -5, 4]\n\n- Maximum sum subarray: [4, -1, 2, 1]\n- Maximum sum: 6\n\nAdvantages:\n\nLinear time complexity O(n).\nSimple and easy to implement.\nWorks for arrays with negative numbers.\n\n\nDisadvantages:\n\nOnly finds the sum, not the actual subarray (unless modified as above).\nDoes not work for circular subarrays (needs extension).\n\n\nEdge Cases & Notes:\n\nIf all numbers are negative, Kadane’s algorithm returns the largest (least negative) number.\nFor circular arrays, use the “circular Kadane” extension.\n\n\nApplications:\n\nMaximum profit in stock trading (single transaction).\nFinding periods of maximum gain/loss.\nUsed in dynamic programming problems.\nSignal processing and time series analysis.\n\n\nTime and Space Complexity:\n\nTime Complexity: O(n)\nSpace Complexity: O(1)",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Kadane Algorithm"
+    ]
   }
 ]
