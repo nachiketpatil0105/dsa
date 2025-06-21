@@ -102,6 +102,10 @@ website:
         contents:
           - text: Creation of Stack
             href: DSA Notes/Stack/creation.qmd
+          - text: Next Smaller Element
+            href: DSA Notes/Stack/nextsmallerelementleftright.qmd
+          - text: Sort/Reverse Stack
+            href: DSA Notes/Stack/sortstack.qmd
 
 format:
   html:

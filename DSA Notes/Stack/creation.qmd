@@ -1,0 +1,132 @@
+---
+title: "Creation of Stack"
+---
+
+### 📖 Theory
+
+A **Stack** is a linear data structure that follows the Last-In-First-Out (LIFO) principle. The element inserted last is the first one to be removed.
+
+---
+
+**Stack Operations:**
+
+- **Push:** Add an element to the top.
+- **Pop:** Remove the top element.
+- **Top:** View the top element.
+- **Empty:** Check if the stack is empty.
+
+---
+
+**Visualization:**
+
+```cpp
+|   30   |  <-- Top
+|   20   |
+|   10   |
+---------
+```
+
+---
+
+**C++ Implementation (Array):**
+
+```cpp
+#include <iostream>
+#define MAX 100
+
+class Stack {
+    int top;
+    int* arr;
+    int size;
+public:
+    Stack(int size) {
+        this -> size = size;
+        this -> arr = new int(size);
+        this -> top = -1;
+    }
+
+    void push(int x) {
+        if (top >= size - 1) {
+            cout << "Stack Overflow" << endl;
+        }
+        else {
+            top++;
+            arr[top] = x;
+        }
+    }
+
+    void pop() {
+        if (top < 0) {
+            cout << "Stack Underflow" << endl;
+        }
+        else {
+            top--;
+        }
+    }
+
+    int top() {
+        if (top < 0) {
+          cout << "Stack is Empty" << endl;
+          return -1;
+        }
+        else {
+            return arr[top];
+        }
+    }
+
+    bool empty() {
+        if (top < 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+    }
+    
+};
+```
+
+---
+
+**Advantages:**
+
+- Simple and easy to implement.
+- Efficient for LIFO operations.
+- Useful for function calls, undo mechanisms, etc.
+
+---
+
+**Disadvantages:**
+
+- Fixed size if implemented using arrays.
+- Not suitable for random access.
+
+---
+
+**Applications:**
+
+- Expression evaluation and conversion.
+- Backtracking (e.g., maze, recursion).
+- Undo mechanisms in editors.
+- Function call management.
+- Paranthesis problems.
+
+---
+
+**Memory Usage:**
+
+- Array implementation uses contiguous memory.
+- Each element occupies space for data (and pointer if using linked list).
+
+---
+
+**Time and Space Complexity:**
+
+| Operation   | Time Complexity | Space Complexity |
+|-------------|----------------|------------------|
+| Push        | O(1)           | O(n)             |
+| Pop         | O(1)           | O(n)             |
+| Peek        | O(1)           | O(n)             |
+| isEmpty     | O(1)           | O(n)             |
+
+---

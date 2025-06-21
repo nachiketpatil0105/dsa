@@ -1288,5 +1288,41 @@
       "Linked List",
       "Alternative Approach for Maps SC O(1)"
     ]
+  },
+  {
+    "objectID": "DSA Notes/Stack/creation.html",
+    "href": "DSA Notes/Stack/creation.html",
+    "title": "Creation of Stack",
+    "section": "",
+    "text": "📖 Theory\nA Stack is a linear data structure that follows the Last-In-First-Out (LIFO) principle. The element inserted last is the first one to be removed.\n\nStack Operations:\n\nPush: Add an element to the top.\nPop: Remove the top element.\nTop: View the top element.\nEmpty: Check if the stack is empty.\n\n\nVisualization:\n|   30   |  &lt;-- Top\n|   20   |\n|   10   |\n---------\n\nC++ Implementation (Array):\n#include &lt;iostream&gt;\n#define MAX 100\n\nclass Stack {\n    int top;\n    int* arr;\n    int size;\npublic:\n    Stack(int size) {\n        this -&gt; size = size;\n        this -&gt; arr = new int(size);\n        this -&gt; top = -1;\n    }\n\n    void push(int x) {\n        if (top &gt;= size - 1) {\n            cout &lt;&lt; \"Stack Overflow\" &lt;&lt; endl;\n        }\n        else {\n            top++;\n            arr[top] = x;\n        }\n    }\n\n    void pop() {\n        if (top &lt; 0) {\n            cout &lt;&lt; \"Stack Underflow\" &lt;&lt; endl;\n        }\n        else {\n            top--;\n        }\n    }\n\n    int top() {\n        if (top &lt; 0) {\n          cout &lt;&lt; \"Stack is Empty\" &lt;&lt; endl;\n          return -1;\n        }\n        else {\n            return arr[top];\n        }\n    }\n\n    bool empty() {\n        if (top &lt; 0) {\n          return true;\n        }\n        else {\n          return false;\n        }\n    }\n    \n};\n\nAdvantages:\n\nSimple and easy to implement.\nEfficient for LIFO operations.\nUseful for function calls, undo mechanisms, etc.\n\n\nDisadvantages:\n\nFixed size if implemented using arrays.\nNot suitable for random access.\n\n\nApplications:\n\nExpression evaluation and conversion.\nBacktracking (e.g., maze, recursion).\nUndo mechanisms in editors.\nFunction call management.\nParanthesis problems.\n\n\nMemory Usage:\n\nArray implementation uses contiguous memory.\nEach element occupies space for data (and pointer if using linked list).\n\n\nTime and Space Complexity:\n\n\n\nOperation\nTime Complexity\nSpace Complexity\n\n\n\n\nPush\nO(1)\nO(n)\n\n\nPop\nO(1)\nO(n)\n\n\nPeek\nO(1)\nO(n)\n\n\nisEmpty\nO(1)\nO(n)",
+    "crumbs": [
+      "Home",
+      "Stack",
+      "Creation of Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Stack/sortstack.html",
+    "href": "DSA Notes/Stack/sortstack.html",
+    "title": "Sort Stack Using Recursion (Reverse Stack)",
+    "section": "",
+    "text": "📖 Theory\nSorting a stack using recursion means arranging its elements in ascending order (top to bottom) without using any extra data structures (except the call stack).\nThe idea is to recursively pop all elements, sort the smaller stack, and insert the popped element back in the correct position.\n\nC++ Implementation:\n// Helper function to insert an element in sorted order\nvoid sortedInsert(stack&lt;int&gt;& s, int x) {\n    if (s.empty() || x &gt; s.top()) {\n        s.push(x);\n        return;\n    }\n    int temp = s.top();\n    s.pop();\n    sortedInsert(s, x);\n    s.push(temp);\n}\n\n// Main function to sort the stack\nvoid sortStack(stack&lt;int&gt;& s) {\n    if (!s.empty()) {\n        int x = s.top();\n        s.pop();\n        sortStack(s);\n        sortedInsert(s, x);\n    }\n}\n\nVisualization:\nBefore Sorting (Top to Bottom):\n| 1 |\n| 5 |\n| 2 |\n| 4 |\n| 3 |\nAfter Sorting (Top to Bottom):\n| 5 |\n| 4 |\n| 3 |\n| 2 |\n| 1 |\n\nAdvantages:\n\nNo need for extra data structures (uses only recursion stack).\nSimple and elegant recursive approach.\n\n\nDisadvantages:\n\nNot efficient for large stacks (due to recursion depth).\nUses call stack, which may cause stack overflow for very large input.\n\n\nApplications:\n\nUseful for interview problems.\nWhen only stack operations are allowed and no extra space is permitted.\n\n\nSimilar Use Cases:\n\nSet top element at the bottom of the stack.\nReverse the stack.\nFind middle of the stack.\n\n\nTime and Space Complexity:\n\nTime Complexity: O(n²) (each insertion may traverse the stack)\nSpace Complexity: O(n) (due to recursion stack)",
+    "crumbs": [
+      "Home",
+      "Stack",
+      "Sort/Reverse Stack"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Stack/nextsmallerelementleftright.html",
+    "href": "DSA Notes/Stack/nextsmallerelementleftright.html",
+    "title": "Next Smaller Element in Stack (Left & Right)",
+    "section": "",
+    "text": "📖 Theory\nThe Next Smaller Element (NSE) problem finds, for each element in an array, the nearest element to its left or right that is smaller than itself.\n\nNext Smaller to Right (NSR): For each element, find the first smaller element to its right.\nNext Smaller to Left (NSL): For each element, find the first smaller element to its left.\n\nThis is efficiently solved using a stack in O(n) time.\n\nC++ Implementation:\n// Next Smaller to Right\nvector&lt;int&gt; nextSmallerRight(const vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    vector&lt;int&gt; res(n, -1);\n    stack&lt;int&gt; s;\n    for (int i = n - 1; i &gt;= 0; --i) {\n        while (!s.empty() && s.top() &gt;= arr[i]) {\n            s.pop();\n        }\n        if (!s.empty()) {\n            res[i] = s.top();\n        }\n        s.push(arr[i]);\n    }\n    return res;\n}\n\n// Next Smaller to Left\nvector&lt;int&gt; nextSmallerLeft(const vector&lt;int&gt;& arr) {\n    int n = arr.size();\n    vector&lt;int&gt; res(n, -1);\n    stack&lt;int&gt; s;\n    for (int i = 0; i &lt; n; ++i) {\n        while (!s.empty() && s.top() &gt;= arr[i]) {\n            s.pop();\n        }\n        if (!s.empty()) {\n            res[i] = s.top();\n        }\n        s.push(arr[i]);\n    }\n    return res;\n}\n\nVisualization:\nGiven array: [4, 5, 2, 10, 8]\n\nNSR: [2, 2, -1, 8, -1]\nNSL: [-1, 4, -1, 2, 2]\n\n\nAdvantages:\n\nEfficient O(n) solution using stack.\nUseful for range queries and histogram and max rectangle problems.\n\n\nDisadvantages:\n\nRequires extra space for stack and result arrays.\nOnly works for linear data structures.\n\n\nApplications:\n\nHistogram area problems.\nStock span and price drop problems.\nRange minimum queries.\nMax rectangle.\n\n\nTime and Space Complexity:\n\nTime Complexity: O(n)\nSpace Complexity: O(n)",
+    "crumbs": [
+      "Home",
+      "Stack",
+      "Next Smaller Element"
+    ]
   }
 ]

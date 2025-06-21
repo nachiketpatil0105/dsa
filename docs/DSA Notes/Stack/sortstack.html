@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Creation of Stack – DSA</title>
+<title>Sort Stack Using Recursion (Reverse Stack) – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -148,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/creation.html">Stack</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/creation.html">Creation of Stack</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/creation.html">Stack</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/sortstack.html">Sort/Reverse Stack</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -443,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Stack/creation.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../DSA Notes/Stack/creation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creation of Stack</span></a>
   </div>
 </li>
@@ -455,8 +455,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Stack/sortstack.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Sort Stack</span></a>
+  <a href="../../DSA Notes/Stack/sortstack.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Sort/Reverse Stack</span></a>
   </div>
 </li>
       </ul>
@@ -470,9 +470,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/creation.html">Stack</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/creation.html">Creation of Stack</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/creation.html">Stack</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/sortstack.html">Sort/Reverse Stack</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Creation of Stack</h1>
+<h1 class="title">Sort Stack Using Recursion (Reverse Stack)</h1>
 </div>
 
 
@@ -491,137 +491,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="theory" class="level3">
 <h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
-<p>A <strong>Stack</strong> is a linear data structure that follows the Last-In-First-Out (LIFO) principle. The element inserted last is the first one to be removed.</p>
+<p>Sorting a stack using recursion means arranging its elements in ascending order (top to bottom) <strong>without using any extra data structures</strong> (except the call stack).<br>
+The idea is to recursively pop all elements, sort the smaller stack, and insert the popped element back in the correct position.</p>
 <hr>
-<p><strong>Stack Operations:</strong></p>
-<ul>
-<li><strong>Push:</strong> Add an element to the top.</li>
-<li><strong>Pop:</strong> Remove the top element.</li>
-<li><strong>Top:</strong> View the top element.</li>
-<li><strong>Empty:</strong> Check if the stack is empty.</li>
-</ul>
+<p><strong>C++ Implementation:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Helper function to insert an element in sorted order</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sortedInsert<span class="op">(</span>stack<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> s<span class="op">,</span> <span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>s<span class="op">.</span>empty<span class="op">()</span> <span class="op">||</span> x <span class="op">&gt;</span> s<span class="op">.</span>top<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        s<span class="op">.</span>push<span class="op">(</span>x<span class="op">);</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> temp <span class="op">=</span> s<span class="op">.</span>top<span class="op">();</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    sortedInsert<span class="op">(</span>s<span class="op">,</span> x<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span>push<span class="op">(</span>temp<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Main function to sort the stack</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sortStack<span class="op">(</span>stack<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> s<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>s<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> x <span class="op">=</span> s<span class="op">.</span>top<span class="op">();</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        s<span class="op">.</span>pop<span class="op">();</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        sortStack<span class="op">(</span>s<span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        sortedInsert<span class="op">(</span>s<span class="op">,</span> x<span class="op">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><strong>Visualization:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">|</span>   <span class="dv">30</span>   <span class="op">|</span>  <span class="op">&lt;--</span> Top</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="op">|</span>   <span class="dv">20</span>   <span class="op">|</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="op">|</span>   <span class="dv">10</span>   <span class="op">|</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">---------</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-<p><strong>C++ Implementation (Array):</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;iostream&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define MAX </span><span class="dv">100</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Stack <span class="op">{</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> top<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span><span class="op">*</span> arr<span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> size<span class="op">;</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="kw">public</span><span class="op">:</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    Stack<span class="op">(</span><span class="dt">int</span> size<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span> <span class="op">-&gt;</span> size <span class="op">=</span> size<span class="op">;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span> <span class="op">-&gt;</span> arr <span class="op">=</span> <span class="kw">new</span> <span class="dt">int</span><span class="op">(</span>size<span class="op">);</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="kw">this</span> <span class="op">-&gt;</span> top <span class="op">=</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> push<span class="op">(</span><span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>top <span class="op">&gt;=</span> size <span class="op">-</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Stack Overflow"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>            top<span class="op">++;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>            arr<span class="op">[</span>top<span class="op">]</span> <span class="op">=</span> x<span class="op">;</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">void</span> pop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>top <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>            cout <span class="op">&lt;&lt;</span> <span class="st">"Stack Underflow"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>            top<span class="op">--;</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> top<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>top <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>          cout <span class="op">&lt;&lt;</span> <span class="st">"Stack is Empty"</span> <span class="op">&lt;&lt;</span> endl<span class="op">;</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> arr<span class="op">[</span>top<span class="op">];</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>    <span class="dt">bool</span> empty<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>top <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>          <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="op">};</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Before Sorting (Top to Bottom):<br>
+| 1 |<br>
+| 5 |<br>
+| 2 |<br>
+| 4 |<br>
+| 3 |</p>
+<p>After Sorting (Top to Bottom):<br>
+| 5 |<br>
+| 4 |<br>
+| 3 |<br>
+| 2 |<br>
+| 1 |</p>
 <hr>
 <p><strong>Advantages:</strong></p>
 <ul>
-<li>Simple and easy to implement.</li>
-<li>Efficient for LIFO operations.</li>
-<li>Useful for function calls, undo mechanisms, etc.</li>
+<li>No need for extra data structures (uses only recursion stack).</li>
+<li>Simple and elegant recursive approach.</li>
 </ul>
 <hr>
 <p><strong>Disadvantages:</strong></p>
 <ul>
-<li>Fixed size if implemented using arrays.</li>
-<li>Not suitable for random access.</li>
+<li>Not efficient for large stacks (due to recursion depth).</li>
+<li>Uses call stack, which may cause stack overflow for very large input.</li>
 </ul>
 <hr>
 <p><strong>Applications:</strong></p>
 <ul>
-<li>Expression evaluation and conversion.</li>
-<li>Backtracking (e.g., maze, recursion).</li>
-<li>Undo mechanisms in editors.</li>
-<li>Function call management.</li>
-<li>Paranthesis problems.</li>
+<li>Useful for interview problems.</li>
+<li>When only stack operations are allowed and no extra space is permitted.</li>
 </ul>
 <hr>
-<p><strong>Memory Usage:</strong></p>
+<p><strong>Similar Use Cases:</strong></p>
 <ul>
-<li>Array implementation uses contiguous memory.</li>
-<li>Each element occupies space for data (and pointer if using linked list).</li>
+<li>Set top element at the bottom of the stack.</li>
+<li>Reverse the stack.</li>
+<li>Find middle of the stack.</li>
 </ul>
 <hr>
 <p><strong>Time and Space Complexity:</strong></p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Operation</th>
-<th>Time Complexity</th>
-<th>Space Complexity</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Push</td>
-<td>O(1)</td>
-<td>O(n)</td>
-</tr>
-<tr class="even">
-<td>Pop</td>
-<td>O(1)</td>
-<td>O(n)</td>
-</tr>
-<tr class="odd">
-<td>Peek</td>
-<td>O(1)</td>
-<td>O(n)</td>
-</tr>
-<tr class="even">
-<td>isEmpty</td>
-<td>O(1)</td>
-<td>O(n)</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li><strong>Time Complexity:</strong> O(n²) (each insertion may traverse the stack)</li>
+<li><strong>Space Complexity:</strong> O(n) (due to recursion stack)</li>
+</ul>
 <hr>
 
 

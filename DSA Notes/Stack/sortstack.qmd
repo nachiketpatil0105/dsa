@@ -1,0 +1,92 @@
+---
+title: "Sort Stack Using Recursion (Reverse Stack)"
+---
+
+### 📖 Theory
+
+Sorting a stack using recursion means arranging its elements in ascending order (top to bottom) **without using any extra data structures** (except the call stack).  
+The idea is to recursively pop all elements, sort the smaller stack, and insert the popped element back in the correct position.
+
+---
+
+**C++ Implementation:**
+
+```cpp
+// Helper function to insert an element in sorted order
+void sortedInsert(stack<int>& s, int x) {
+    if (s.empty() || x > s.top()) {
+        s.push(x);
+        return;
+    }
+    int temp = s.top();
+    s.pop();
+    sortedInsert(s, x);
+    s.push(temp);
+}
+
+// Main function to sort the stack
+void sortStack(stack<int>& s) {
+    if (!s.empty()) {
+        int x = s.top();
+        s.pop();
+        sortStack(s);
+        sortedInsert(s, x);
+    }
+}
+```
+
+---
+
+**Visualization:**
+
+Before Sorting (Top to Bottom):  
+| 1 |  
+| 5 |  
+| 2 |  
+| 4 |  
+| 3 |  
+
+After Sorting (Top to Bottom):  
+| 5 |  
+| 4 |  
+| 3 |  
+| 2 |  
+| 1 |  
+
+---
+
+**Advantages:**
+
+- No need for extra data structures (uses only recursion stack).
+- Simple and elegant recursive approach.
+
+---
+
+**Disadvantages:**
+
+- Not efficient for large stacks (due to recursion depth).
+- Uses call stack, which may cause stack overflow for very large input.
+
+---
+
+**Applications:**
+
+- Useful for interview problems.
+- When only stack operations are allowed and no extra space is permitted.
+
+---
+
+**Similar Use Cases:**
+
+- Set top element at the bottom of the stack.
+- Reverse the stack.
+- Find middle of the stack.
+
+---
+
+**Time and Space Complexity:**
+
+- **Time Complexity:** O(n²) (each insertion may traverse the stack)
+- **Space Complexity:** O(n) (due to recursion stack)
+
+---

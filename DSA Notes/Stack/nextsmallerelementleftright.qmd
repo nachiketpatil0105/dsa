@@ -1,0 +1,93 @@
+---
+title: "Next Smaller Element in Stack (Left & Right)"
+---
+
+### 📖 Theory
+
+The **Next Smaller Element (NSE)** problem finds, for each element in an array, the nearest element to its left or right that is smaller than itself.
+
+- **Next Smaller to Right (NSR):** For each element, find the first smaller element to its right.
+- **Next Smaller to Left (NSL):** For each element, find the first smaller element to its left.
+
+This is efficiently solved using a stack in O(n) time.
+
+---
+
+**C++ Implementation:**
+
+```cpp
+// Next Smaller to Right
+vector<int> nextSmallerRight(const vector<int>& arr) {
+    int n = arr.size();
+    vector<int> res(n, -1);
+    stack<int> s;
+    for (int i = n - 1; i >= 0; --i) {
+        while (!s.empty() && s.top() >= arr[i]) {
+            s.pop();
+        }
+        if (!s.empty()) {
+            res[i] = s.top();
+        }
+        s.push(arr[i]);
+    }
+    return res;
+}
+
+// Next Smaller to Left
+vector<int> nextSmallerLeft(const vector<int>& arr) {
+    int n = arr.size();
+    vector<int> res(n, -1);
+    stack<int> s;
+    for (int i = 0; i < n; ++i) {
+        while (!s.empty() && s.top() >= arr[i]) {
+            s.pop();
+        }
+        if (!s.empty()) {
+            res[i] = s.top();
+        }
+        s.push(arr[i]);
+    }
+    return res;
+}
+```
+
+---
+
+**Visualization:**
+
+Given array: [4, 5, 2, 10, 8]
+
+- **NSR:** [2, 2, -1, 8, -1]
+- **NSL:** [-1, 4, -1, 2, 2]
+
+---
+
+**Advantages:**
+
+- Efficient O(n) solution using stack.
+- Useful for range queries and histogram and max rectangle problems.
+
+---
+
+**Disadvantages:**
+
+- Requires extra space for stack and result arrays.
+- Only works for linear data structures.
+
+---
+
+**Applications:**
+
+- Histogram area problems.
+- Stock span and price drop problems.
+- Range minimum queries.
+- Max rectangle.
+
+---
+
+**Time and Space Complexity:**
+
+- **Time Complexity:** O(n)
+- **Space Complexity:** O(n)
+
+---
