@@ -515,17 +515,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="theory" class="level3">
 <h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
 <p><strong>Kadane’s Algorithm</strong> is an efficient method to find the maximum sum of a contiguous subarray within a one-dimensional array of numbers (which may include negative numbers).<br>
-It works by iterating through the array and keeping track of the current subarray sum and the maximum sum found so far.</p>
+It works by iterating through the array and maintaining:</p>
 <ul>
-<li>If the current subarray sum becomes negative, reset it to zero (since a negative sum will not help in finding the maximum sum ahead).</li>
-<li>The algorithm can be extended to also find the actual subarray, not just the sum.</li>
+<li><p>curr_max: the maximum sum of the subarray ending at the current index.</p></li>
+<li><p>all_max: the maximum sum seen so far among all subarrays.</p></li>
+<li><p>If curr_max becomes negative, it is reset to zero (since adding a negative prefix will not help in getting a maximum sum later).</p></li>
+<li><p>The algorithm can be extended to also track the actual subarray, not just the sum.</p></li>
 </ul>
 <hr>
 <p><strong>C++ Implementation (Sum Only):</strong></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Returns the maximum subarray sum</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> kadane<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> arr<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> all_max <span class="op">=</span> INT_MIN<span class="op">;</span> <span class="co">// Stores the maximum sum found so far</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> curr_max <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>  <span class="co">// Stores the current subarray sum</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> curr_max <span class="op">=</span> <span class="dv">0</span><span class="op">;</span>      <span class="co">// Stores the current subarray sum</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> x <span class="op">:</span> arr<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        curr_max <span class="op">+=</span> x<span class="op">;</span></span>
@@ -547,25 +549,27 @@ It works by iterating through the array and keeping track of the current subarra
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> arr<span class="op">.</span>size<span class="op">();</span> i<span class="op">++)</span> <span class="op">{</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        curr_max <span class="op">+=</span> arr<span class="op">[</span>i<span class="op">];</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>all_max <span class="op">&lt;</span> curr_max<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            all_max <span class="op">=</span> curr_max<span class="op">;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            start <span class="op">=</span> s<span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            end <span class="op">=</span> i<span class="op">;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr_max <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            curr_max <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            s <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_max<span class="op">;</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr_max <span class="op">&gt;</span> all_max<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            all_max <span class="op">=</span> curr_max<span class="op">;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>            start <span class="op">=</span> s<span class="op">;</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>            end <span class="op">=</span> i<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr_max <span class="op">&lt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            curr_max <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>            s <span class="op">=</span> i <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> all_max<span class="op">;</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p><strong>Variable Explanation:</strong></p>
 <ul>
-<li>all_max: The maximum sum found so far.</li>
-<li>curr_max: The sum of the current subarray being considered.</li>
+<li>all_max: The maximum sum found so far during traversal.</li>
+<li>curr_max: The sum of the current subarray ending at the current index.</li>
 <li>start, end: Indices marking the beginning and end of the maximum sum subarray.</li>
-<li>s: Temporary start index for the current subarray.</li>
+<li>s: Temporary starting index for the current candidate subarray.</li>
 </ul>
 <hr>
 <p><strong>Visualization:</strong></p>
@@ -578,27 +582,30 @@ It works by iterating through the array and keeping track of the current subarra
 <ul>
 <li>Linear time complexity O(n).</li>
 <li>Simple and easy to implement.</li>
-<li>Works for arrays with negative numbers.</li>
+<li>Works efficiently even when negative numbers are present.</li>
+<li>Uses constant space.</li>
 </ul>
 <hr>
 <p><strong>Disadvantages:</strong></p>
 <ul>
-<li>Only finds the sum, not the actual subarray (unless modified as above).</li>
-<li>Does not work for circular subarrays (needs extension).</li>
+<li>Only gives the sum by default; modification needed to get indices or actual subarray.</li>
+<li>Does not handle circular subarrays directly (requires circular Kadane’s algorithm).</li>
 </ul>
 <hr>
 <p><strong>Edge Cases &amp; Notes:</strong></p>
 <ul>
-<li>If all numbers are negative, Kadane’s algorithm returns the largest (least negative) number.</li>
-<li>For circular arrays, use the “circular Kadane” extension.</li>
+<li>If all numbers are negative, it returns the largest (least negative) number.</li>
+<li>For circular arrays, use:<br>
+max(kadane(arr), totalSum - kadane(invert signs of arr))</li>
+<li>If the array is empty, handle appropriately to avoid undefined behavior.</li>
 </ul>
 <hr>
 <p><strong>Applications:</strong></p>
 <ul>
-<li>Maximum profit in stock trading (single transaction).</li>
-<li>Finding periods of maximum gain/loss.</li>
-<li>Used in dynamic programming problems.</li>
-<li>Signal processing and time series analysis.</li>
+<li>Maximum profit in stock trading (1 transaction).</li>
+<li>Analyzing periods of maximum gains/losses in financial or climate data.</li>
+<li>Important component in many dynamic programming problems.</li>
+<li>Used in signal processing and time series analysis.</li>
 </ul>
 <hr>
 <p><strong>Time and Space Complexity:</strong></p>

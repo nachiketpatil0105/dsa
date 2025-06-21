@@ -1330,11 +1330,119 @@
     "href": "DSA Notes/Tips and Tricks/kadane.html",
     "title": "Kadane Algorithm",
     "section": "",
-    "text": "📖 Theory\nKadane’s Algorithm is an efficient method to find the maximum sum of a contiguous subarray within a one-dimensional array of numbers (which may include negative numbers).\nIt works by iterating through the array and keeping track of the current subarray sum and the maximum sum found so far.\n\nIf the current subarray sum becomes negative, reset it to zero (since a negative sum will not help in finding the maximum sum ahead).\nThe algorithm can be extended to also find the actual subarray, not just the sum.\n\n\nC++ Implementation (Sum Only):\n// Returns the maximum subarray sum\nint kadane(vector&lt;int&gt;& arr) {\n    int all_max = INT_MIN; // Stores the maximum sum found so far\n    int curr_max = 0;  // Stores the current subarray sum\n\n    for (int x : arr) {\n        curr_max += x;\n        all_max = max(curr_max, all_max);\n        if (curr_max &lt; 0) {\n            curr_max = 0;\n        }\n    }\n    return all_max;\n}\n\nC++ Implementation (Sum and Subarray Indices):\n// Returns the maximum subarray sum and its indices\nint kadaneWithIndices(vector&lt;int&gt;& arr, int& start, int& end) {\n    int all_max = INT_MIN;\n    int curr_max = 0;\n    int s = 0;\n    start = end = 0;\n\n    for (int i = 0; i &lt; arr.size(); i++) {\n        curr_max += arr[i];\n        if (all_max &lt; curr_max) {\n            all_max = curr_max;\n            start = s;\n            end = i;\n        }\n        if (curr_max &lt; 0) {\n            curr_max = 0;\n            s = i + 1;\n        }\n    }\n    return all_max;\n}\n\nVariable Explanation:\n\nall_max: The maximum sum found so far.\ncurr_max: The sum of the current subarray being considered.\nstart, end: Indices marking the beginning and end of the maximum sum subarray.\ns: Temporary start index for the current subarray.\n\n\nVisualization:\nGiven array: [-2, 1, -3, 4, -1, 2, 1, -5, 4]\n\n- Maximum sum subarray: [4, -1, 2, 1]\n- Maximum sum: 6\n\nAdvantages:\n\nLinear time complexity O(n).\nSimple and easy to implement.\nWorks for arrays with negative numbers.\n\n\nDisadvantages:\n\nOnly finds the sum, not the actual subarray (unless modified as above).\nDoes not work for circular subarrays (needs extension).\n\n\nEdge Cases & Notes:\n\nIf all numbers are negative, Kadane’s algorithm returns the largest (least negative) number.\nFor circular arrays, use the “circular Kadane” extension.\n\n\nApplications:\n\nMaximum profit in stock trading (single transaction).\nFinding periods of maximum gain/loss.\nUsed in dynamic programming problems.\nSignal processing and time series analysis.\n\n\nTime and Space Complexity:\n\nTime Complexity: O(n)\nSpace Complexity: O(1)",
+    "text": "📖 Theory\nKadane’s Algorithm is an efficient method to find the maximum sum of a contiguous subarray within a one-dimensional array of numbers (which may include negative numbers).\nIt works by iterating through the array and maintaining:\n\ncurr_max: the maximum sum of the subarray ending at the current index.\nall_max: the maximum sum seen so far among all subarrays.\nIf curr_max becomes negative, it is reset to zero (since adding a negative prefix will not help in getting a maximum sum later).\nThe algorithm can be extended to also track the actual subarray, not just the sum.\n\n\nC++ Implementation (Sum Only):\n// Returns the maximum subarray sum\nint kadane(vector&lt;int&gt;& arr) {\n    int all_max = INT_MIN; // Stores the maximum sum found so far\n    int curr_max = 0;      // Stores the current subarray sum\n\n    for (int x : arr) {\n        curr_max += x;\n        all_max = max(curr_max, all_max);\n        if (curr_max &lt; 0) {\n            curr_max = 0;\n        }\n    }\n    return all_max;\n}\n\nC++ Implementation (Sum and Subarray Indices):\n// Returns the maximum subarray sum and its indices\nint kadaneWithIndices(vector&lt;int&gt;& arr, int& start, int& end) {\n    int all_max = INT_MIN;\n    int curr_max = 0;\n    int s = 0;\n    start = end = 0;\n\n    for (int i = 0; i &lt; arr.size(); i++) {\n        curr_max += arr[i];\n\n        if (curr_max &gt; all_max) {\n            all_max = curr_max;\n            start = s;\n            end = i;\n        }\n\n        if (curr_max &lt; 0) {\n            curr_max = 0;\n            s = i + 1;\n        }\n    }\n    return all_max;\n}\n\nVariable Explanation:\n\nall_max: The maximum sum found so far during traversal.\ncurr_max: The sum of the current subarray ending at the current index.\nstart, end: Indices marking the beginning and end of the maximum sum subarray.\ns: Temporary starting index for the current candidate subarray.\n\n\nVisualization:\nGiven array: [-2, 1, -3, 4, -1, 2, 1, -5, 4]\n\n- Maximum sum subarray: [4, -1, 2, 1]\n- Maximum sum: 6\n\nAdvantages:\n\nLinear time complexity O(n).\nSimple and easy to implement.\nWorks efficiently even when negative numbers are present.\nUses constant space.\n\n\nDisadvantages:\n\nOnly gives the sum by default; modification needed to get indices or actual subarray.\nDoes not handle circular subarrays directly (requires circular Kadane’s algorithm).\n\n\nEdge Cases & Notes:\n\nIf all numbers are negative, it returns the largest (least negative) number.\nFor circular arrays, use:\nmax(kadane(arr), totalSum - kadane(invert signs of arr))\nIf the array is empty, handle appropriately to avoid undefined behavior.\n\n\nApplications:\n\nMaximum profit in stock trading (1 transaction).\nAnalyzing periods of maximum gains/losses in financial or climate data.\nImportant component in many dynamic programming problems.\nUsed in signal processing and time series analysis.\n\n\nTime and Space Complexity:\n\nTime Complexity: O(n)\nSpace Complexity: O(1)",
     "crumbs": [
       "Home",
       "Tips and Tricks",
       "Kadane Algorithm"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html",
+    "title": "Two Pointers",
+    "section": "",
+    "text": "📖 Theory\nTwo Pointers is a versatile technique used to solve array and string problems efficiently. It involves maintaining two indices (pointers) that move through the data structure, either from the same end or from opposite ends, to solve problems involving pairs, subarrays, partitions, or merging.\n\nOften used on sorted arrays, but can be adapted for unsorted cases.\nUseful for problems like pair sum, reversing arrays, removing duplicates, sliding window, and merging arrays.\n\n\nTypes of Two Pointers:\n\nOpposite Ends (Start & End)\nBoth pointers start at opposite ends and move towards each other.\nUse Cases:\n\nPair sum in sorted array\nPalindrome check\nReverse array\n\nBasic Template:\nint left = 0, right = arr.size() - 1;\nwhile (left &lt; right) {\n    // process pair (arr[left], arr[right])\n    if (condition) {\n        // do something\n    }\n    left++;\n    right--;\n}\nExample 1: Find Pair with Given Sum (Sorted Array)\nbool hasPairWithSum(vector&lt;int&gt;& arr, int target) {\n    int left = 0, right = arr.size() - 1;\n    while (left &lt; right) {\n        int curr_sum = arr[left] + arr[right];\n        if (curr_sum == target) {\n            return true;\n        }\n        else if (curr_sum &lt; target) {\n            left++;\n        }\n        else {\n            right--;\n        }\n    }\n    return false;\n}\nExample 2: Check Palindrome\nbool isPalindrome(string& s) {\n    int left = 0, right = s.length() - 1;\n    while (left &lt; right) {\n        if (s[left] != s[right]) return false;\n        left++;\n        right--;\n    }\n    return true;\n}\nExample 3: Reverse Array\nvoid reverseArray(vector&lt;int&gt;& arr) {\n    int left = 0, right = arr.size() - 1;\n    while (left &lt; right) {\n        swap(arr[left++], arr[right--]);\n    }\n}\n\nSame Direction (Both from Start)\nBoth pointers start from the beginning and move forward, often with one pointer leading the other.\nBasic Template:\nint left = 0;\nfor (int right = 0; right &lt; arr.size(); right++) {\n    // Expand window with right\n\n    while (/* condition not satisfied */) {\n        // Shrink from left\n        left++;\n    }\n\n    // Process or update result\n}\nUse Cases:\n\nSliding window problems\nRemoving duplicates\nLongest substring without repeating characters\n\nExample 1: Remove Duplicates from Sorted Array\nint removeDuplicates(vector&lt;int&gt;& arr) {\n    if (arr.empty()) return 0;\n    int slow = 0;\n    for (int fast = 1; fast &lt; arr.size(); fast++) {\n        if (arr[fast] != arr[slow]) {\n            slow++;\n            arr[slow] = arr[fast];\n        }\n    }\n    return slow + 1;\n}\nExample 2: Longest Substring Without Repeating Characters\nint lengthOfLongestSubstring(string s) {\n    unordered_set&lt;char&gt; seen;\n    int left = 0, max_len = 0;\n    for (int right = 0; right &lt; s.length(); right++) {\n        while (seen.count(s[right])) {\n            seen.erase(s[left++]);\n        }\n        seen.insert(s[right]);\n        max_len = max(max_len, right - left + 1);\n    }\n    return max_len;\n}\nExample 3: Minimum Size Subarray Sum ≥ Target\nint minSubArrayLen(int target, vector&lt;int&gt;& nums) {\n    int left = 0, sum = 0, min_len = INT_MAX;\n    for (int right = 0; right &lt; nums.size(); right++) {\n        sum += nums[right];\n        while (sum &gt;= target) {\n            min_len = min(min_len, right - left + 1);\n            sum -= nums[left++];\n        }\n    }\n    return (min_len == INT_MAX) ? 0 : min_len;\n}\n\nFixed & Moving Pointer\nOne pointer is fixed while the other explores ahead to find a valid subarray or partition.\nUse Cases:\n\nPartitioning arrays\nFinding subarrays with certain properties\n\nBasic Template:\nint left = 0, sum = 0;\nfor (int right = 0; right &lt; arr.size(); right++) {\n    sum += arr[right];\n\n    while (/* condition fails */) {\n        sum -= arr[left++];\n    }\n\n    // Update result if needed\n}\nExample: Count Subarrays with Given Sum (Non-negative Numbers)\nint countSubarrays(vector&lt;int&gt;& arr, int target) {\n    int left = 0, sum = 0, count = 0;\n    for (int right = 0; right &lt; arr.size(); right++) {\n        sum += arr[right];\n        while (sum &gt; target && left &lt;= right) {\n            sum -= arr[left++];\n        }\n        if (sum == target) {\n            count++;\n        }\n    }\n    return count;\n}\n\nMultiple Arrays/Lists\nPointers traverse two different arrays/lists, often used for merging or finding intersections.\nUse Cases:\n\nMerge two sorted arrays\nIntersection of arrays\n\nBasic Template:\nint i = 0, j = 0;\nwhile (i &lt; a.size() && j &lt; b.size()) {\n    if (a[i] == b[j]) {\n        // match found\n        i++; j++;\n    }\n    else if (a[i] &lt; b[j]) i++;\n    else j++;\n}\nExample: Merge Two Sorted Arrays\nvector&lt;int&gt; mergeSortedArrays(vector&lt;int&gt;& a, vector&lt;int&gt;& b) {\n    int i = 0, j = 0;\n    vector&lt;int&gt; result;\n    while (i &lt; a.size() && j &lt; b.size()) {\n        if (a[i] &lt; b[j]) {\n            result.push_back(a[i++]);\n        }\n        else {\n            result.push_back(b[j++]);\n        }\n    }\n    while (i &lt; a.size()) {\n        result.push_back(a[i++]);\n    }\n    while (j &lt; b.size()) {\n        result.push_back(b[j++]);\n    }\n    return result;\n}\nExample: Intersection of Two Sorted Arrays\nvector&lt;int&gt; intersectSortedArrays(vector&lt;int&gt;& a, vector&lt;int&gt;& b) {\n    int i = 0, j = 0;\n    vector&lt;int&gt; result;\n    while (i &lt; a.size() && j &lt; b.size()) {\n        if (a[i] == b[j]) {\n            result.push_back(a[i]);\n            i++; j++;\n        }\n        else if (a[i] &lt; b[j]) i++;\n        else j++;\n    }\n    return result;\n}\n\n\nVariable Explanation:\n\nleft, right, slow, fast, i, j: The pointers (indices) used to traverse arrays.\nsum, count: Used for subarray sum and counting.\nresult: Stores merged or processed output.\n\n\nVisualization:\nPair Sum Example:\nGiven array: [1, 2, 3, 4, 5, 6], target sum = 9\n\nleft = 0 (arr[0] = 1), right = 5 (arr[5] = 6)\n1 + 6 = 7 &lt; 9 → move left pointer to 1\n\nleft = 1 (arr[1] = 2), right = 5 (arr[5] = 6)\n2 + 6 = 8 &lt; 9 → move left pointer to 2\n\nleft = 2 (arr[2] = 3), right = 5 (arr[5] = 6)\n3 + 6 = 9 == 9 → pair found!\n\n🔄 Sliding Window Deep Dive (Optional)\n\nFixed-size window: Used when window length is fixed (k).\nVariable-size window: Used when you expand until a condition breaks, then shrink.\n\n// Fixed-size template\nint left = 0, sum = 0;\nfor (int right = 0; right &lt; arr.size(); right++) {\n    sum += arr[right];\n    if (right - left + 1 == k) {\n        // process window [left, right]\n        sum -= arr[left++];\n    }\n}\n\n// Variable-size template\nint left = 0, sum = 0;\nfor (int right = 0; right &lt; arr.size(); right++) {\n    sum += arr[right];\n    while (sum &gt; target) {\n        sum -= arr[left++];\n    }\n    // check or update result\n}\n\nAdvantages:\n\nLinear time complexity O(n) for many problems.\nSpace efficient (often O(1) extra space).\nSimple and intuitive for many array/string problems.\n\n\nDisadvantages:\n\nUsually requires the array to be sorted (for pair sum problems).\nNot always applicable to unsorted data without modifications.\n\n\nEdge Cases & Notes:\n\nFor unsorted arrays, may need to sort first (O(n log n)).\nCan be adapted for strings, linked lists, and sliding window problems.\nWatch for overlapping pointers and off-by-one errors.\n\n\nCommon Mistakes to Avoid:\n\nForgetting to update left or right.\nInfinite loops from incorrect loop conditions.\nOff-by-one errors in calculating window size.\nFailing to reset variables like sum, count, set, or map.\nIgnoring edge cases like empty arrays or all negatives.\nAssuming the array is sorted when it’s not.\n\n\nApplications:\n\nPair sum and triplet sum problems.\nRemoving duplicates from sorted arrays.\nPartitioning arrays.\nReversing arrays or strings.\nSliding window problems.\nMerging sorted arrays.\nIntersection of arrays.\n\n\nTime and Space Complexity:\n\nTime Complexity: O(n) (for most problems)\nSpace Complexity: O(1) (except for merging, which may use O(n))",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html#types-of-two-pointers",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html#types-of-two-pointers",
+    "title": "Two Pointers",
+    "section": "Types of Two Pointers",
+    "text": "Types of Two Pointers\n\n1. Opposite Ends (Start & End)\nBoth pointers start at opposite ends and move towards each other.\nUse Cases:\n- Pair sum in sorted array\n- Palindrome check\n- Reverse array\nExample: Find Pair with Given Sum (Sorted Array)\n// Returns true if there exists a pair with the given sum\nbool hasPairWithSum(vector&lt;int&gt;& arr, int target) {\n    int left = 0, right = arr.size() - 1;\n    while (left &lt; right) {\n        int curr_sum = arr[left] + arr[right];\n        if (curr_sum == target) return true;\n        else if (curr_sum &lt; target) left++;\n        else right--;\n    }\n    return false;\n}\n\n\n\n2. Same Direction (Both from Start)\nBoth pointers start from the beginning and move forward, often with one pointer leading the other.\nUse Cases:\n- Sliding window problems\n- Removing duplicates\n- Longest substring without repeating characters\nExample: Remove Duplicates from Sorted Array\n// Removes duplicates in-place and returns new length\nint removeDuplicates(vector&lt;int&gt;& arr) {\n    if (arr.empty()) return 0;\n    int slow = 0;\n    for (int fast = 1; fast &lt; arr.size(); fast++) {\n        if (arr[fast] != arr[slow]) {\n            slow++;\n            arr[slow] = arr[fast];\n        }\n    }\n    return slow + 1;\n}\n\n\n\n3. Fixed & Moving Pointer\nOne pointer is fixed while the other explores ahead to find a valid subarray or partition.\nUse Cases:\n- Partitioning arrays\n- Finding subarrays with certain properties\nExample: Find Subarrays with Given Sum\n// Counts subarrays with sum equal to target (non-negative numbers)\nint countSubarrays(vector&lt;int&gt;& arr, int target) {\n    int left = 0, sum = 0, count = 0;\n    for (int right = 0; right &lt; arr.size(); right++) {\n        sum += arr[right];\n        while (sum &gt; target && left &lt;= right) {\n            sum -= arr[left++];\n        }\n        if (sum == target) count++;\n    }\n    return count;\n}\n\n\n\n4. Multiple Arrays/Lists\nPointers traverse two different arrays/lists, often used for merging or finding intersections.\nUse Cases:\n- Merge two sorted arrays\n- Intersection of arrays\nExample: Merge Two Sorted Arrays\n// Merges two sorted arrays into one sorted array\nvector&lt;int&gt; mergeSortedArrays(vector&lt;int&gt;& a, vector&lt;int&gt;& b) {\n    int i = 0, j = 0;\n    vector&lt;int&gt; result;\n    while (i &lt; a.size() && j &lt; b.size()) {\n        if (a[i] &lt; b[j]) result.push_back(a[i++]);\n        else result.push_back(b[j++]);\n    }\n    while (i &lt; a.size()) result.push_back(a[i++]);\n    while (j &lt; b.size()) result.push_back(b[j++]);\n    return result;\n}",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html#variable-explanation",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html#variable-explanation",
+    "title": "Two Pointers",
+    "section": "Variable Explanation",
+    "text": "Variable Explanation\n\nleft, right, slow, fast, i, j: The pointers (indices) used to traverse arrays.\nsum, count: Used for subarray sum and counting.\nresult: Stores merged or processed output.",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html#visualization",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html#visualization",
+    "title": "Two Pointers",
+    "section": "Visualization",
+    "text": "Visualization\nPair Sum Example:\nGiven array: [1, 2, 3, 4, 5, 6], target sum = 9\n\nleft = 0 (arr[0] = 1), right = 5 (arr[5] = 6)\n1 + 6 = 7 &lt; 9 → move left pointer to 1\n\nleft = 1 (arr[1] = 2), right = 5 (arr[5] = 6)\n2 + 6 = 8 &lt; 9 → move left pointer to 2\n\nleft = 2 (arr[2] = 3), right = 5 (arr[5] = 6)\n3 + 6 = 9 == 9 → pair found!",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html#advantages",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html#advantages",
+    "title": "Two Pointers",
+    "section": "Advantages",
+    "text": "Advantages\n\nLinear time complexity O(n) for many problems.\nSpace efficient (often O(1) extra space).\nSimple and intuitive for many array/string problems.",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html#disadvantages",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html#disadvantages",
+    "title": "Two Pointers",
+    "section": "Disadvantages",
+    "text": "Disadvantages\n\nUsually requires the array to be sorted (for pair sum problems).\nNot always applicable to unsorted data without modifications.",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html#edge-cases-notes",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html#edge-cases-notes",
+    "title": "Two Pointers",
+    "section": "Edge Cases & Notes",
+    "text": "Edge Cases & Notes\n\nFor unsorted arrays, may need to sort first (O(n log n)).\nCan be adapted for strings, linked lists, and sliding window problems.\nWatch for overlapping pointers and off-by-one errors.",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html#applications",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html#applications",
+    "title": "Two Pointers",
+    "section": "Applications",
+    "text": "Applications\n\nPair sum and triplet sum problems.\nRemoving duplicates from sorted arrays.\nPartitioning arrays.\nReversing arrays or strings.\nSliding window problems.\nMerging sorted arrays.\nIntersection of arrays.",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
+    ]
+  },
+  {
+    "objectID": "DSA Notes/Tips and Tricks/twopointers.html#time-and-space-complexity",
+    "href": "DSA Notes/Tips and Tricks/twopointers.html#time-and-space-complexity",
+    "title": "Two Pointers",
+    "section": "Time and Space Complexity",
+    "text": "Time and Space Complexity\n\nTime Complexity: O(n) (for most problems)\nSpace Complexity: O(1) (except for merging, which may use O(n))",
+    "crumbs": [
+      "Home",
+      "Tips and Tricks",
+      "Two Pointers"
     ]
   }
 ]

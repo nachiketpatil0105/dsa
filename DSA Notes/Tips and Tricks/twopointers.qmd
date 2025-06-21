@@ -1,3 +1,382 @@
 ---
 title: "Two Pointers"
 ---
+
+### 📖 Theory
+
+**Two Pointers** is a versatile technique used to solve array and string problems efficiently.
+It involves maintaining two indices (pointers) that move through the data structure, either from the same end or from opposite ends, to solve problems involving pairs, subarrays, partitions, or merging.
+
+* Often used on sorted arrays, but can be adapted for unsorted cases.
+* Useful for problems like pair sum, reversing arrays, removing duplicates, sliding window, and merging arrays.
+
+---
+
+**Types of Two Pointers:**
+
+1. Opposite Ends (Start & End)
+
+   Both pointers start at opposite ends and move towards each other.
+
+   Use Cases:
+
+   * Pair sum in sorted array
+   * Palindrome check
+   * Reverse array
+
+   **Basic Template:**
+
+   ```cpp
+   int left = 0, right = arr.size() - 1;
+   while (left < right) {
+       // process pair (arr[left], arr[right])
+       if (condition) {
+           // do something
+       }
+       left++;
+       right--;
+   }
+   ```
+
+   **Example 1: Find Pair with Given Sum (Sorted Array)**
+
+   ```cpp
+   bool hasPairWithSum(vector<int>& arr, int target) {
+       int left = 0, right = arr.size() - 1;
+       while (left < right) {
+           int curr_sum = arr[left] + arr[right];
+           if (curr_sum == target) {
+               return true;
+           }
+           else if (curr_sum < target) {
+               left++;
+           }
+           else {
+               right--;
+           }
+       }
+       return false;
+   }
+   ```
+
+   **Example 2: Check Palindrome**
+
+   ```cpp
+   bool isPalindrome(string& s) {
+       int left = 0, right = s.length() - 1;
+       while (left < right) {
+           if (s[left] != s[right]) return false;
+           left++;
+           right--;
+       }
+       return true;
+   }
+   ```
+
+   **Example 3: Reverse Array**
+
+   ```cpp
+   void reverseArray(vector<int>& arr) {
+       int left = 0, right = arr.size() - 1;
+       while (left < right) {
+           swap(arr[left++], arr[right--]);
+       }
+   }
+   ```
+
+   ---
+
+2. Same Direction (Both from Start)
+
+   Both pointers start from the beginning and move forward, often with one pointer leading the other.
+
+   **Basic Template:**
+
+   ```cpp
+   int left = 0;
+   for (int right = 0; right < arr.size(); right++) {
+       // Expand window with right
+
+       while (/* condition not satisfied */) {
+           // Shrink from left
+           left++;
+       }
+
+       // Process or update result
+   }
+   ```
+
+   Use Cases:
+
+   * Sliding window problems
+   * Removing duplicates
+   * Longest substring without repeating characters
+
+   **Example 1: Remove Duplicates from Sorted Array**
+
+   ```cpp
+   int removeDuplicates(vector<int>& arr) {
+       if (arr.empty()) return 0;
+       int slow = 0;
+       for (int fast = 1; fast < arr.size(); fast++) {
+           if (arr[fast] != arr[slow]) {
+               slow++;
+               arr[slow] = arr[fast];
+           }
+       }
+       return slow + 1;
+   }
+   ```
+
+   **Example 2: Longest Substring Without Repeating Characters**
+
+   ```cpp
+   int lengthOfLongestSubstring(string s) {
+       unordered_set<char> seen;
+       int left = 0, max_len = 0;
+       for (int right = 0; right < s.length(); right++) {
+           while (seen.count(s[right])) {
+               seen.erase(s[left++]);
+           }
+           seen.insert(s[right]);
+           max_len = max(max_len, right - left + 1);
+       }
+       return max_len;
+   }
+   ```
+
+   **Example 3: Minimum Size Subarray Sum ≥ Target**
+
+   ```cpp
+   int minSubArrayLen(int target, vector<int>& nums) {
+       int left = 0, sum = 0, min_len = INT_MAX;
+       for (int right = 0; right < nums.size(); right++) {
+           sum += nums[right];
+           while (sum >= target) {
+               min_len = min(min_len, right - left + 1);
+               sum -= nums[left++];
+           }
+       }
+       return (min_len == INT_MAX) ? 0 : min_len;
+   }
+   ```
+
+   ---
+
+3. Fixed & Moving Pointer
+
+   One pointer is fixed while the other explores ahead to find a valid subarray or partition.
+
+   Use Cases:
+
+   * Partitioning arrays
+   * Finding subarrays with certain properties
+
+   **Basic Template:**
+
+   ```cpp
+   int left = 0, sum = 0;
+   for (int right = 0; right < arr.size(); right++) {
+       sum += arr[right];
+
+       while (/* condition fails */) {
+           sum -= arr[left++];
+       }
+
+       // Update result if needed
+   }
+   ```
+
+   **Example: Count Subarrays with Given Sum (Non-negative Numbers)**
+
+   ```cpp
+   int countSubarrays(vector<int>& arr, int target) {
+       int left = 0, sum = 0, count = 0;
+       for (int right = 0; right < arr.size(); right++) {
+           sum += arr[right];
+           while (sum > target && left <= right) {
+               sum -= arr[left++];
+           }
+           if (sum == target) {
+               count++;
+           }
+       }
+       return count;
+   }
+   ```
+
+   ---
+
+4. Multiple Arrays/Lists
+
+   Pointers traverse two different arrays/lists, often used for merging or finding intersections.
+
+   Use Cases:
+
+   * Merge two sorted arrays
+   * Intersection of arrays
+
+   **Basic Template:**
+
+   ```cpp
+   int i = 0, j = 0;
+   while (i < a.size() && j < b.size()) {
+       if (a[i] == b[j]) {
+           // match found
+           i++; j++;
+       }
+       else if (a[i] < b[j]) i++;
+       else j++;
+   }
+   ```
+
+   **Example: Merge Two Sorted Arrays**
+
+   ```cpp
+   vector<int> mergeSortedArrays(vector<int>& a, vector<int>& b) {
+       int i = 0, j = 0;
+       vector<int> result;
+       while (i < a.size() && j < b.size()) {
+           if (a[i] < b[j]) {
+               result.push_back(a[i++]);
+           }
+           else {
+               result.push_back(b[j++]);
+           }
+       }
+       while (i < a.size()) {
+           result.push_back(a[i++]);
+       }
+       while (j < b.size()) {
+           result.push_back(b[j++]);
+       }
+       return result;
+   }
+   ```
+
+   **Example: Intersection of Two Sorted Arrays**
+
+   ```cpp
+   vector<int> intersectSortedArrays(vector<int>& a, vector<int>& b) {
+       int i = 0, j = 0;
+       vector<int> result;
+       while (i < a.size() && j < b.size()) {
+           if (a[i] == b[j]) {
+               result.push_back(a[i]);
+               i++; j++;
+           }
+           else if (a[i] < b[j]) i++;
+           else j++;
+       }
+       return result;
+   }
+   ```
+
+---
+
+**Variable Explanation:**
+
+* left, right, slow, fast, i, j: The pointers (indices) used to traverse arrays.
+* sum, count: Used for subarray sum and counting.
+* result: Stores merged or processed output.
+
+---
+
+**Visualization:**
+
+*Pair Sum Example:*
+
+```cpp
+Given array: [1, 2, 3, 4, 5, 6], target sum = 9
+
+left = 0 (arr[0] = 1), right = 5 (arr[5] = 6)
+1 + 6 = 7 < 9 → move left pointer to 1
+
+left = 1 (arr[1] = 2), right = 5 (arr[5] = 6)
+2 + 6 = 8 < 9 → move left pointer to 2
+
+left = 2 (arr[2] = 3), right = 5 (arr[5] = 6)
+3 + 6 = 9 == 9 → pair found!
+```
+
+---
+
+**🔄 Sliding Window Deep Dive (Optional)**
+
+* **Fixed-size window:** Used when window length is fixed (k).
+* **Variable-size window:** Used when you expand until a condition breaks, then shrink.
+
+```cpp
+// Fixed-size template
+int left = 0, sum = 0;
+for (int right = 0; right < arr.size(); right++) {
+    sum += arr[right];
+    if (right - left + 1 == k) {
+        // process window [left, right]
+        sum -= arr[left++];
+    }
+}
+
+// Variable-size template
+int left = 0, sum = 0;
+for (int right = 0; right < arr.size(); right++) {
+    sum += arr[right];
+    while (sum > target) {
+        sum -= arr[left++];
+    }
+    // check or update result
+}
+```
+
+---
+
+**Advantages:**
+
+* Linear time complexity O(n) for many problems.
+* Space efficient (often O(1) extra space).
+* Simple and intuitive for many array/string problems.
+
+---
+
+**Disadvantages:**
+
+* Usually requires the array to be sorted (for pair sum problems).
+* Not always applicable to unsorted data without modifications.
+
+---
+
+**Edge Cases & Notes:**
+
+* For unsorted arrays, may need to sort first (O(n log n)).
+* Can be adapted for strings, linked lists, and sliding window problems.
+* Watch for overlapping pointers and off-by-one errors.
+
+---
+
+**Common Mistakes to Avoid:**
+
+* Forgetting to update left or right.
+* Infinite loops from incorrect loop conditions.
+* Off-by-one errors in calculating window size.
+* Failing to reset variables like sum, count, set, or map.
+* Ignoring edge cases like empty arrays or all negatives.
+* Assuming the array is sorted when it’s not.
+
+---
+
+**Applications:**
+
+* Pair sum and triplet sum problems.
+* Removing duplicates from sorted arrays.
+* Partitioning arrays.
+* Reversing arrays or strings.
+* Sliding window problems.
+* Merging sorted arrays.
+* Intersection of arrays.
+
+---
+
+**Time and Space Complexity:**
+
+* **Time Complexity:** O(n) (for most problems)
+* **Space Complexity:** O(1) (except for merging, which may use O(n))

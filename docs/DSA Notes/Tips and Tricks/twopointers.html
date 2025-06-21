@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -477,8 +512,307 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="theory" class="level3">
+<h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
+<p><strong>Two Pointers</strong> is a versatile technique used to solve array and string problems efficiently. It involves maintaining two indices (pointers) that move through the data structure, either from the same end or from opposite ends, to solve problems involving pairs, subarrays, partitions, or merging.</p>
+<ul>
+<li>Often used on sorted arrays, but can be adapted for unsorted cases.</li>
+<li>Useful for problems like pair sum, reversing arrays, removing duplicates, sliding window, and merging arrays.</li>
+</ul>
+<hr>
+<p><strong>Types of Two Pointers:</strong></p>
+<ol type="1">
+<li><p>Opposite Ends (Start &amp; End)</p>
+<p>Both pointers start at opposite ends and move towards each other.</p>
+<p>Use Cases:</p>
+<ul>
+<li>Pair sum in sorted array</li>
+<li>Palindrome check</li>
+<li>Reverse array</li>
+</ul>
+<p><strong>Basic Template:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> arr<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// process pair (arr[left], arr[right])</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>condition<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="co">// do something</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    left<span class="op">++;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    right<span class="op">--;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example 1: Find Pair with Given Sum (Sorted Array)</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> hasPairWithSum<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> arr<span class="op">,</span> <span class="dt">int</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> arr<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> curr_sum <span class="op">=</span> arr<span class="op">[</span>left<span class="op">]</span> <span class="op">+</span> arr<span class="op">[</span>right<span class="op">];</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>curr_sum <span class="op">==</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>curr_sum <span class="op">&lt;</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>            left<span class="op">++;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>            right<span class="op">--;</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example 2: Check Palindrome</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">bool</span> isPalindrome<span class="op">(</span>string<span class="op">&amp;</span> s<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> s<span class="op">.</span>length<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>s<span class="op">[</span>left<span class="op">]</span> <span class="op">!=</span> s<span class="op">[</span>right<span class="op">])</span> <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        left<span class="op">++;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        right<span class="op">--;</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example 3: Reverse Array</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> reverseArray<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> arr<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> right <span class="op">=</span> arr<span class="op">.</span>size<span class="op">()</span> <span class="op">-</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>left <span class="op">&lt;</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        swap<span class="op">(</span>arr<span class="op">[</span>left<span class="op">++],</span> arr<span class="op">[</span>right<span class="op">--]);</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr></li>
+<li><p>Same Direction (Both from Start)</p>
+<p>Both pointers start from the beginning and move forward, often with one pointer leading the other.</p>
+<p><strong>Basic Template:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> right <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> right <span class="op">&lt;</span> arr<span class="op">.</span>size<span class="op">();</span> right<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Expand window with right</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="co">/* condition not satisfied */</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Shrink from left</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        left<span class="op">++;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Process or update result</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use Cases:</p>
+<ul>
+<li>Sliding window problems</li>
+<li>Removing duplicates</li>
+<li>Longest substring without repeating characters</li>
+</ul>
+<p><strong>Example 1: Remove Duplicates from Sorted Array</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> removeDuplicates<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> arr<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>arr<span class="op">.</span>empty<span class="op">())</span> <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> slow <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> fast <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> fast <span class="op">&lt;</span> arr<span class="op">.</span>size<span class="op">();</span> fast<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>arr<span class="op">[</span>fast<span class="op">]</span> <span class="op">!=</span> arr<span class="op">[</span>slow<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>            slow<span class="op">++;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>            arr<span class="op">[</span>slow<span class="op">]</span> <span class="op">=</span> arr<span class="op">[</span>fast<span class="op">];</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> slow <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example 2: Longest Substring Without Repeating Characters</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lengthOfLongestSubstring<span class="op">(</span>string s<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    unordered_set<span class="op">&lt;</span><span class="dt">char</span><span class="op">&gt;</span> seen<span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> max_len <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> right <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> right <span class="op">&lt;</span> s<span class="op">.</span>length<span class="op">();</span> right<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>seen<span class="op">.</span>count<span class="op">(</span>s<span class="op">[</span>right<span class="op">]))</span> <span class="op">{</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>            seen<span class="op">.</span>erase<span class="op">(</span>s<span class="op">[</span>left<span class="op">++]);</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        seen<span class="op">.</span>insert<span class="op">(</span>s<span class="op">[</span>right<span class="op">]);</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>        max_len <span class="op">=</span> max<span class="op">(</span>max_len<span class="op">,</span> right <span class="op">-</span> left <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> max_len<span class="op">;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example 3: Minimum Size Subarray Sum ≥ Target</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> minSubArrayLen<span class="op">(</span><span class="dt">int</span> target<span class="op">,</span> vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> nums<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> min_len <span class="op">=</span> INT_MAX<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> right <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> right <span class="op">&lt;</span> nums<span class="op">.</span>size<span class="op">();</span> right<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        sum <span class="op">+=</span> nums<span class="op">[</span>right<span class="op">];</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>sum <span class="op">&gt;=</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>            min_len <span class="op">=</span> min<span class="op">(</span>min_len<span class="op">,</span> right <span class="op">-</span> left <span class="op">+</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>            sum <span class="op">-=</span> nums<span class="op">[</span>left<span class="op">++];</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">(</span>min_len <span class="op">==</span> INT_MAX<span class="op">)</span> <span class="op">?</span> <span class="dv">0</span> <span class="op">:</span> min_len<span class="op">;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr></li>
+<li><p>Fixed &amp; Moving Pointer</p>
+<p>One pointer is fixed while the other explores ahead to find a valid subarray or partition.</p>
+<p>Use Cases:</p>
+<ul>
+<li>Partitioning arrays</li>
+<li>Finding subarrays with certain properties</li>
+</ul>
+<p><strong>Basic Template:</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> right <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> right <span class="op">&lt;</span> arr<span class="op">.</span>size<span class="op">();</span> right<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    sum <span class="op">+=</span> arr<span class="op">[</span>right<span class="op">];</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span><span class="co">/* condition fails */</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        sum <span class="op">-=</span> arr<span class="op">[</span>left<span class="op">++];</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Update result if needed</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example: Count Subarrays with Given Sum (Non-negative Numbers)</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> countSubarrays<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> arr<span class="op">,</span> <span class="dt">int</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> right <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> right <span class="op">&lt;</span> arr<span class="op">.</span>size<span class="op">();</span> right<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        sum <span class="op">+=</span> arr<span class="op">[</span>right<span class="op">];</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> <span class="op">(</span>sum <span class="op">&gt;</span> target <span class="op">&amp;&amp;</span> left <span class="op">&lt;=</span> right<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>            sum <span class="op">-=</span> arr<span class="op">[</span>left<span class="op">++];</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>sum <span class="op">==</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>            count<span class="op">++;</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> count<span class="op">;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr></li>
+<li><p>Multiple Arrays/Lists</p>
+<p>Pointers traverse two different arrays/lists, often used for merging or finding intersections.</p>
+<p>Use Cases:</p>
+<ul>
+<li>Merge two sorted arrays</li>
+<li>Intersection of arrays</li>
+</ul>
+<p><strong>Basic Template:</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;</span> a<span class="op">.</span>size<span class="op">()</span> <span class="op">&amp;&amp;</span> j <span class="op">&lt;</span> b<span class="op">.</span>size<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> b<span class="op">[</span>j<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="co">// match found</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        i<span class="op">++;</span> j<span class="op">++;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> b<span class="op">[</span>j<span class="op">])</span> i<span class="op">++;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span> j<span class="op">++;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example: Merge Two Sorted Arrays</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> mergeSortedArrays<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> a<span class="op">,</span> vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> result<span class="op">;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;</span> a<span class="op">.</span>size<span class="op">()</span> <span class="op">&amp;&amp;</span> j <span class="op">&lt;</span> b<span class="op">.</span>size<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> b<span class="op">[</span>j<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>            result<span class="op">.</span>push_back<span class="op">(</span>a<span class="op">[</span>i<span class="op">++]);</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            result<span class="op">.</span>push_back<span class="op">(</span>b<span class="op">[</span>j<span class="op">++]);</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;</span> a<span class="op">.</span>size<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        result<span class="op">.</span>push_back<span class="op">(</span>a<span class="op">[</span>i<span class="op">++]);</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>j <span class="op">&lt;</span> b<span class="op">.</span>size<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        result<span class="op">.</span>push_back<span class="op">(</span>b<span class="op">[</span>j<span class="op">++]);</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Example: Intersection of Two Sorted Arrays</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> intersectSortedArrays<span class="op">(</span>vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> a<span class="op">,</span> vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> b<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    vector<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;</span> result<span class="op">;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>i <span class="op">&lt;</span> a<span class="op">.</span>size<span class="op">()</span> <span class="op">&amp;&amp;</span> j <span class="op">&lt;</span> b<span class="op">.</span>size<span class="op">())</span> <span class="op">{</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">]</span> <span class="op">==</span> b<span class="op">[</span>j<span class="op">])</span> <span class="op">{</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>            result<span class="op">.</span>push_back<span class="op">(</span>a<span class="op">[</span>i<span class="op">]);</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>            i<span class="op">++;</span> j<span class="op">++;</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>a<span class="op">[</span>i<span class="op">]</span> <span class="op">&lt;</span> b<span class="op">[</span>j<span class="op">])</span> i<span class="op">++;</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span> j<span class="op">++;</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<hr>
+<p><strong>Variable Explanation:</strong></p>
+<ul>
+<li>left, right, slow, fast, i, j: The pointers (indices) used to traverse arrays.</li>
+<li>sum, count: Used for subarray sum and counting.</li>
+<li>result: Stores merged or processed output.</li>
+</ul>
+<hr>
+<p><strong>Visualization:</strong></p>
+<p><em>Pair Sum Example:</em></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>Given array<span class="op">:</span> <span class="op">[</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">],</span> target sum <span class="op">=</span> <span class="dv">9</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> <span class="dv">0</span> <span class="op">(</span>arr<span class="op">[</span><span class="dv">0</span><span class="op">]</span> <span class="op">=</span> <span class="dv">1</span><span class="op">),</span> right <span class="op">=</span> <span class="dv">5</span> <span class="op">(</span>arr<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="dv">6</span><span class="op">)</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">6</span> <span class="op">=</span> <span class="dv">7</span> <span class="op">&lt;</span> <span class="dv">9</span> → move left pointer to <span class="dv">1</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> <span class="dv">1</span> <span class="op">(</span>arr<span class="op">[</span><span class="dv">1</span><span class="op">]</span> <span class="op">=</span> <span class="dv">2</span><span class="op">),</span> right <span class="op">=</span> <span class="dv">5</span> <span class="op">(</span>arr<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="dv">6</span><span class="op">)</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">6</span> <span class="op">=</span> <span class="dv">8</span> <span class="op">&lt;</span> <span class="dv">9</span> → move left pointer to <span class="dv">2</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>left <span class="op">=</span> <span class="dv">2</span> <span class="op">(</span>arr<span class="op">[</span><span class="dv">2</span><span class="op">]</span> <span class="op">=</span> <span class="dv">3</span><span class="op">),</span> right <span class="op">=</span> <span class="dv">5</span> <span class="op">(</span>arr<span class="op">[</span><span class="dv">5</span><span class="op">]</span> <span class="op">=</span> <span class="dv">6</span><span class="op">)</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">+</span> <span class="dv">6</span> <span class="op">=</span> <span class="dv">9</span> <span class="op">==</span> <span class="dv">9</span> → pair found<span class="op">!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><strong>🔄 Sliding Window Deep Dive (Optional)</strong></p>
+<ul>
+<li><strong>Fixed-size window:</strong> Used when window length is fixed (k).</li>
+<li><strong>Variable-size window:</strong> Used when you expand until a condition breaks, then shrink.</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Fixed-size template</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> right <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> right <span class="op">&lt;</span> arr<span class="op">.</span>size<span class="op">();</span> right<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    sum <span class="op">+=</span> arr<span class="op">[</span>right<span class="op">];</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>right <span class="op">-</span> left <span class="op">+</span> <span class="dv">1</span> <span class="op">==</span> k<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="co">// process window [left, right]</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        sum <span class="op">-=</span> arr<span class="op">[</span>left<span class="op">++];</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co">// Variable-size template</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> left <span class="op">=</span> <span class="dv">0</span><span class="op">,</span> sum <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> right <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> right <span class="op">&lt;</span> arr<span class="op">.</span>size<span class="op">();</span> right<span class="op">++)</span> <span class="op">{</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    sum <span class="op">+=</span> arr<span class="op">[</span>right<span class="op">];</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="op">(</span>sum <span class="op">&gt;</span> target<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        sum <span class="op">-=</span> arr<span class="op">[</span>left<span class="op">++];</span></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    <span class="co">// check or update result</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Linear time complexity O(n) for many problems.</li>
+<li>Space efficient (often O(1) extra space).</li>
+<li>Simple and intuitive for many array/string problems.</li>
+</ul>
+<hr>
+<p><strong>Disadvantages:</strong></p>
+<ul>
+<li>Usually requires the array to be sorted (for pair sum problems).</li>
+<li>Not always applicable to unsorted data without modifications.</li>
+</ul>
+<hr>
+<p><strong>Edge Cases &amp; Notes:</strong></p>
+<ul>
+<li>For unsorted arrays, may need to sort first (O(n log n)).</li>
+<li>Can be adapted for strings, linked lists, and sliding window problems.</li>
+<li>Watch for overlapping pointers and off-by-one errors.</li>
+</ul>
+<hr>
+<p><strong>Common Mistakes to Avoid:</strong></p>
+<ul>
+<li>Forgetting to update left or right.</li>
+<li>Infinite loops from incorrect loop conditions.</li>
+<li>Off-by-one errors in calculating window size.</li>
+<li>Failing to reset variables like sum, count, set, or map.</li>
+<li>Ignoring edge cases like empty arrays or all negatives.</li>
+<li>Assuming the array is sorted when it’s not.</li>
+</ul>
+<hr>
+<p><strong>Applications:</strong></p>
+<ul>
+<li>Pair sum and triplet sum problems.</li>
+<li>Removing duplicates from sorted arrays.</li>
+<li>Partitioning arrays.</li>
+<li>Reversing arrays or strings.</li>
+<li>Sliding window problems.</li>
+<li>Merging sorted arrays.</li>
+<li>Intersection of arrays.</li>
+</ul>
+<hr>
+<p><strong>Time and Space Complexity:</strong></p>
+<ul>
+<li><strong>Time Complexity:</strong> O(n) (for most problems)</li>
+<li><strong>Space Complexity:</strong> O(1) (except for merging, which may use O(n))</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
