@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Sort Stack Using Recursion (Reverse Stack) – DSA</title>
+<title>Kadane – DSA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,62 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../favicon.ico" rel="icon">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-f9790f549ae1a0a77b79454c30f3fbfc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f9790f549ae1a0a77b79454c30f3fbfc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -105,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed fullcontent quarto-light">
@@ -115,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">DSA</span>
     </a>
   </div>
@@ -134,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">DSA Notes</span></a>
   </li>  
 </ul>
@@ -148,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/creation.html">Stack</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/sortstack.html">Sort/Reverse Stack</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Kadane</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -179,67 +144,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/vector.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/vector.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Vector</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/string.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/string.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">String</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/char.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/char.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Char</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/deque.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/deque.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deque</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/list.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/list.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/stack.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/stack.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Stack</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/queue.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/queue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Queue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/priority_queue.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/priority_queue.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Priority Queue</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/set.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/set.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Set</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/map.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/map.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Map</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/C++STL/algorithm.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/C++STL/algorithm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Algorithm</span></a>
   </div>
 </li>
@@ -256,13 +221,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Tips and Tricks/kadane.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Tips and Tricks/kadane.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Kadane Algorithm</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Tips and Tricks/twopointers.qmd" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Tips and Tricks/twopointers.qmd" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Two Pointers</span></a>
   </div>
 </li>
@@ -279,19 +244,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Basic Sorting/Bubble_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Basic Sorting/Bubble_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Bubble Sort</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Basic Sorting/Selection_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Basic Sorting/Selection_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Selection Sort</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Basic Sorting/Insertion_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Basic Sorting/Insertion_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Insertion Sort</span></a>
   </div>
 </li>
@@ -308,13 +273,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Advanced Sorting/Quick_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Advanced Sorting/Quick_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Quick Sort</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Advanced Sorting/Merge_Sort.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Advanced Sorting/Merge_Sort.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Merge Sort</span></a>
   </div>
 </li>
@@ -331,19 +296,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Binary Search/Binary_Search.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Binary Search/Binary_Search.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Binary Search</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Binary Search/BS_rotated_no_dupli.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Binary Search/BS_rotated_no_dupli.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BS in Rotated Array (No Duplicates)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Binary Search/BS_rotated_dupli.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Binary Search/BS_rotated_dupli.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">BS in Rotated Array (Duplicates)</span></a>
   </div>
 </li>
@@ -360,19 +325,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Recursion/recursion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Recursion</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Recursion/finding_power_set.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Finding the Power Set</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Recursion/pairing_two_or_multiple_sets.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Pairing of Two or Multiple Arrays</span></a>
   </div>
 </li>
@@ -389,67 +354,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/sll.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/sll.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Singly Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/dll.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/dll.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Doubly Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/cll.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/cll.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Circular Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/floyd.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/floyd.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Floyd Algorithm</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/reversell.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/reversell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Reverse Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/middlell.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/middlell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Find Middle of Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/merge2sortedll.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/merge2sortedll.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Merge 2 Sorted Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/mergesortll.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/mergesortll.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Merge Sort in Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/palindromell.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/palindromell.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Palindrome in Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/mapsll.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/mapsll.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Use of Maps in Linked List</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Linked List/mapaltr.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Linked List/mapaltr.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Alternative Approach for Maps SC O(1)</span></a>
   </div>
 </li>
@@ -457,28 +422,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text">Stack</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Stack/creation.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Stack/creation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Creation of Stack</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Stack/nextsmallerelementleftright.html" class="sidebar-item-text sidebar-link">
+  <a href="../DSA Notes/Stack/nextsmallerelementleftright.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Next Smaller Element</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../DSA Notes/Stack/sortstack.html" class="sidebar-item-text sidebar-link active">
+  <a href="../DSA Notes/Stack/sortstack.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Sort/Reverse Stack</span></a>
   </div>
 </li>
@@ -493,9 +458,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/creation.html">Stack</a></li><li class="breadcrumb-item"><a href="../../DSA Notes/Stack/sortstack.html">Sort/Reverse Stack</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Sort Stack Using Recursion (Reverse Stack)</h1>
+<h1 class="title">Kadane</h1>
 </div>
 
 
@@ -512,82 +477,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="theory" class="level3">
-<h3 class="anchored" data-anchor-id="theory">📖 Theory</h3>
-<p>Sorting a stack using recursion means arranging its elements in ascending order (top to bottom) <strong>without using any extra data structures</strong> (except the call stack).<br>
-The idea is to recursively pop all elements, sort the smaller stack, and insert the popped element back in the correct position.</p>
-<hr>
-<p><strong>C++ Implementation:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Helper function to insert an element in sorted order</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sortedInsert<span class="op">(</span>stack<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> s<span class="op">,</span> <span class="dt">int</span> x<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>s<span class="op">.</span>empty<span class="op">()</span> <span class="op">||</span> x <span class="op">&gt;</span> s<span class="op">.</span>top<span class="op">())</span> <span class="op">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>        s<span class="op">.</span>push<span class="op">(</span>x<span class="op">);</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span><span class="op">;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">int</span> temp <span class="op">=</span> s<span class="op">.</span>top<span class="op">();</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span>pop<span class="op">();</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    sortedInsert<span class="op">(</span>s<span class="op">,</span> x<span class="op">);</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    s<span class="op">.</span>push<span class="op">(</span>temp<span class="op">);</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">// Main function to sort the stack</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> sortStack<span class="op">(</span>stack<span class="op">&lt;</span><span class="dt">int</span><span class="op">&gt;&amp;</span> s<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(!</span>s<span class="op">.</span>empty<span class="op">())</span> <span class="op">{</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> x <span class="op">=</span> s<span class="op">.</span>top<span class="op">();</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        s<span class="op">.</span>pop<span class="op">();</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        sortStack<span class="op">(</span>s<span class="op">);</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        sortedInsert<span class="op">(</span>s<span class="op">,</span> x<span class="op">);</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-<p><strong>Visualization:</strong></p>
-<p>Before Sorting (Top to Bottom):<br>
-| 1 |<br>
-| 5 |<br>
-| 2 |<br>
-| 4 |<br>
-| 3 |</p>
-<p>After Sorting (Top to Bottom):<br>
-| 5 |<br>
-| 4 |<br>
-| 3 |<br>
-| 2 |<br>
-| 1 |</p>
-<hr>
-<p><strong>Advantages:</strong></p>
-<ul>
-<li>No need for extra data structures (uses only recursion stack).</li>
-<li>Simple and elegant recursive approach.</li>
-</ul>
-<hr>
-<p><strong>Disadvantages:</strong></p>
-<ul>
-<li>Not efficient for large stacks (due to recursion depth).</li>
-<li>Uses call stack, which may cause stack overflow for very large input.</li>
-</ul>
-<hr>
-<p><strong>Applications:</strong></p>
-<ul>
-<li>Useful for interview problems.</li>
-<li>When only stack operations are allowed and no extra space is permitted.</li>
-</ul>
-<hr>
-<p><strong>Similar Use Cases:</strong></p>
-<ul>
-<li>Set top element at the bottom of the stack.</li>
-<li>Reverse the stack.</li>
-<li>Find middle of the stack.</li>
-</ul>
-<hr>
-<p><strong>Time and Space Complexity:</strong></p>
-<ul>
-<li><strong>Time Complexity:</strong> O(n²) (each insertion may traverse the stack)</li>
-<li><strong>Space Complexity:</strong> O(n) (due to recursion stack)</li>
-</ul>
-<hr>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

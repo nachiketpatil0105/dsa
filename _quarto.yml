@@ -43,6 +43,14 @@ website:
             href: DSA Notes/C++STL/map.qmd
           - text: Algorithm
             href: DSA Notes/C++STL/algorithm.qmd
+      - section: 'Tips and Tricks'
+        contents:
+          - text: Kadane Algorithm
+            href: DSA Notes/Tips and Tricks/kadane.qmd
+          - text: Two Pointers
+            href: DSA Notes/Tips and Tricks/twopointers.qmd
+          # - text:
+          #   href: DSA Notes/Tips and Tricks/.qmd
       - section: 'Basic Sorting'
         contents:
           - text: Bubble Sort
